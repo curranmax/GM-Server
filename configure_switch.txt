@@ -1,0 +1,26 @@
+
+# --------------------------------------------------------------
+# | Configure hostname and domain name (not sure if necessary) |
+# --------------------------------------------------------------
+# Enter correct mode
+enable
+configure terminal
+
+# Define hostname and domain-name
+hostname <host name>
+ip domain-name <domain name>
+
+# -----------------
+# | Setup RSA key |
+# -----------------
+# Only necessary first time
+crypto key generate rsa
+
+# -----------------------
+# | Create user account |
+# -----------------------
+aaa new-model
+aaa authentication login default local
+username <user name> privilege 15 password 0 <password>
+
+# Remember to ssh to the switch to confirm it is setup properly, and it is added to the known host file

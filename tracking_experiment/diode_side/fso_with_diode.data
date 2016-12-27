@@ -1,0 +1,21 @@
+rack_id rack_2
+fso_id fso_1
+
+ph_diode_serial_number 01BD0EC3
+ph_diode_channel 3
+ph_diode_num_samples 100
+ph_diode_sampling_rate 50000
+nh_diode_serial_number 01BD0EC3
+nh_diode_channel 2
+nh_diode_num_samples 100
+nh_diode_sampling_rate 50000
+pv_diode_serial_number 01BD0EC3
+pv_diode_channel 1
+pv_diode_num_samples 100
+pv_diode_sampling_rate 50000
+nv_diode_serial_number 01BD0EC3
+nv_diode_channel 0
+nv_diode_num_samples 100
+nv_diode_sampling_rate 50000
+
+
