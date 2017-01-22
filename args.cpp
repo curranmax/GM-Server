@@ -24,18 +24,29 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&random_min_val, 0.0, "-peak_rand_min", "RMIN", "Minimum distance to randomly go from first peak"),
 			Arg_Val(&random_max_val, 100.0, "-peak_rand_max", "RMAX", "Maximum distance to randomly go from first peak"),
 			Arg_Val(&num_dom_iters, 1, "-dom_iters", "DOM_ITERS", "Number of times to request the received power of a SFP in the DOM Tests"),
-			Arg_Val(&k_proportional, 1.0, "-kp", "K_PROPORTIONAL", "Factor used in tracking system")
+			Arg_Val(&k_proportional, 1.0, "-kp", "K_PROPORTIONAL", "Factor used in tracking system"),
+			Arg_Val(&do_map_voltage, "-do_map", "Instead of normal tracking algorithm, does runs TrackingSystem::mapVoltage"),
+			Arg_Val(&map_range, 500, "-mr", "MAP_RANGE", "Range to use for TrackingSystem::mapVoltage"),
+			Arg_Val(&map_step, 10, "-ms", "MAP_STEP", "Step to use for TrackingSystem::mapVoltage"),
+			Arg_Val(&record_type, "all", "-record_type", "RECORD_TYPE", "Either 'all' or 'linear'"),
+			Arg_Val(&map_voltage_out_file, "data/map_voltage_data.txt", "-map_voltage_out_file", "MV_OUT", "File to write data to")
 		};
 
 	for(int i = 1; i < argc; ++i) {
 		if(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"-help") == 0) {
 			printHelp();
 		}
+		bool match_found = false;
 		for(unsigned int j = 0; j < args.size(); ++j) {
 			if(args[j].isMatch(argv,i,argc)) {
 				args[j].setVal(argv,i,argc);
+				match_found = true;
 				break;
 			}
+		}
+		// IF NONE FOUND PRINT AN ERROR MESSAGE
+		if(!match_found) {
+			std::cerr << "INVALID COMMAND LINE ARG: " << argv[i] << std::endl;
 		}
 	}
 }

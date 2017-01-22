@@ -3,9 +3,11 @@
 
 #include <signal.h>
 #include <iostream>
+#include <fstream>
 #include <sstream>
 #include <stdio.h>
 #include <string.h>
+#include <chrono>
 
 TrackingSystem::TrackingSystem(int sock_, bool is_controller_)
 		: sock(sock_), is_controller(is_controller_),
@@ -22,12 +24,20 @@ void TrackingSystem::run(FSO* fso_, Args* args_) {
 	args = args_;
 
 	if (is_controller) {
-		controllerRun();
+		if (args->do_map_voltage) {
+			mapVoltage();	
+		} else {
+			controllerRun();
+		}
 	} else {
 		listenerRun();
 	}
 
 	std::cout << "Ending TrackingSystem::run" << std::endl;
+}
+
+float TrackingSystem::computeResponse(float p_volt, float n_volt) {
+	return args->k_proportional * (n_volt - p_volt);
 }
 
 bool controller_loop = false;
@@ -44,8 +54,8 @@ void TrackingSystem::controllerRun() {
 	fso->setToLink(other_rack_id,other_fso_id);
 
 	std::cout << "TrackingSystem::controllerRun start" << std::endl;
-	float ph_volt = 0.0, nh_volt = 0.0, pv_volt = 0.0, nv_volt = 0.0;
-	int x = 0, every_x_print = 10;
+	float ph_volt = 0.0, nh_volt = 0.0, pv_volt = 0.0, nv_volt = 0.0, horizontal_response = 0.0, vertical_response = 0.0;
+	int x = 0, every_x_print = 1;
 
 	float init_ph_volt = 0.0, init_nh_volt = 0.0, init_pv_volt = 0.0, init_nv_volt = 0.0;
 	get_diode_voltage(init_ph_volt, init_nh_volt, init_pv_volt, init_nv_volt);
@@ -60,18 +70,22 @@ void TrackingSystem::controllerRun() {
 	controller_loop = true;
 
 	int prev_h_gm = 0, prev_v_gm = 0;
+	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 	while(controller_loop) {
 		if (x % every_x_print == 0) {
 			std::cout << "GM-POS: (" << fso->getHorizontalGMVal() << ", " << fso->getVerticalGMVal() << ")    ";
-			std::cout << "RESPONSE: (" << fso->getHorizontalGMVal() - prev_h_gm << ", " << fso->getVerticalGMVal() - prev_v_gm << ")" << std::endl;
+			std::cout << "RESPONSE: (" << fso->getHorizontalGMVal() - prev_h_gm << ", " << fso->getVerticalGMVal() - prev_v_gm << ")";
 			prev_h_gm = fso->getHorizontalGMVal();
 			prev_v_gm = fso->getVerticalGMVal();
 		}
 		// Get diode levels
 		get_diode_voltage(ph_volt, nh_volt, pv_volt, nv_volt);
 
-		float horizontal_response = args->k_proportional * ((nh_volt - ph_volt));
-		float vertical_response = args->k_proportional * ((nv_volt - pv_volt));
+		horizontal_response = computeResponse(ph_volt, nh_volt);
+		vertical_response = computeResponse(pv_volt, nv_volt);
+
+		std::cout << "   (" << ph_volt << ", " << nh_volt <<")";
+		std::cout << "   (" << pv_volt << ", " << nv_volt <<")" << std::endl;
 
 		// Change GMs accordingly
 		fso->setHorizontalGMVal(int(horizontal_response) + fso->getHorizontalGMVal());
@@ -83,7 +97,76 @@ void TrackingSystem::controllerRun() {
 	signal(SIGINT, SIG_DFL);
 
 	end_tracking();
+
+	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+	std::chrono::duration<double> dur = end - start;
+	float total_seconds = dur.count();
+	float seconds_per_test = total_seconds / float(x);
+
+	std::cout << "Avg Iteration time: " << seconds_per_test * 1000 << "millisecond" << std::endl;
+
+	fso->saveCurrentSettings(other_rack_id, other_fso_id);
+	fso->save();
+	std::cout << "FSO saved!!!" << std::endl;
+	
 	std::cout << "TrackingSystem::controllerRun end" << std::endl;
+}
+
+void TrackingSystem::mapVoltage() {
+	std::string other_rack_id = "", other_fso_id = "";
+	get_fso(other_rack_id, other_fso_id);
+	fso->setToLink(other_rack_id, other_fso_id);
+
+	int h_gm_init = fso->getHorizontalGMVal();
+	int v_gm_init = fso->getVerticalGMVal();
+
+	std::cout << "TrackingSystem::mapVoltage start"<< std::endl;
+	float ph_volt = 0.0, nh_volt = 0.0, pv_volt = 0.0, nv_volt = 0.0;
+
+	int map_range = args->map_range;
+	int map_step = args->map_step;
+
+	std::string record_type = args->record_type;
+
+	std::string out_file = args->map_voltage_out_file;
+	std::ofstream ofstr(out_file, std::ofstream::out);
+
+	// Output parameters
+	ofstr << std::endl << "PARAMS kp:" << args->k_proportional << " record_type:" << record_type << " map_range:" << map_range << " map_step:" << map_step << std::endl;
+
+	// Col_hdrs
+	std::map<std::pair<int, int>, float> ph_volts;
+	std::map<std::pair<int, int>, float> nh_volts;
+	std::map<std::pair<int, int>, float> pv_volts;
+	std::map<std::pair<int, int>, float> nv_volts;
+	ofstr << "hd vd ph nh pv nv hr vr" << std::endl;
+	for (int horizontal_delta = -map_range; horizontal_delta <= map_range; horizontal_delta += map_step) {
+		for (int vertical_delta = -map_range; vertical_delta <= map_range; vertical_delta += map_step) {
+			if(record_type == "linear" && horizontal_delta != 0 && vertical_delta != 0) {
+				continue;
+			}
+			std::cout << "GM_DELTA:(" << horizontal_delta << ", " << vertical_delta << ")  ";
+
+			fso->setHorizontalGMVal(horizontal_delta + h_gm_init);
+			fso->setVerticalGMVal(vertical_delta + v_gm_init);
+
+			get_diode_voltage(ph_volt, nh_volt, pv_volt, nv_volt);
+			std::cout << "HV:(+: " << ph_volt << ", -: " << nh_volt << ")  ";
+			std::cout << "HR: " << computeResponse(ph_volt, nh_volt) << "  ";
+
+			std::cout << "VV:(+: " << pv_volt << ", -: " << nv_volt << ")  ";
+			std::cout << "VR: " << computeResponse(pv_volt, nv_volt) << std::endl;
+
+			ofstr << horizontal_delta << " " << vertical_delta << " "
+					<< ph_volt << " " << nh_volt << " "
+					<< pv_volt << " " << nv_volt << " "
+					<< computeResponse(ph_volt, nh_volt) << " " << computeResponse(pv_volt, nv_volt) << std::endl;
+		}
+	}
+	ofstr.close();
+	end_tracking();
+
+	std::cout << "TrackingSystem::mapVoltage end"<< std::endl;
 }
 
 void TrackingSystem::listenerRun() {
@@ -102,8 +185,8 @@ void TrackingSystem::listenerRun() {
 		} else if(token == "get_diode_voltage") {
 			give_diode_voltage(fso->getPositiveHorizontalDiodeVoltage(),
 								fso->getNegativeHorizontalDiodeVoltage(),
-								fso->getPositiveVerticallDiodeVoltage(),
-								fso->getNegativeVerticallDiodeVoltage());			
+								fso->getPositiveVerticalDiodeVoltage(),
+								fso->getNegativeVerticalDiodeVoltage());			
 		} else if(token == "end_tracking") {
 			listener_loop = false;
 			confirm_end_tracking();
@@ -119,8 +202,9 @@ void TrackingSystem::send_msg(const std::string &msg) {
 }
 
 void TrackingSystem::recv_msg(std::string &msg) {
+	// TODO bug when the message received is longer than the buf_len
 	msg = "";
-	int buf_len = 64;
+	int buf_len = 256;
 	char buf[buf_len];
 
 	bool recv_loop = true;

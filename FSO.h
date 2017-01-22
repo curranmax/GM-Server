@@ -55,12 +55,14 @@ class FSO {
 	int getVerticalGMVal() const { return vertical_gm->getValue(); }
 
 	void setHorizontalGMVal(int v) { horizontal_gm->setValue(v); }
-	void setVerticalGMVal(int v) {vertical_gm->setValue(v); }
+	void setVerticalGMVal(int v) { vertical_gm->setValue(v); }
 
 	float getPositiveHorizontalDiodeVoltage() const { return ph_diode->getVoltage(); }
 	float getNegativeHorizontalDiodeVoltage() const { return nh_diode->getVoltage(); }
-	float getPositiveVerticallDiodeVoltage() const { return pv_diode->getVoltage(); }
-	float getNegativeVerticallDiodeVoltage() const { return nv_diode->getVoltage(); }
+	float getPositiveVerticalDiodeVoltage() const { return pv_diode->getVoltage(); }
+	float getNegativeVerticalDiodeVoltage() const { return nv_diode->getVoltage(); }
+
+	float getPowerDiodeVoltage() const { return power_diode->getVoltage(); }
 
 	void changeGMVal(int gm_n,int delta);
 
@@ -87,6 +89,7 @@ class FSO {
 	GM *gm1, *gm2;
 	GM *horizontal_gm, *vertical_gm;
 	Diode *ph_diode, *nh_diode, *pv_diode, *nv_diode;
+	Diode *power_diode;
 	ls_map link_settings;
 
 	DOMFetcher *dom;

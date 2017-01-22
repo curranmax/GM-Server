@@ -136,6 +136,8 @@ void FSO::load() {
 	int nv_diode_channel = -1,
 			nv_diode_num_samples = -1,
 			nv_diode_sampling_rate = -1;
+
+	std::string power_diode_string = "";
 	while(std::getline(ifstr,line)) {
 		token = "";
 		std::stringstream sstr(line);
@@ -206,6 +208,8 @@ void FSO::load() {
 			sstr >> nv_diode_num_samples;
 		} else if(token == "nv_diode_sampling_rate") {
 			sstr >> nv_diode_sampling_rate;
+		} else if(token == "power_diode") {
+			sstr >> power_diode_string;
 		}
 	}
 
@@ -249,6 +253,19 @@ void FSO::load() {
 							nv_diode_sampling_rate,
 							args->debug);
 
+	if (power_diode_string == "ph") {
+		power_diode = ph_diode;
+	}
+	if (power_diode_string == "nh") {
+		power_diode = nh_diode;
+	}
+	if (power_diode_string == "pv") {
+		power_diode = pv_diode;
+	}
+	if (power_diode_string == "nv") {
+		power_diode = nv_diode;
+	}
+
 	gm1->connectDevice();
 	gm2->connectDevice();
 
@@ -256,6 +273,14 @@ void FSO::load() {
 	nh_diode->connectDevice();
 	pv_diode->connectDevice();
 	nv_diode->connectDevice();
+
+	// If only one link, then set it to that
+	if(link_settings.size() == 1) {
+		for(ls_map::const_iterator itr = link_settings.begin(); itr != link_settings.end(); ++itr) {
+			setToLink(itr->first.first, itr->first.second);
+			break;
+		}
+	}
 }
 
 void FSO::save() {
@@ -347,6 +372,21 @@ void FSO::save() {
 		ofstr << "nv_diode_channel " << nv_diode->getChannel() << std::endl;
 		ofstr << "nv_diode_num_samples " << nv_diode->getNumSamples() << std::endl;
 		ofstr << "nv_diode_sampling_rate " << nv_diode->getSamplingRate() << std::endl;
+	}
+	if(power_diode != nullptr && !power_diode->isNull()) {
+		diode_print_something = true;
+		if(power_diode == ph_diode) {
+			ofstr << "power_diode ph" << std::endl;
+		}
+		if(power_diode == nh_diode) {
+			ofstr << "power_diode nh" << std::endl;
+		}
+		if(power_diode == pv_diode) {
+			ofstr << "power_diode pv" << std::endl;
+		}
+		if(power_diode == nv_diode) {
+			ofstr << "power_diode nv" << std::endl;
+		}
 	}
 	if(diode_print_something) {
 		ofstr << std::endl;

@@ -19,6 +19,9 @@ class TrackingSystem {
 	void controllerRun();
 	void listenerRun();
 
+	float computeResponse(float p_volt, float n_volt);
+	void mapVoltage();
+
 	void send_msg(const std::string &msg); // const?
 	void recv_msg(std::string &msg); // const?
 

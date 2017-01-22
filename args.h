@@ -63,6 +63,13 @@ class Args {
 
 	// Tracking system
 	float k_proportional;
+
+	// Tracking system - mapVoltage
+	bool do_map_voltage;
+	int map_range;
+	int map_step;
+	std::string record_type;
+	std::string map_voltage_out_file;
 };
 
 #endif
