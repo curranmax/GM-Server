@@ -17,7 +17,7 @@ class DebugGM : public GM {
 	bool disconnectDevice() { if(_getConnected()) { std::cout << getHeader() << " disconnected" << std::endl; } _setConnected(false); return true; }
 
   private:
-	std::string getHeader() const { return "GM " + std::to_string(_getChannel()); }	
+	std::string getHeader() const { return "GM XX"; }	
 	
 };
 

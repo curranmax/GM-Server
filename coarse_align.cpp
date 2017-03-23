@@ -12,6 +12,8 @@
 #include <sstream>
 #include <unistd.h>
 
+#define OTHER_HOST "localhost" //"169.254.12.1"
+
 // When modifying add instructions, and also maybe add command history
 
 
@@ -241,7 +243,7 @@ void CoarseAligner::run() {
 				aa->run(args,fso);
 			}
 		} else if(command == "aac") {
-			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = "localhost", other_rack_id = "rack_2", other_fso_id = "fso_1";
+			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
 			FSO* fso = getFSO(this_rack_id,this_fso_id);
 			if(fso == NULL) {
 				std::cerr << "Invalid FSO selected" << std::endl;
@@ -297,7 +299,7 @@ void CoarseAligner::run() {
 				ts->run(fso, args);
 			}
 		} else if(command == "tsc") {
-			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = "localhost", other_rack_id = "rack_2", other_fso_id = "fso_1";
+			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
 			FSO* fso = getFSO(this_rack_id,this_fso_id);
 			if(fso == NULL) {
 				std::cerr << "Invalid FSO selected" << std::endl;
@@ -321,6 +323,20 @@ void CoarseAligner::run() {
 			if(ts == NULL) {
 				std::cerr << "Unable to start Auto Alignment Process" << std::endl;
 			} else {
+				ts->run(fso, args);
+			}
+		} else if(command == "tsl_a") {
+			std::string this_rack_id = "rack_2", this_fso_id = "fso_1";
+			FSO* fso = getFSO(this_rack_id,this_fso_id);
+			if(fso == NULL) {
+				std::cerr << "Invalid FSO selected" << std::endl;
+				continue;
+			}
+			TrackingSystem *ts = TrackingSystem::listenFor(8888,this_rack_id,this_fso_id);
+			if(ts == NULL) {
+				std::cerr << "Unable to start Auto Alignment Process" << std::endl;
+			} else {
+				ts->setAsyncListener();
 				ts->run(fso, args);
 			}
 		} else if(command == "ts_listen") {
@@ -366,7 +382,7 @@ void CoarseAligner::run() {
 				haa->run(fso, args);
 			}
 		} else if(command == "haac") {
-			std::string this_rack_id = "rack_2", this_fso_id = "fso_1", other_addr = "localhost", other_rack_id = "rack_1", other_fso_id = "fso_1";
+			std::string this_rack_id = "rack_2", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_1", other_fso_id = "fso_1";
 			FSO* fso = getFSO(this_rack_id,this_fso_id);
 			if(fso == NULL) {
 				std::cerr << "Invalid FSO selected" << std::endl;

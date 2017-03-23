@@ -9,7 +9,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <chrono>
+// #include <chrono>
 
 std::vector<float> FSO::durs;
 
@@ -110,7 +110,7 @@ std::vector<std::string> FSO::getLinkStrings() const {
 }
 
 void FSO::load() {
-	std::ifstream ifstr(fname, std::ifstream::in);
+	std::ifstream ifstr(fname.c_str(), std::ifstream::in);
 
 	std::string line;
 	std::string token;
@@ -221,7 +221,7 @@ void FSO::load() {
 	} else if(horizontal_gm_num == 2) {
 		horizontal_gm = gm2;
 	} else {
-		horizontal_gm = nullptr;
+		horizontal_gm = NULL;
 	}
 
 	if(vertical_gm_num == 1) {
@@ -229,7 +229,7 @@ void FSO::load() {
 	} else if(vertical_gm_num == 2) {
 		vertical_gm = gm2;
 	} else {
-		vertical_gm = nullptr;
+		vertical_gm = NULL;
 	}
 
 	ph_diode = makeDiode(ph_diode_channel,
@@ -284,28 +284,28 @@ void FSO::load() {
 }
 
 void FSO::save() {
-	std::ofstream ofstr(fname, std::ofstream::out);
+	std::ofstream ofstr(fname.c_str(), std::ofstream::out);
 
 	// ID
 	ofstr << "rack_id " << rack_id << std::endl << "fso_id " << fso_id << std::endl << std::endl;
 	
 	// GMs
 	bool gm_print = false;
-	if(gm1 != nullptr && !gm1->isNull()) {
+	if(gm1 != NULL && !gm1->isNull()) {
 		gm_print = true;
 		if(gm1->getSerialNumber() != "") {
 			ofstr << "gm1_serial_number " << gm1->getSerialNumber() << std::endl;
 		}
 		ofstr << "gm1_channel " << gm1->getChannel() << std::endl;
 	}
-	if(gm2 != nullptr && !gm2->isNull()) {
+	if(gm2 != NULL && !gm2->isNull()) {
 		gm_print = true;
 		if(gm1->getSerialNumber() != "") {
 			ofstr << "gm2_serial_number " << gm2->getSerialNumber() << std::endl;
 		}
 		ofstr << "gm2_channel " << gm2->getChannel() << std::endl;
 	}
-	if(horizontal_gm != nullptr && !horizontal_gm->isNull()) {
+	if(horizontal_gm != NULL && !horizontal_gm->isNull()) {
 		gm_print = true;
 		if(horizontal_gm == gm1) {
 			ofstr << "horizontal_gm 1"<< std::endl;
@@ -314,7 +314,7 @@ void FSO::save() {
 			ofstr << "horizontal_gm 2" << std::endl;
 		}
 	}
-	if(vertical_gm != nullptr && !vertical_gm->isNull()) {
+	if(vertical_gm != NULL && !vertical_gm->isNull()) {
 		gm_print = true;
 		if(vertical_gm == gm1) {
 			ofstr << "vertical_gm 1"<< std::endl;
@@ -337,7 +337,7 @@ void FSO::save() {
 
 	// Diodes
 	bool diode_print_something = false;
-	if (ph_diode != nullptr && !ph_diode->isNull()) {
+	if (ph_diode != NULL && !ph_diode->isNull()) {
 		diode_print_something = true;
 		if(ph_diode->getSerialNumber() != "") {
 			ofstr << "ph_diode_serial_number " << ph_diode->getSerialNumber() << std::endl;
@@ -346,7 +346,7 @@ void FSO::save() {
 		ofstr << "ph_diode_num_samples " << ph_diode->getNumSamples() << std::endl;
 		ofstr << "ph_diode_sampling_rate " << ph_diode->getSamplingRate() << std::endl;
 	}
-	if (nh_diode != nullptr && !nh_diode->isNull()) {
+	if (nh_diode != NULL && !nh_diode->isNull()) {
 		diode_print_something = true;
 		if(nh_diode->getSerialNumber() != "") {
 			ofstr << "nh_diode_serial_number " << nh_diode->getSerialNumber() << std::endl;
@@ -355,7 +355,7 @@ void FSO::save() {
 		ofstr << "nh_diode_num_samples " << nh_diode->getNumSamples() << std::endl;
 		ofstr << "nh_diode_sampling_rate " << nh_diode->getSamplingRate() << std::endl;
 	}
-	if (pv_diode != nullptr && !pv_diode->isNull()) {
+	if (pv_diode != NULL && !pv_diode->isNull()) {
 		diode_print_something = true;
 		if(pv_diode->getSerialNumber() != "") {
 			ofstr << "pv_diode_serial_number " << pv_diode->getSerialNumber() << std::endl;
@@ -364,7 +364,7 @@ void FSO::save() {
 		ofstr << "pv_diode_num_samples " << pv_diode->getNumSamples() << std::endl;
 		ofstr << "pv_diode_sampling_rate " << pv_diode->getSamplingRate() << std::endl;
 	}
-	if (nv_diode != nullptr && !nv_diode->isNull()) {
+	if (nv_diode != NULL && !nv_diode->isNull()) {
 		diode_print_something = true;
 		if(nv_diode->getSerialNumber() != "") {
 			ofstr << "nv_diode_serial_number " << nv_diode->getSerialNumber() << std::endl;
@@ -373,7 +373,7 @@ void FSO::save() {
 		ofstr << "nv_diode_num_samples " << nv_diode->getNumSamples() << std::endl;
 		ofstr << "nv_diode_sampling_rate " << nv_diode->getSamplingRate() << std::endl;
 	}
-	if(power_diode != nullptr && !power_diode->isNull()) {
+	if(power_diode != NULL && !power_diode->isNull()) {
 		diode_print_something = true;
 		if(power_diode == ph_diode) {
 			ofstr << "power_diode ph" << std::endl;
@@ -443,13 +443,13 @@ Diode* FSO::makeDiode(int channel, const std::string& serial_number,
 			return new Diode(channel, serial_number, num_samples, sampling_rate);
 		}
 	}
-	return nullptr;
+	return NULL;
 }
 
 float FSO::getPower() const {
 	// Sometimes get 0? might be caused by trying to transmit -inf
 	// Record time
-	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+	// std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 	float rv = 0.0;
 	if(dom != NULL) {
 		if(!dom->isConnected()) {
@@ -461,10 +461,10 @@ float FSO::getPower() const {
 		rv = -40.0;
 	}
 	// Record time and print difference
-	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+	// std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
 
-	std::chrono::duration<double> dur = end - start;
-	float duration = dur.count();
+	// std::chrono::duration<double> dur = end - start;
+	float duration = 1.0; // dur.count();
 	FSO::addDur(duration);
 	return rv;
 }

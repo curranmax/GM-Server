@@ -16,7 +16,7 @@
 #include <fstream>
 #include <math.h>
 #include <vector>
-#include <chrono>
+// #include <chrono>
 
 #define GM_MIN 0x0
 #define GM_MAX 0xffff
@@ -135,7 +135,9 @@ bool AutoAligner::give_fso(const std::string &this_rack_id,const std::string &th
 bool AutoAligner::set_gm(int gm1,int gm2) {
 	std::string rmsg;
 
-	send_msg("set_gm " + std::to_string(gm1) + " " + std::to_string(gm2));
+	std::stringstream out_sstr;
+	out_sstr << "set_gm " << gm1 << " " << gm2;
+	send_msg(out_sstr.str());
 	recv_msg(rmsg);
 	return rmsg == "gm_set";
 }
@@ -423,7 +425,7 @@ void AutoAligner::controller_run() {
 	ct1 = fso->getGM1Val();
 	ct2 = fso->getGM2Val();
 
-	std::vector<std::chrono::time_point<std::chrono::system_clock>> ts;
+	// std::vector<std::chrono::time_point<std::chrono::system_clock>> ts;
 	if(args->auto_algo == "gradient_descent_sphere") {
 		simple_search(ct1, ct2, co1, co2, 50);
 
@@ -477,7 +479,7 @@ void AutoAligner::controller_run() {
 				std::cout << "Other Peak Dif: (" << other_peaks[i].first.first - init_peak.first.first << ", " << other_peaks[i].first.second - init_peak.first.second << ", " << other_peaks[i].second.first - init_peak.second.first << ", " << other_peaks[i].second.second - init_peak.second.second << ") -> (" << other_powers[i].first << ", " << other_powers[i].second << ")" << std::endl;
 			}
 		} else {
-			std::ofstream ofstr(args->peak_file, std::ofstream::out | std::ofstream::app);
+			std::ofstream ofstr(args->peak_file.c_str(), std::ofstream::out | std::ofstream::app);
 			ofstr << "Init Peak: (" << init_peak.first.first << ", " << init_peak.first.second << ", " << init_peak.second.first << ", " << init_peak.second.second << ") -> (" << init_pwr.first << ", " << init_pwr.second << ")" << std::endl;
 			for(unsigned int i = 0; i < other_peaks.size(); ++i) {
 				ofstr << "Other Peak Dif: (" << other_peaks[i].first.first - init_peak.first.first << ", " << other_peaks[i].first.second - init_peak.first.second << ", " << other_peaks[i].second.first - init_peak.second.first << ", " << other_peaks[i].second.second - init_peak.second.second << ") -> (" << other_powers[i].first << ", " << other_powers[i].second << ")" << std::endl;
@@ -529,7 +531,7 @@ void AutoAligner::controller_run() {
 			power_values.push_back(temp);
 		}
 
-		std::ofstream ofstr(args->peak_file, std::ofstream::out | std::ofstream::app);
+		std::ofstream ofstr(args->peak_file.c_str(), std::ofstream::out | std::ofstream::app);
 		ofstr << "Center (" << ct1 << ", " << ct2 << ", " << co1 << ", " << co2 << ")" << std::endl;
 		for(unsigned int i = 0; i < dirs.size(); ++i) {
 			ofstr << "Dir;(" << dirs[i].xv() << ", " << dirs[i].yv() << ", " << dirs[i].zv() << ", " << dirs[i].wv() << ")";
@@ -541,15 +543,15 @@ void AutoAligner::controller_run() {
 	}
 	if(args->auto_algo == "test_time") {
 		int num_tests = 100;
-		std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+		// std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 		for(int i = 0; i < num_tests; ++i) {
 			fso->getPower();
 		}
-		std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+		// std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
 
-		std::chrono::duration<double> dur = end - start;
+		// std::chrono::duration<double> dur = end - start;
 
-		std::cout << "Total Duration " << dur.count() << std::endl << "Avg Duration " << dur.count() / num_tests << std::endl;
+		// std::cout << "Total Duration " << dur.count() << std::endl << "Avg Duration " << dur.count() / num_tests << std::endl;
 	}
 	quit();
 	fso->endAutoAlign();
@@ -574,10 +576,14 @@ void AutoAligner::other_run() {
 		} else if(token == "get_pwr") {
 			// Fetch power from DOM and then send it back
 			pwr = fso->getPower();
-			return_msg = "pwr_is " + std::to_string(pwr);
+			std::stringstream out_sstr;
+			out_sstr << "pwr_is " << pwr;
+			return_msg = out_sstr.str();
 		} else if(token == "get_gm") {
 			// Fetch current gm settings
-			return_msg = "gm_is " + std::to_string(fso->getGM1Val()) + " " + std::to_string(fso->getGM2Val());
+			std::stringstream out_sstr;
+			out_sstr << "gm_is " << fso->getGM1Val() << " " << fso->getGM2Val();
+			return_msg = out_sstr.str();
 		} else if(token == "get_fso") {
 			// Reply with FSOs rack_id and fso_id
 			return_msg = "fso_is " + fso->getRackID() + " " + fso->getFSOID();
@@ -636,7 +642,9 @@ AutoAligner* listenFor(int listen_port,const std::string &rack_id,const std::str
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 
-	std::string listen_port_str = std::to_string(listen_port);
+	std::stringstream port_sstr;
+	port_sstr << listen_port;
+	std::string listen_port_str = port_sstr.str();
 	int rv = getaddrinfo(NULL,listen_port_str.c_str(),&hints,&serv_info);
 	if(rv != 0) {
 		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;
@@ -714,7 +722,9 @@ AutoAligner* connectTo(int send_port,const std::string &host_addr,const std::str
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-	std::string send_port_str = std::to_string(send_port);
+	std::stringstream port_sstr;
+	port_sstr << send_port;
+	std::string send_port_str = port_sstr.str();
 	int rv = getaddrinfo(host_addr.c_str(),send_port_str.c_str(),&hints,&serv_info);
 	if(rv != 0) {
 		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;

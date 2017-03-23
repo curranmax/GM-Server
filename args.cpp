@@ -7,30 +7,29 @@
 
 Args::Args(const int &argc, char const *argv[]) {
 	// Initialize arguments and their flags
-	args = {Arg_Val(&coarse_alignment,"-c","Starts coarse alignment mode"),
-			Arg_Val(&gm_server,"-s","Starts gm server mode"),
-			Arg_Val(&gm_network_controller,"-n","Starts the GM Network Controller"),
-			Arg_Val(&dom_timing_test,"-dom","Runs a test to measure the time it takes to issue one DOM request"),
-			Arg_Val(&verbose,"-v","Enables verbose mode"),
-			Arg_Val(&debug,"-d","Enables debug mode (doesn't use actual GMs)"),
-			Arg_Val(&fso_dir,"fso_data/","-fso","FSO_DIR","Directory with all FSO data"),
-			Arg_Val(&fake_dom,"-fake_dom","Doesn't connect to Switch, and gives fake power readings"),
-			Arg_Val(&manual_save,"-man_save","Modifying link settings does not save on quit"),
-			Arg_Val(&dom_stay_connected,"-con","Keeps connection to switch active between auto_alignment"),
-			Arg_Val(&auto_align_delta, 60.0, "-aad", "AAD", "Time (in seconds) between sucessive checks of power of the FSOs"),
-			Arg_Val(&auto_algo,"gradient_descent_sphere","-aaa","AAA","Algorithm for auto align. Must be: full_scan, step_one, max_one, or gradient_descent"),
-			Arg_Val(&peak_file, "Peak/data2.txt", "-peak_file", "PF", "File to store peak location and power"),
-			Arg_Val(&num_peak_tests, 10, "-npt", "NPT", "Number of searches from random spots to perform"),
-			Arg_Val(&random_min_val, 0.0, "-peak_rand_min", "RMIN", "Minimum distance to randomly go from first peak"),
-			Arg_Val(&random_max_val, 100.0, "-peak_rand_max", "RMAX", "Maximum distance to randomly go from first peak"),
-			Arg_Val(&num_dom_iters, 1, "-dom_iters", "DOM_ITERS", "Number of times to request the received power of a SFP in the DOM Tests"),
-			Arg_Val(&k_proportional, 1.0, "-kp", "K_PROPORTIONAL", "Factor used in tracking system"),
-			Arg_Val(&do_map_voltage, "-do_map", "Instead of normal tracking algorithm, does runs TrackingSystem::mapVoltage"),
-			Arg_Val(&map_range, 500, "-mr", "MAP_RANGE", "Range to use for TrackingSystem::mapVoltage"),
-			Arg_Val(&map_step, 10, "-ms", "MAP_STEP", "Step to use for TrackingSystem::mapVoltage"),
-			Arg_Val(&record_type, "all", "-record_type", "RECORD_TYPE", "Either 'all' or 'linear'"),
-			Arg_Val(&map_voltage_out_file, "data/map_voltage_data.txt", "-map_voltage_out_file", "MV_OUT", "File to write data to")
-		};
+	args.push_back(Arg_Val(&coarse_alignment,"-c","Starts coarse alignment mode"));
+	args.push_back(Arg_Val(&gm_server,"-s","Starts gm server mode"));
+	args.push_back(Arg_Val(&gm_network_controller,"-n","Starts the GM Network Controller"));
+	args.push_back(Arg_Val(&dom_timing_test,"-dom","Runs a test to measure the time it takes to issue one DOM request"));
+	args.push_back(Arg_Val(&verbose,"-v","Enables verbose mode"));
+	args.push_back(Arg_Val(&debug,"-d","Enables debug mode (doesn't use actual GMs)"));
+	args.push_back(Arg_Val(&fso_dir,"fso_data/","-fso","FSO_DIR","Directory with all FSO data"));
+	args.push_back(Arg_Val(&fake_dom,"-fake_dom","Doesn't connect to Switch, and gives fake power readings"));
+	args.push_back(Arg_Val(&manual_save,"-man_save","Modifying link settings does not save on quit"));
+	args.push_back(Arg_Val(&dom_stay_connected,"-con","Keeps connection to switch active between auto_alignment"));
+	args.push_back(Arg_Val(&auto_align_delta, 60.0, "-aad", "AAD", "Time (in seconds) between sucessive checks of power of the FSOs"));
+	args.push_back(Arg_Val(&auto_algo,"gradient_descent_sphere","-aaa","AAA","Algorithm for auto align. Must be: full_scan, step_one, max_one, or gradient_descent"));
+	args.push_back(Arg_Val(&peak_file, "Peak/data2.txt", "-peak_file", "PF", "File to store peak location and power"));
+	args.push_back(Arg_Val(&num_peak_tests, 10, "-npt", "NPT", "Number of searches from random spots to perform"));
+	args.push_back(Arg_Val(&random_min_val, 0.0, "-peak_rand_min", "RMIN", "Minimum distance to randomly go from first peak"));
+	args.push_back(Arg_Val(&random_max_val, 100.0, "-peak_rand_max", "RMAX", "Maximum distance to randomly go from first peak"));
+	args.push_back(Arg_Val(&num_dom_iters, 1, "-dom_iters", "DOM_ITERS", "Number of times to request the received power of a SFP in the DOM Tests"));
+	args.push_back(Arg_Val(&k_proportional, 1.0, "-kp", "K_PROPORTIONAL", "Factor used in tracking system"));
+	args.push_back(Arg_Val(&do_map_voltage, "-do_map", "Instead of normal tracking algorithm, does runs TrackingSystem::mapVoltage"));
+	args.push_back(Arg_Val(&map_range, 500, "-mr", "MAP_RANGE", "Range to use for TrackingSystem::mapVoltage"));
+	args.push_back(Arg_Val(&map_step, 10, "-ms", "MAP_STEP", "Step to use for TrackingSystem::mapVoltage"));
+	args.push_back(Arg_Val(&record_type, "all", "-record_type", "RECORD_TYPE", "Either 'all' or 'linear'"));
+	args.push_back(Arg_Val(&map_voltage_out_file, "data/map_voltage_data.txt", "-map_voltage_out_file", "MV_OUT", "File to write data to"));
 
 	for(int i = 1; i < argc; ++i) {
 		if(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"-help") == 0) {

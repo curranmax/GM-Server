@@ -9,7 +9,7 @@
 
 HalfAutoAlign::HalfAutoAlign(int sock_, bool is_controller_)
 		: sock(sock_), is_controller(is_controller_),
-			fso(nullptr), args(nullptr) {}
+			fso(NULL), args(NULL) {}
 
 HalfAutoAlign::~HalfAutoAlign() {
 	close(sock);
@@ -63,6 +63,7 @@ void HalfAutoAlign::controllerRun() {
 
 					// read power
 					this_power = fso->getPowerDiodeVoltage();
+					// std::cout << fso->getPositiveHorizontalDiodeVoltage() << " " << fso->getNegativeHorizontalDiodeVoltage() << " " << fso->getPositiveVerticalDiodeVoltage() << " " << fso->getNegativeVerticalDiodeVoltage() << std::endl;
 					// std::cout << "(H: " << this_hgm_val << " (" << hgm_delta << "), V: " << this_vgm_val << " (" << vgm_delta << ")) -> " << this_power << " volts" << std::endl; 
 
 					power_map[std::make_pair(this_hgm_val, this_vgm_val)] = this_power;
@@ -201,7 +202,9 @@ void HalfAutoAlign::get_gm_vals(int &horizontal_gm_value, int &vertical_gm_value
 }
 
 void HalfAutoAlign::set_gm_vals(int horizontal_gm_value, int vertical_gm_value) {
-	std::string message = "set_gm_vals " + std::to_string(horizontal_gm_value) + " " + std::to_string(vertical_gm_value);
+	std::stringstream sstr;
+	sstr << "set_gm_vals " << horizontal_gm_value << " " << vertical_gm_value;
+	std::string message = sstr.str();
 	send_msg(message);
 
 	std::string return_message = "";
@@ -244,7 +247,9 @@ void HalfAutoAlign::confirm_set_to_this_link() {
 }
 
 void HalfAutoAlign::give_gm_vals(int horizontal_gm_value, int vertical_gm_value) {
-	send_msg("give_gm_vals " + std::to_string(horizontal_gm_value) + " " + std::to_string(vertical_gm_value));
+	std::stringstream sstr;
+	sstr << "give_gm_vals " << horizontal_gm_value << " " << vertical_gm_value;
+	send_msg(sstr.str());
 }
 
 void HalfAutoAlign::confirm_set_gm_vals() {
@@ -268,7 +273,9 @@ HalfAutoAlign* HalfAutoAlign::listenFor(int listen_port,const std::string &rack_
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 
-	std::string listen_port_str = std::to_string(listen_port);
+	std::stringstream sstr;
+	sstr << listen_port;
+	std::string listen_port_str = sstr.str();
 	int rv = getaddrinfo(NULL,listen_port_str.c_str(),&hints,&serv_info);
 	if(rv != 0) {
 		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;
@@ -346,7 +353,9 @@ HalfAutoAlign* HalfAutoAlign::connectTo(int send_port,const std::string &host_ad
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-	std::string send_port_str = std::to_string(send_port);
+	std::stringstream sstr;
+	sstr << send_port;
+	std::string send_port_str = sstr.str();
 	int rv = getaddrinfo(host_addr.c_str(),send_port_str.c_str(),&hints,&serv_info);
 	if(rv != 0) {
 		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;

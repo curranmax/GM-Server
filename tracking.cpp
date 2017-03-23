@@ -7,11 +7,14 @@
 #include <sstream>
 #include <stdio.h>
 #include <string.h>
-#include <chrono>
+#include <thread>
+#include <mutex>
+// #include <chrono>
 
 TrackingSystem::TrackingSystem(int sock_, bool is_controller_)
 		: sock(sock_), is_controller(is_controller_),
-			fso(nullptr), args(nullptr) {}
+			async_listener(false),
+			fso(NULL), args(NULL) {}
 
 TrackingSystem::~TrackingSystem() {
 	close(sock);
@@ -30,7 +33,11 @@ void TrackingSystem::run(FSO* fso_, Args* args_) {
 			controllerRun();
 		}
 	} else {
-		listenerRun();
+		if(async_listener) {
+			asyncListenerRun();
+		} else {
+			listenerRun();
+		}
 	}
 
 	std::cout << "Ending TrackingSystem::run" << std::endl;
@@ -70,7 +77,7 @@ void TrackingSystem::controllerRun() {
 	controller_loop = true;
 
 	int prev_h_gm = 0, prev_v_gm = 0;
-	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+	// std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
 	while(controller_loop) {
 		if (x % every_x_print == 0) {
 			std::cout << "GM-POS: (" << fso->getHorizontalGMVal() << ", " << fso->getVerticalGMVal() << ")    ";
@@ -98,9 +105,9 @@ void TrackingSystem::controllerRun() {
 
 	end_tracking();
 
-	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
-	std::chrono::duration<double> dur = end - start;
-	float total_seconds = dur.count();
+	// std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
+	// std::chrono::duration<double> dur = end - start;
+	float total_seconds = -1.0; // dur.count();
 	float seconds_per_test = total_seconds / float(x);
 
 	std::cout << "Avg Iteration time: " << seconds_per_test * 1000 << "millisecond" << std::endl;
@@ -129,7 +136,7 @@ void TrackingSystem::mapVoltage() {
 	std::string record_type = args->record_type;
 
 	std::string out_file = args->map_voltage_out_file;
-	std::ofstream ofstr(out_file, std::ofstream::out);
+	std::ofstream ofstr(out_file.c_str(), std::ofstream::out);
 
 	// Output parameters
 	ofstr << std::endl << "PARAMS kp:" << args->k_proportional << " record_type:" << record_type << " map_range:" << map_range << " map_step:" << map_step << std::endl;
@@ -186,7 +193,7 @@ void TrackingSystem::listenerRun() {
 			give_diode_voltage(fso->getPositiveHorizontalDiodeVoltage(),
 								fso->getNegativeHorizontalDiodeVoltage(),
 								fso->getPositiveVerticalDiodeVoltage(),
-								fso->getNegativeVerticalDiodeVoltage());			
+								fso->getNegativeVerticalDiodeVoltage());		
 		} else if(token == "end_tracking") {
 			listener_loop = false;
 			confirm_end_tracking();
@@ -195,6 +202,75 @@ void TrackingSystem::listenerRun() {
 		}
 	}
 	std::cout << "TrackingSystem::listenerRun end" << std::endl;
+}
+
+std::mutex diode_mtx;
+void asyncChildProcess(FSO* fso, float* ph, float* nh, float* pv, float* nv, bool* loop_condition) {
+	float tmp_ph = 0.0, tmp_nh = 0.0, tmp_pv = 0.0, tmp_nv = 0.0;
+	while(*loop_condition) {
+		// Read diode
+		tmp_ph = fso->getPositiveHorizontalDiodeVoltage();
+		tmp_nh = fso->getNegativeHorizontalDiodeVoltage();
+		tmp_pv = fso->getPositiveVerticalDiodeVoltage();
+		tmp_nv = fso->getNegativeVerticalDiodeVoltage();
+
+		// Write to shared location
+		diode_mtx.lock();
+		*ph = tmp_ph;
+		*nh = tmp_nh;
+		*pv = tmp_pv;
+		*nv = tmp_nv;
+		diode_mtx.unlock();	
+	}
+}
+
+void TrackingSystem::asyncListenerRun() {
+	std::cout << "TrackingSystem::asyncListenerRun start" << std::endl;
+
+	std::string rack_id = fso->getRackID();
+	std::string fso_id = fso->getFSOID();
+
+	// Spawn child thread to constantly read diodes
+	bool async_run = true;
+	float ph = 0.0, nh = 0.0, pv = 0.0, nv = 0.0;
+	float ph_async = 0.0, nh_async = 0.0, pv_async = 0.0, nv_async = 0.0;
+	std::thread diode_reader(asyncChildProcess, fso, &ph_async, &nh_async, &pv_async, &nv_async, &async_run);
+
+	// Assume this side has diodes
+	std::string msg, token;
+	bool listener_loop = true;
+	while(listener_loop) {
+		recv_msg(msg);
+		std::stringstream sstr(msg);
+
+		sstr >> token;
+		if(token == "get_fso") {
+			std::cout << "B" << std::endl;
+			give_fso(rack_id, fso_id);
+			std::cout << "C" << std::endl;
+		} else if(token == "get_diode_voltage") {
+			// Read from the shared memory location, and use those values
+			diode_mtx.lock();
+			ph = ph_async;
+			nh = nh_async;
+			pv = pv_async;
+			nv = nv_async;
+			diode_mtx.unlock();
+			
+			give_diode_voltage(ph, nh, pv, nv);		
+		} else if(token == "end_tracking") {
+			listener_loop = false;
+			confirm_end_tracking();
+		} else {
+			std::cerr << "UNEXPECTED MESSAGE: " << msg << std::endl;
+		}
+	}
+
+	// Kill child thread that is reading the diodes
+	async_run = false;
+	diode_reader.join();
+
+	std::cout << "TrackingSystem::asyncListenerRun end" << std::endl;
 }
 
 void TrackingSystem::send_msg(const std::string &msg) {
@@ -276,10 +352,10 @@ void TrackingSystem::give_fso(const std::string& this_rack, const std::string& t
 }
 
 void TrackingSystem::give_diode_voltage(float ph_volt, float nh_volt, float pv_volt, float nv_volt) {
-	std::string message = "give_diode_voltage " + std::to_string(ph_volt)
-											+ " " + std::to_string(nh_volt)
-											+ " " + std::to_string(pv_volt)
-											+ " " + std::to_string(nv_volt);
+	std::stringstream sstr;
+	sstr << "give_diode_voltage " << ph_volt << " " << nh_volt << " " << pv_volt << " " << nv_volt;
+
+	std::string message = sstr.str();
 	send_msg(message);
 }
 
@@ -296,7 +372,9 @@ TrackingSystem* TrackingSystem::listenFor(int listen_port,const std::string &rac
 	hints.ai_socktype = SOCK_STREAM;
 	hints.ai_flags = AI_PASSIVE;
 
-	std::string listen_port_str = std::to_string(listen_port);
+	std::stringstream sstr;
+	sstr << listen_port;
+	std::string listen_port_str = sstr.str();
 	int rv = getaddrinfo(NULL,listen_port_str.c_str(),&hints,&serv_info);
 	if(rv != 0) {
 		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;
@@ -374,7 +452,9 @@ TrackingSystem* TrackingSystem::connectTo(int send_port,const std::string &host_
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-	std::string send_port_str = std::to_string(send_port);
+	std::stringstream sstr;
+	sstr << send_port;
+	std::string send_port_str = sstr.str();
 	int rv = getaddrinfo(host_addr.c_str(),send_port_str.c_str(),&hints,&serv_info);
 	if(rv != 0) {
 		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;

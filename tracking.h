@@ -12,6 +12,8 @@ class TrackingSystem {
 
 	void run(FSO* fso_, Args* args_);
 
+	void setAsyncListener() { async_listener = true; }
+
 	static TrackingSystem* listenFor(int listen_port, const std::string &rack_id, const std::string &fso_id);
 	static TrackingSystem* connectTo(int send_port, const std::string &host_addr, const std::string &rack_id, const std::string &fso_id);
 
@@ -21,6 +23,8 @@ class TrackingSystem {
 
 	float computeResponse(float p_volt, float n_volt);
 	void mapVoltage();
+
+	void asyncListenerRun();
 
 	void send_msg(const std::string &msg); // const?
 	void recv_msg(std::string &msg); // const?
@@ -38,6 +42,8 @@ class TrackingSystem {
 
 	int sock;
 	bool is_controller;
+
+	bool async_listener;
 	
 	FSO* fso;
 	Args* args;
