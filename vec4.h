@@ -43,7 +43,6 @@ public:
 	float yv() const { return (fabs(y) > 0.001 ? y : 0.0); }
 	float zv() const { return (fabs(z) > 0.001 ? z : 0.0); }
 	float wv() const { return (fabs(w) > 0.001 ? w : 0.0); }
-
 private:
 	float x,y,z,w;
 };

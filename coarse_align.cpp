@@ -12,6 +12,8 @@
 #include <sstream>
 #include <unistd.h>
 
+#define OTHER_HOST "169.254.12.60" //"192.168.43.77"
+
 // When modifying add instructions, and also maybe add command history
 
 
@@ -196,7 +198,21 @@ void CoarseAligner::run() {
 			} else {
 				modify(fso,other_rack_id,other_fso_id);
 			}
-		} else if(command == "save_fso") {
+		} else if (command == "mod") {
+			if(fsos.size() != 1) {
+				std::cerr << "Shorthand only works with exactly 1 FSO!!!" << std::endl;
+			} else {
+				FSO* fso = fsos[0];
+				if(fso->getNumberOfLinks() != 1){
+					std::cerr << "Shorthand only works with an FSO with exactly 1 link!!!!" << std::endl;
+				} else {
+					std::string other_rack_id = "", other_fso_id = "";
+					fso->getOnlyLink(&other_rack_id, &other_fso_id);
+					modify(fso, other_rack_id, other_fso_id);
+				}
+			}
+
+		}else if(command == "save_fso") {
 			std::string rack_id,fso_id;
 			sstr >> rack_id >> fso_id;
 			FSO* fso = getFSO(rack_id,fso_id);
@@ -241,7 +257,7 @@ void CoarseAligner::run() {
 				aa->run(args,fso);
 			}
 		} else if(command == "aac") {
-			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = "localhost", other_rack_id = "rack_2", other_fso_id = "fso_1";
+			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
 			FSO* fso = getFSO(this_rack_id,this_fso_id);
 			if(fso == NULL) {
 				std::cerr << "Invalid FSO selected" << std::endl;
@@ -297,7 +313,8 @@ void CoarseAligner::run() {
 				ts->run(fso, args);
 			}
 		} else if(command == "tsc") {
-			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = "localhost", other_rack_id = "rack_2", other_fso_id = "fso_1";
+			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
+			std::cout << other_addr << std::endl;
 			FSO* fso = getFSO(this_rack_id,this_fso_id);
 			if(fso == NULL) {
 				std::cerr << "Invalid FSO selected" << std::endl;
@@ -366,7 +383,7 @@ void CoarseAligner::run() {
 				haa->run(fso, args);
 			}
 		} else if(command == "haac") {
-			std::string this_rack_id = "rack_2", this_fso_id = "fso_1", other_addr = "localhost", other_rack_id = "rack_1", other_fso_id = "fso_1";
+			std::string this_rack_id = "rack_2", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_1", other_fso_id = "fso_1";
 			FSO* fso = getFSO(this_rack_id,this_fso_id);
 			if(fso == NULL) {
 				std::cerr << "Invalid FSO selected" << std::endl;
@@ -456,7 +473,7 @@ void CoarseAligner::printModifyHelp() const {
 	std::cout << "g - print current GM positions" << std::endl;
 	std::cout << "k - save current GM positions" << std::endl;
 	std::cout << "l - reload GM positions from file" << std::endl;
-	std::cout << "p - prints power of FSO" << std::endl;
+	// std::cout << "p - prints power of FSO" << std::endl;
 	std::cout << "q - quit modify mode" << std::endl;
 	std::cout << "h - display help again" << std::endl;
 }

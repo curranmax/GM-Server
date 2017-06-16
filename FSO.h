@@ -76,6 +76,10 @@ class FSO {
 	void startAutoAlign();
 	void endAutoAlign();
 
+	// Link Mode
+	int getNumberOfLinks() const { return link_settings.size(); }
+	void getOnlyLink(std::string* other_rack_id, std::string* other_fso_id);
+
   private:
   	GM* makeGM(int channel, const std::string &usb_id,bool debug);
   	Diode* makeDiode(int channel, const std::string& serial_number,

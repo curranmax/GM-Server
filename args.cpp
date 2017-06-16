@@ -24,12 +24,18 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&random_min_val, 0.0, "-peak_rand_min", "RMIN", "Minimum distance to randomly go from first peak"),
 			Arg_Val(&random_max_val, 100.0, "-peak_rand_max", "RMAX", "Maximum distance to randomly go from first peak"),
 			Arg_Val(&num_dom_iters, 1, "-dom_iters", "DOM_ITERS", "Number of times to request the received power of a SFP in the DOM Tests"),
-			Arg_Val(&k_proportional, 1.0, "-kp", "K_PROPORTIONAL", "Factor used in tracking system"),
+			Arg_Val(&k_proportional, 1.0, "-kp", "K_PROPORTIONAL", "Factor used in proportional part of tracking system"),
+			Arg_Val(&k_integral,     0.0, "-ki", "K_INTEGRAL",     "Factor used in integral part of tracking system"),
+			Arg_Val(&k_derivative,   0.0, "-kd", "K_DERIVATIVE",   "Factor used in derivative part of tracking system"),
+			Arg_Val(&keep_beam_stationary, "-kbs", "If this flag is set then will try and make the difference between opposite diodes equal to the initial difference"),
+			Arg_Val(&data_drive_tracking_file, "", "-ddtf", "DATA_DRIVEN_TRACKING_FILE", "File to use for data driven technique."),
+			Arg_Val(&epsilon, 0.001, "-eps", "EPSILON", "Epsilon used in data driven tracking."),
 			Arg_Val(&do_map_voltage, "-do_map", "Instead of normal tracking algorithm, does runs TrackingSystem::mapVoltage"),
 			Arg_Val(&map_range, 500, "-mr", "MAP_RANGE", "Range to use for TrackingSystem::mapVoltage"),
 			Arg_Val(&map_step, 10, "-ms", "MAP_STEP", "Step to use for TrackingSystem::mapVoltage"),
 			Arg_Val(&record_type, "all", "-record_type", "RECORD_TYPE", "Either 'all' or 'linear'"),
-			Arg_Val(&map_voltage_out_file, "data/map_voltage_data.txt", "-map_voltage_out_file", "MV_OUT", "File to write data to")
+			Arg_Val(&map_voltage_out_file, "data/map_voltage_data.txt", "-map_voltage_out_file", "MV_OUT", "File to write data to"),
+			Arg_Val(&run_link_mode, "-lm", "Starts \"Link Mode\"")
 		};
 
 	for(int i = 1; i < argc; ++i) {

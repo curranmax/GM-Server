@@ -487,3 +487,14 @@ void FSO::endAutoAlign() {
 		dom->disconnect_from_switch();
 	}
 }
+
+void FSO::getOnlyLink(std::string* other_rack_id, std::string* other_fso_id) {
+	if(getNumberOfLinks() != 1) {
+		return;
+	}
+
+	for(ls_map::const_iterator itr = link_settings.begin(); itr != link_settings.end(); ++itr) {
+		*other_rack_id = itr->first.first;
+		*other_fso_id = itr->first.second;
+	}
+}

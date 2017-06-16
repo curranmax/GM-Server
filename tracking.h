@@ -17,10 +17,14 @@ class TrackingSystem {
 
   private:
 	void controllerRun();
+	void controller2Run();
 	void listenerRun();
 
-	float computeResponse(float p_volt, float n_volt);
+	float computeResponse(float p_volt, float n_volt, float goal_difference);
+	
+	void timingRun();
 	void mapVoltage();
+	void noiseRun();
 
 	void send_msg(const std::string &msg); // const?
 	void recv_msg(std::string &msg); // const?
