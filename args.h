@@ -78,8 +78,23 @@ class Args {
 	std::string record_type;
 	std::string map_voltage_out_file;
 
-	// Link Mode
-	bool run_link_mode;
+	// SFP Auto Alignment
+	std::string sfp_map_in_file;
+	float sfp_tracking_start;
+	float sfp_tracking_stop;
+	float sfp_rssi_zero_value;
+
+	int sfp_search_delta;
+	int sfp_num_search_locs;
+
+	// SFP Auto Alignment - map
+	bool sfp_map_power;
+	int sfp_map_range;
+	int sfp_map_step;
+	std::string sfp_map_out_file;
+
+	// SFP Auto Alignment - debug options
+	bool sfp_test_server;
 };
 
 #endif

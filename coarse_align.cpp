@@ -4,6 +4,7 @@
 #include "auto_align.h"
 #include "tracking.h"
 #include "half_auto_align.h"
+#include "sfp_auto_align.h"
 
 #include <iostream>
 #include <stdlib.h>
@@ -12,7 +13,7 @@
 #include <sstream>
 #include <unistd.h>
 
-#define OTHER_HOST "169.254.12.60" //"192.168.43.77"
+#define OTHER_HOST "192.168.1.177" //"192.168.43.77"
 
 // When modifying add instructions, and also maybe add command history
 
@@ -112,6 +113,9 @@ void CoarseAligner::run() {
 			std::cout << " power rack_id fso_id" << std::endl << "\tGets the receive power of the selected fso" << std::endl;
 			std::cout << " enable_map range step out_file" << std::endl << "\tSame as setting -do_map flag and also supplying parameters" << std::endl;
 			std::cout << " disable_map" << std::endl << "\tRestores default tracking functionality" << std::endl;
+			std::cout << " saa_control this_rack_id this_fso_id other_addr other_rack_id other_fso_id" << std::endl << "\tStarts SFP Auto Alignment" << std::endl;
+			std::cout << " sfp_enable_map range step out_file" << std::endl << "\tSame as setting -map_sfp flag and also supplying parameters" << std::endl;
+			
 		} else if(command == "new_fso") {
 			std::string filename,rack_id,fso_id,gm1_usb_id,gm2_usb_id;
 			int gm1_usb_channel,gm2_usb_channel;
@@ -211,8 +215,7 @@ void CoarseAligner::run() {
 					modify(fso, other_rack_id, other_fso_id);
 				}
 			}
-
-		}else if(command == "save_fso") {
+		} else if(command == "save_fso") {
 			std::string rack_id,fso_id;
 			sstr >> rack_id >> fso_id;
 			FSO* fso = getFSO(rack_id,fso_id);
@@ -433,7 +436,48 @@ void CoarseAligner::run() {
 			args->map_voltage_out_file = map_out_file;
 		} else if(command == "disable_map") {
 			args->do_map_voltage = false;
-		}else if(command == "quit" || command == "exit") {
+		} else if(command == "saa_control"){
+			std::string this_rack_id, this_fso_id, other_addr, other_rack_id, other_fso_id;
+			sstr >> this_rack_id >> this_fso_id >> other_addr >> other_rack_id >> other_fso_id;
+			FSO* fso = getFSO(this_rack_id, this_fso_id);
+			if(fso == nullptr) {
+				std::cerr << "Invalid FSO selected" << std::endl;
+				continue;
+			}
+
+			SFPAutoAligner *saa = SFPAutoAligner::connectTo(8888, SFPAutoAligner::SockType::UDP, other_addr, other_rack_id, other_fso_id);
+			if(saa == nullptr) {
+				std::cerr << "Unable to start SFP Auto Alignment" << std::endl;
+			} else {
+				saa->run(args, fso, other_rack_id, other_fso_id);
+			}
+			delete saa;
+		} else if(command == "saa"){
+			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
+			FSO* fso = getFSO(this_rack_id, this_fso_id);
+			if(fso == nullptr) {
+				std::cerr << "Invalid FSO selected" << std::endl;
+				continue;
+			}
+
+			SFPAutoAligner *saa = SFPAutoAligner::connectTo(8888, SFPAutoAligner::SockType::UDP, other_addr, other_rack_id, other_fso_id);
+			if(saa == nullptr) {
+				std::cerr << "Unable to start SFP Auto Alignment" << std::endl;
+			} else {
+				saa->run(args, fso, other_rack_id, other_fso_id);
+			}
+			delete saa;
+		} else if(command == "sfp_enable_map") {
+			int map_range = 0, map_step = 0;
+			std::string map_out_file = "";
+			sstr >> map_range >> map_step >> map_out_file;
+			args->sfp_map_power = true;
+			args->sfp_map_range = map_range;
+			args->sfp_map_step = map_step;
+			args->sfp_map_out_file = map_out_file;
+		} else if(command == "sfp_disable_map") {
+			args->sfp_map_power = false;
+		} else if(command == "quit" || command == "exit") {
 			break;
 		} else {
 			std::cerr << "Invalid command: " << command << std::endl << "Use help to list all commands" << std::endl;

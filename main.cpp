@@ -5,7 +5,6 @@
 #include "gm_server.h"
 #include "gm_network_controller.h"
 #include "dom_timing_test.h"
-#include "link_mode.h"
 
 #include "dom_fetcher.h"
 
@@ -85,13 +84,6 @@ int main(int argc, char const *argv[]) {
 		dom_timing_test->run();
 
 		delete dom_timing_test;
-	}
-
-	if(args->run_link_mode) {
-		LinkMode *link_mode = new LinkMode(fsos, args);
-		link_mode->run();
-
-		delete link_mode;
 	}
 
 	// FSO::printAvgDur();

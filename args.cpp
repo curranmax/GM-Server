@@ -35,7 +35,17 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&map_step, 10, "-ms", "MAP_STEP", "Step to use for TrackingSystem::mapVoltage"),
 			Arg_Val(&record_type, "all", "-record_type", "RECORD_TYPE", "Either 'all' or 'linear'"),
 			Arg_Val(&map_voltage_out_file, "data/map_voltage_data.txt", "-map_voltage_out_file", "MV_OUT", "File to write data to"),
-			Arg_Val(&run_link_mode, "-lm", "Starts \"Link Mode\"")
+			Arg_Val(&sfp_map_in_file, "data/sfp_map.txt", "-sfp_map_in", "MV_IN", "File to get data from for SFP tracking"),
+			Arg_Val(&sfp_tracking_start, 0.0, "-sfp_start", "START", "Percent Difference from Peak to start tracking"),
+			Arg_Val(&sfp_tracking_stop, 0.0, "-sfp_stop", "STOP", "Percent Difference from Peak to stop tracking"),
+			Arg_Val(&sfp_rssi_zero_value, 0.0, "-sfp_zero", "ZERO_VAL", "Any RSSI less than or equal to this value will be clamped to 0.0"),
+			Arg_Val(&sfp_search_delta, 1, "-sfp_sd", "SEARCH_DELTA", "The search delta to use for the SFP Auto Alignment"),
+			Arg_Val(&sfp_num_search_locs, 3, "-sfp_nsl", "NUM_SEARCH_LOCS", "The number of locations to search when doing SFP Auto Alignment. Must be either 3 or 5."),
+			Arg_Val(&sfp_map_power, "-map_sfp", "Instead of normal tracking algorithm, maps a large value of GM settings"),
+			Arg_Val(&sfp_map_range, 500, "-sfp_mr", "MAP_RANGE", "Range to use for mapping the SFP received power"),
+			Arg_Val(&sfp_map_step, 10, "-sfp_ms", "MAP_STEP", "Step to use for mapping the SFP received power"),
+			Arg_Val(&sfp_map_out_file, "data/sfp_map.txt", "-sfp_map_out", "MV_OUT", "File to write SFP map data to"),
+			Arg_Val(&sfp_test_server, "-sfp_test_server", "If given, sends the GM values to the other side")
 		};
 
 	for(int i = 1; i < argc; ++i) {
