@@ -13,7 +13,7 @@
 #include <sstream>
 #include <unistd.h>
 
-#define OTHER_HOST "192.168.1.177" //"192.168.43.77"
+#define OTHER_HOST "127.0.0.1" // "192.168.1.177"
 
 // When modifying add instructions, and also maybe add command history
 

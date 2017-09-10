@@ -1,6 +1,8 @@
 
 #include "sfp_auto_align.h"
 
+#include "logger.h"
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -17,7 +19,9 @@ SFPAutoAligner::SFPAutoAligner(int sock_, SockType sock_type_) {
 	sock = sock_;
 	sock_type = sock_type_;
 
-	prev_rssi = -1.0;
+	get_rssi_mode = GetRSSIMode::SLEEP;
+	sleep_milliseconds = 12;
+	num_messages = 1;
 }
 
 SFPAutoAligner::~SFPAutoAligner() {
@@ -26,6 +30,8 @@ SFPAutoAligner::~SFPAutoAligner() {
 
 void SFPAutoAligner::run(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id) {
 	setValues(args_, fso_);
+
+	setMultiParam(100);
 
 	fso->setToLink(other_rack_id, other_fso_id);
 
@@ -60,12 +66,17 @@ void sfpControllerHandler(int s) {
 }
 
 void SFPAutoAligner::controllerRun() {
+	LOG("controllerRun start");
+
 	// Build Table
 	std::string in_file = args->sfp_map_in_file;
 	std::ifstream ifstr(in_file, std::ifstream::in);
 	std::map<std::pair<int, int>, float> rssi_map;
 
+	LOG("getting data from: " + in_file);
+
 	{
+		// Reads the given file and fills the rssi_map.
 		std::string line;
 		int hd, vd;
 		float rssi;
@@ -83,6 +94,12 @@ void SFPAutoAligner::controllerRun() {
 
 			// TODO exclude zero values
 			rssi_map[std::make_pair(hd, vd)] = rssi;
+
+			{
+				std::stringstream sstr;
+				sstr << "added entry to rssi_map: (" << hd << ", " << vd << ") -> " << rssi;
+				VLOG(sstr.str(), 1);
+			}
 		}
 	}
 
@@ -102,6 +119,7 @@ void SFPAutoAligner::controllerRun() {
 	int num_search_locs = args->sfp_num_search_locs;
 	int search_delta = args->sfp_search_delta;
 
+	// Creates the search locations to use.
 	if(num_search_locs == 3) {
 		search_locs.push_back(std::make_pair(search_delta, 0));
 		search_locs.push_back(std::make_pair(0, search_delta));
@@ -113,6 +131,20 @@ void SFPAutoAligner::controllerRun() {
 	} else {
 		std::cerr << "Invalid value for num_search_locs: " << num_search_locs << std::endl;
 		return;
+	}
+
+	{
+		// Logs search locations used.
+		std::stringstream sstr;
+		for(unsigned int i = 0; i < search_locs.size(); ++i) {
+			sstr << "(" << search_locs[i].first << ", " << search_locs[i].second << ")";
+
+			if(i < search_locs.size() - 1) {
+				sstr << ", ";
+			}
+		}
+
+		LOG("search locs are: {" + sstr.str() + "}");
 	}
 
 	float k_proportional = args->k_proportional;
@@ -136,6 +168,12 @@ void SFPAutoAligner::controllerRun() {
 		// Get current power
 		float this_rssi = getRSSI(h_gm, v_gm);
 
+		LOG("---------start tracking iter---------");
+		{
+			std::stringstream sstr;
+			sstr << "GM at (" << h_gm << ", " << v_gm << ") with RSSI of " << this_rssi;
+			LOG(sstr.str());
+		}
 		std::cout << "GM at (" << h_gm << ", " << v_gm << ") with RSSI of " << this_rssi;
 
 		if(this_rssi > max_rssi) {
@@ -144,9 +182,11 @@ void SFPAutoAligner::controllerRun() {
 
 		float relative_difference = (max_rssi - this_rssi) /  max_rssi;
 		if(!tracking && relative_difference >= tracking_start) {
+			LOG("tracking turned on");
 			tracking = true;
 		}
 		if(tracking && relative_difference < tracking_stop) {
+			LOG("tracking turned off");
 			tracking = false;
 		}
 
@@ -157,7 +197,19 @@ void SFPAutoAligner::controllerRun() {
 				fso->setHorizontalGMVal(search_locs[i].first + h_gm);
 				fso->setVerticalGMVal(search_locs[i].second + v_gm);
 
+				{
+					std::stringstream sstr;
+					sstr << "search: GM set to (" << search_locs[i].first + h_gm << "[" << search_locs[i].first << "], " << search_locs[i].second + v_gm << "[" << search_locs[i].second << "])";
+					LOG(sstr.str());
+				}
+
 				float search_rssi = getRSSI(search_locs[i].first + h_gm, search_locs[i].second + v_gm);
+
+				{
+					std::stringstream sstr;
+					sstr << "search: GM at (" << search_locs[i].first + h_gm << "[" << search_locs[i].first << "], " << search_locs[i].second + v_gm << "[" << search_locs[i].second << "]) with RSSI of " << search_rssi;
+					LOG(sstr.str());
+				}
 
 				search_rssis.push_back(std::make_pair(search_locs[i], search_rssi));
 			}
@@ -166,15 +218,32 @@ void SFPAutoAligner::controllerRun() {
 			int h_err, v_err;
 			findError(this_rssi, search_rssis, rssi_map, h_err, v_err);
 
+			{
+				std::stringstream sstr;
+				sstr << "computed error is (" << h_err << ", " << v_err << ")"; 
+				LOG(sstr.str());
+			}
+
 			sum_h_err += h_err;
 			sum_v_err += v_err;
 
 			float hr = k_proportional * -h_err + k_integral * -sum_h_err + k_derivative * (prev_h_err - h_err);
 			float vr = k_proportional * -v_err + k_integral * -sum_v_err + k_derivative * (prev_v_err - v_err);
 
+			{
+				std::stringstream sstr;
+				sstr << "response is (" << hr << ", " << vr << ")";
+				LOG(sstr.str());
+			}
 
 			fso->setHorizontalGMVal(h_gm + hr);
 			fso->setVerticalGMVal(v_gm + vr);
+
+			{
+				std::stringstream sstr;
+				sstr << "GM set to (" << h_gm + hr << ", " << v_gm + vr << ")";
+				LOG(sstr.str());
+			}
 
 			std::cout << ", tracking moved (" << hr << ", " << vr << ")" << std::endl;
 		} else {
@@ -188,6 +257,8 @@ void SFPAutoAligner::controllerRun() {
 	float total_seconds = dur.count();
 	float seconds_per_iter = total_seconds / float(num_iters);
 	std::cout << "Avg Iteration time: " << seconds_per_iter * 1000.0 << " milliseconds per iter" << std::endl;
+
+	LOG("controllerRun end");
 }
 
 // TODO other error estimation method is to use triangulation.
@@ -272,7 +343,16 @@ void SFPAutoAligner::mapRun() {
 }
 
 float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
-	usleep(10000);
+	// TODO confirm "good" RSSI values:
+	// 		0) Log values so they can be inspected later.
+	// 		1) Sleep for longer.
+	// 		2) Read k values and return the first edge value.
+	// 		3) Constantly read values in separate thread. Update a shared variable when changes.
+	if(get_rssi_mode == GetRSSIMode::SLEEP) {
+		LOG("getRSSI: start sleep");
+		usleep(1000 * sleep_milliseconds);
+		LOG("getRSSI: end sleep");
+	}
 
 	std::string get_rssi_msg = "X_out";
 	if(args->sfp_test_server) {
@@ -283,25 +363,66 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 	}
 
 	float rssi= 0.0;
-	// bool first = true;
 
-	// while(first || rssi == prev_rssi) {
-	// 	first = false;
+	if(get_rssi_mode == GetRSSIMode::SLEEP) {
+		sendMsg(get_rssi_msg);
 
-	sendMsg(get_rssi_msg);
+		std::string rssi_str;
+		recvMsg(rssi_str);
+
+		std::stringstream sstr(rssi_str);
+		sstr >> rssi;
+	} else if(get_rssi_mode == GetRSSIMode::MULTI) {
+		bool first = true;
+		float prev_rssi = 0.0;
+
+		std::stringstream rcv_rssis;
+		rcv_rssis << "received rssis: {";
+
+		for(int i = 0; i < num_messages; i++) {
+			prev_rssi = rssi;
+
+			sendMsg(get_rssi_msg);
+
+			std::string rssi_str;
+			recvMsg(rssi_str);
+
+			std::stringstream sstr(rssi_str);
+			sstr >> rssi;
+
+			if(i != 0) {
+				rcv_rssis << ", ";
+			}
+			rcv_rssis << rssi;
+
+			if(!first && prev_rssi != rssi) {
+				break;
+			}
+
+			if(first) {
+				first = false;
+			}
+		}
+
+		rcv_rssis << "}";
+		LOG(rcv_rssis.str());
+	}
 
 	std::string rssi_str;
 	recvMsg(rssi_str);
 
 	std::stringstream sstr(rssi_str);
 	sstr >> rssi;
-	// }
 
-	prev_rssi = rssi;
-
+	{
+		std::stringstream sstr;
+		sstr << "fetched RSSI is: " << rssi;
+		LOG(sstr.str());
+	}
 	if(rssi <= args->sfp_rssi_zero_value) {
 		rssi = 0.0;
 	}
+
 
 	return rssi;
 }
@@ -311,14 +432,16 @@ void SFPAutoAligner::sendMsg(const std::string &msg) {
 		send(sock, msg.c_str(), msg.size(), 0);
 	} else if(sock_type == SockType::UDP) {
 
-		if(false){
+		{
 			// Debugging print statements for sending and receiving messages
 			char ip_str[INET_ADDRSTRLEN];
 			inet_ntop(AF_INET, &foreign_host.sin_addr, ip_str, INET_ADDRSTRLEN);
 
 			int port = ntohs(foreign_host.sin_port);
 
-			std::cout << "Sending \"" << msg << "\" to " << ip_str << ":" << port << std::endl;
+			std::stringstream sstr;
+			sstr << "sending \"" << msg << "\" to " << ip_str << ":" << port;
+			VLOG(sstr.str(), 2);
 		}
 
 		write(sock, msg.c_str(), msg.size());
@@ -360,14 +483,16 @@ void SFPAutoAligner::recvMsg(std::string &msg) {
 			msg += buf;
 		}
 
-		if(false) {
+		{
 			// Debugging print statements for sending and receiving messages
 			char ip_str[INET_ADDRSTRLEN];
 			inet_ntop(AF_INET, &recv_src.sin_addr, ip_str, INET_ADDRSTRLEN);
 
 			int port = ntohs(recv_src.sin_port);
 
-			std::cout << "Received \"" << msg << "\" from " << ip_str << ":" << port << std::endl;
+			std::stringstream sstr;
+			sstr << "received \"" << msg << "\" from " << ip_str << ":" << port;
+			VLOG(sstr.str(),2);
 		}
 	} else {
 		std::cerr << "Unknown SockType: " << sock_type << std::endl;

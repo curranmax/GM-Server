@@ -12,12 +12,18 @@ class SFPAutoAligner {
 public:
 	enum SockType{UDP, TCP};
 
+	// GetRSSIMode defines 
+	enum GetRSSIMode{SLEEP, MULTI};
+
 	SFPAutoAligner(int sock_, SockType sock_type_);
 	~SFPAutoAligner();
 
 	void run(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id);
 
 	void setForeignSockAddr(const struct sockaddr_in &foreign_host_) { foreign_host = foreign_host_; }
+
+	void setSleepDuration(int sleep_milliseconds_) { get_rssi_mode = GetRSSIMode::SLEEP; sleep_milliseconds = sleep_milliseconds_; }
+	void setMultiParam(int num_messages_) { get_rssi_mode = GetRSSIMode::MULTI; num_messages = num_messages_; }
 
 	// Helper functions to create SFPAutoAligner
 	static SFPAutoAligner* connectTo(int send_port, SFPAutoAligner::SockType sock_type, const std::string &host_addr, const std::string &rack_id, const std::string &fso_id);
@@ -41,10 +47,11 @@ private:
 	SockType sock_type;
 	struct sockaddr_in foreign_host; // The address to send UDP packets to.
 
-	Args* args;
+	GetRSSIMode get_rssi_mode;
+	int sleep_milliseconds;
+	int num_messages;
 
-	// TODO move this to the arduino
-	float prev_rssi;
+	Args* args;
 };
 
 

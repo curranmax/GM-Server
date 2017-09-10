@@ -1,11 +1,17 @@
 
 #include "args.h"
 
+#include "logger.h"
+
 #include <iostream>
+#include <sstream>
 #include <stdlib.h>
 #include <string.h>
 
 Args::Args(const int &argc, char const *argv[]) {
+	std::stringstream log_file_sstr;
+	log_file_sstr << "log/log_" << __TIME__ << ".txt";
+
 	// Initialize arguments and their flags
 	args = {Arg_Val(&coarse_alignment,"-c","Starts coarse alignment mode"),
 			Arg_Val(&gm_server,"-s","Starts gm server mode"),
@@ -45,7 +51,10 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&sfp_map_range, 500, "-sfp_mr", "MAP_RANGE", "Range to use for mapping the SFP received power"),
 			Arg_Val(&sfp_map_step, 10, "-sfp_ms", "MAP_STEP", "Step to use for mapping the SFP received power"),
 			Arg_Val(&sfp_map_out_file, "data/sfp_map.txt", "-sfp_map_out", "MV_OUT", "File to write SFP map data to"),
-			Arg_Val(&sfp_test_server, "-sfp_test_server", "If given, sends the GM values to the other side")
+			Arg_Val(&sfp_test_server, "-sfp_test_server", "If given, sends the GM values to the other side"),
+			Arg_Val(&log_file, log_file_sstr.str(), "-log_file", "FILE", "File to write log information to"),
+			Arg_Val(&log_level, 0, "-vlog", "VERBOSE_LEVEL", "Verbositiy level used when logging"),
+			Arg_Val(&log_stderr, "-log_stderr", "If given, also logs to STDERR")
 		};
 
 	for(int i = 1; i < argc; ++i) {
@@ -65,6 +74,9 @@ Args::Args(const int &argc, char const *argv[]) {
 			std::cerr << "INVALID COMMAND LINE ARG: " << argv[i] << std::endl;
 		}
 	}
+
+	// Init Logger
+	Logger::init(log_file, log_level, log_stderr);
 }
 
 void Args::printHelp() const {
