@@ -32,6 +32,7 @@ void SFPAutoAligner::run(Args* args_, FSO* fso_, const std::string &other_rack_i
 	setValues(args_, fso_);
 
 	setMultiParam(100);
+	// setSleepDuration(500);
 
 	fso->setToLink(other_rack_id, other_fso_id);
 
@@ -272,6 +273,15 @@ void SFPAutoAligner::findError(float center_rssi,
 	bool first = true;
 	float best_diff = 0.0;
 
+	{
+		std::stringstream sstr;
+		sstr << "start findError: (0,0)->" << center_rssi;
+		for(unsigned int i = 0; i < search_rssis.size(); ++i) {
+			sstr << ", (" << search_rssis[i].first.first << "," << search_rssis[i].first.second << ")->" << search_rssis[i].second;
+		}
+		LOG(sstr.str());
+	}
+
 	for(std::map<std::pair<int, int>, float>::const_iterator itr = rssi_map.cbegin(); itr != rssi_map.cend(); ++itr) {
 		float this_diff = pow(center_rssi - itr->second, 2);
 		for(std::vector<std::pair<std::pair<int, int>, float> >::const_iterator search_itr = search_rssis.cbegin(); search_itr != search_rssis.cend(); ++search_itr) {
@@ -301,6 +311,12 @@ void SFPAutoAligner::findError(float center_rssi,
 				best_diff = this_diff;
 			}
 		}
+	}
+
+	{
+		std::stringstream sstr;
+		sstr << "end findError: err = (" << h_err << ", " << v_err << "), and best_diff = " << best_diff;
+		LOG(sstr.str());
 	}
 }
 
@@ -375,6 +391,9 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 	} else if(get_rssi_mode == GetRSSIMode::MULTI) {
 		bool first = true;
 		float prev_rssi = 0.0;
+		int max_num_changes = 10;
+		int num_changes = 0;
+
 
 		std::stringstream rcv_rssis;
 		rcv_rssis << "received rssis: {";
@@ -396,7 +415,10 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 			rcv_rssis << rssi;
 
 			if(!first && prev_rssi != rssi) {
-				break;
+				num_changes++;
+				if(num_changes >= max_num_changes) {
+					break;
+				}
 			}
 
 			if(first) {

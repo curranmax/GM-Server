@@ -95,6 +95,11 @@ class Args {
 
 	// SFP Auto Alignment - debug options
 	bool sfp_test_server;
+
+	// LOGGER
+	std::string log_file;
+	int log_level;
+	bool log_stderr;
 };
 
 #endif
