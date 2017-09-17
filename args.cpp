@@ -9,8 +9,34 @@
 #include <string.h>
 
 Args::Args(const int &argc, char const *argv[]) {
+	// Checks for a '-config' flag
+	std::string config_file = "";
+	for(int i = 1; i < argc; ++i) {
+		if(strcmp(argv[i], "-config") == 0 && i + 1 < argc) {
+			config_file = argv[i + 1];
+			break;
+		}
+	}
+
+	std::vector<std::string> cmd_args;
+	if(config_file != "") {
+		std::ifstream ifstr(config_file, std::ifstream::in);
+		std::string token = "";
+
+		while(ifstr >> token) {
+			cmd_args.push_back(token);
+		}
+	}
+	for(int i = 1; i < argc; ++i) {
+		if(strcmp(argv[i], "-config") == 0 && i + 1 < argc) {
+			++i;
+			continue;
+		}
+		cmd_args.push_back(argv[i]);
+	}
+
 	std::stringstream log_file_sstr;
-	log_file_sstr << "log/log_" << __TIME__ << ".txt";
+	log_file_sstr << "log/log_" << Logger::Now() << ".txt";
 
 	// Initialize arguments and their flags
 	args = {Arg_Val(&coarse_alignment,"-c","Starts coarse alignment mode"),
@@ -47,36 +73,54 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&sfp_rssi_zero_value, 0.0, "-sfp_zero", "ZERO_VAL", "Any RSSI less than or equal to this value will be clamped to 0.0"),
 			Arg_Val(&sfp_search_delta, 1, "-sfp_sd", "SEARCH_DELTA", "The search delta to use for the SFP Auto Alignment"),
 			Arg_Val(&sfp_num_search_locs, 3, "-sfp_nsl", "NUM_SEARCH_LOCS", "The number of locations to search when doing SFP Auto Alignment. Must be either 3 or 5."),
+			Arg_Val(&sfp_table_epsilon, 0.0, "-sfp_eps", "EPSILON", "When doing the table lookup, differences between current RSSIs and RSSIs in the table less than the given epsilon will be treated as 0"),
 			Arg_Val(&sfp_map_power, "-map_sfp", "Instead of normal tracking algorithm, maps a large value of GM settings"),
 			Arg_Val(&sfp_map_range, 500, "-sfp_mr", "MAP_RANGE", "Range to use for mapping the SFP received power"),
 			Arg_Val(&sfp_map_step, 10, "-sfp_ms", "MAP_STEP", "Step to use for mapping the SFP received power"),
 			Arg_Val(&sfp_map_out_file, "data/sfp_map.txt", "-sfp_map_out", "MV_OUT", "File to write SFP map data to"),
 			Arg_Val(&sfp_test_server, "-sfp_test_server", "If given, sends the GM values to the other side"),
+			Arg_Val(&sfp_max_num_messages, 1, "-sfp_mnm", "MAX_MESSAGES", "The maximum number of messages used when fetching the RSSI"),
+			Arg_Val(&sfp_max_num_changes, 1, "-sfp_mnc", "MAX_CHANGES", "The number of changes in received RSSI before returning a value"),
+			Arg_Val(&sfp_num_message_average, 1, "-sfp_nma", "NUM_TO_AVERAGE", "The number of unique RSSIs to average"),
 			Arg_Val(&log_file, log_file_sstr.str(), "-log_file", "FILE", "File to write log information to"),
 			Arg_Val(&log_level, 0, "-vlog", "VERBOSE_LEVEL", "Verbositiy level used when logging"),
 			Arg_Val(&log_stderr, "-log_stderr", "If given, also logs to STDERR")
 		};
 
-	for(int i = 1; i < argc; ++i) {
-		if(strcmp(argv[i],"-h") == 0 || strcmp(argv[i],"-help") == 0) {
+	for(unsigned int i = 0; i < cmd_args.size(); ++i) {
+		if(cmd_args[i] == "-h" || cmd_args[i] == "-help") {
 			printHelp();
 		}
 		bool match_found = false;
 		for(unsigned int j = 0; j < args.size(); ++j) {
-			if(args[j].isMatch(argv,i,argc)) {
-				args[j].setVal(argv,i,argc);
+			if(args[j].isMatch(cmd_args, i)) {
+				args[j].setVal(cmd_args, i);
 				match_found = true;
 				break;
 			}
 		}
 		// IF NONE FOUND PRINT AN ERROR MESSAGE
 		if(!match_found) {
-			std::cerr << "INVALID COMMAND LINE ARG: " << argv[i] << std::endl;
+			std::cerr << "INVALID COMMAND LINE ARG: " << cmd_args[i] << std::endl;
 		}
 	}
 
 	// Init Logger
 	Logger::init(log_file, log_level, log_stderr);
+
+	{
+		// Logs the cmd_args
+		std::stringstream args_sstr;
+		args_sstr << "cmd_args: {";
+		for(unsigned int i = 0; i < cmd_args.size(); ++i) {
+			if(i != 0) {
+				args_sstr << ", ";
+			}
+			args_sstr << cmd_args[i];
+		}
+		args_sstr << "}";
+		LOG(args_sstr.str());
+	}
 }
 
 void Args::printHelp() const {
@@ -87,10 +131,10 @@ void Args::printHelp() const {
 	exit(0);
 }
 
-bool Args::Arg_Val::isMatch(char const **vs,int &i, int num_v) {
-	if(vs[i] == flag_str) {
+bool Args::Arg_Val::isMatch(const std::vector<std::string> &cmd_args, unsigned int &i) {
+	if(cmd_args[i] == flag_str) {
 		if(val_type == "f" || val_type == "i" || val_type == "s") {
-			if(i >= num_v - 1) {
+			if(i >= cmd_args.size() - 1) {
 				return false;
 			}
 			i++;
@@ -100,15 +144,15 @@ bool Args::Arg_Val::isMatch(char const **vs,int &i, int num_v) {
 	return false;
 }
 
-void Args::Arg_Val::setVal(char const **vs,int &i, int num_v) {
+void Args::Arg_Val::setVal(const std::vector<std::string> &cmd_args, unsigned int &i) {
 	if(val_type == "f") {
-		*((float*) val_ptr) = atof(vs[i]);
+		*((float*) val_ptr) = atof(cmd_args[i].c_str());
 	}
 	if(val_type == "i") {
-		*((int*) val_ptr) = atoi(vs[i]);
+		*((int*) val_ptr) = atoi(cmd_args[i].c_str());
 	}
 	if(val_type == "s") {
-		*((std::string*) val_ptr) = vs[i];
+		*((std::string*) val_ptr) = cmd_args[i];
 	}
 	if(val_type == "b") {
 		*((bool*) val_ptr) = true;

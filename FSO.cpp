@@ -16,13 +16,29 @@ std::vector<float> FSO::durs;
 FSO::FSO(const std::string &fso_dec_fname, Args* args_) {
 	fname = fso_dec_fname;
 
+	rack_id = "";
+	fso_id = "";
+
 	port_name = "";
 	switch_address = "";
 	switch_username = "";
 	switch_password = "";
 
+	gm1 = nullptr;
+	gm2 = nullptr;
+	horizontal_gm = nullptr;
+	vertical_gm = nullptr;
+	ph_diode = nullptr;
+	nh_diode = nullptr;
+	pv_diode = nullptr;
+	nv_diode = nullptr;
+	power_diode = nullptr;
+
+	link_settings = ls_map();
+
+	dom = nullptr;
+
 	args = args_;
-	dom = NULL;
 
 	load();
 }
@@ -37,8 +53,19 @@ FSO::FSO(const std::string &filename,const std::string &rack_id_,const std::stri
 	switch_username = "";
 	switch_password = "";
 
+	horizontal_gm = nullptr;
+	vertical_gm = nullptr;
+	ph_diode = nullptr;
+	nh_diode = nullptr;
+	pv_diode = nullptr;
+	nv_diode = nullptr;
+	power_diode = nullptr;
+
+	link_settings = ls_map();
+
+	dom = nullptr;
+
 	args = args_;
-	dom = NULL;
 
 	gm1 = makeGM(gm1_usb_channel,gm1_usb_id,args->debug);
 	gm2 = makeGM(gm2_usb_channel,gm2_usb_id,args->debug);

@@ -21,7 +21,9 @@ SFPAutoAligner::SFPAutoAligner(int sock_, SockType sock_type_) {
 
 	get_rssi_mode = GetRSSIMode::SLEEP;
 	sleep_milliseconds = 12;
-	num_messages = 1;
+	max_num_messages = 1;
+	max_num_changes = 1;
+	num_message_average = 1;
 }
 
 SFPAutoAligner::~SFPAutoAligner() {
@@ -31,13 +33,17 @@ SFPAutoAligner::~SFPAutoAligner() {
 void SFPAutoAligner::run(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id) {
 	setValues(args_, fso_);
 
-	setMultiParam(100);
+	setMultiParam(args->sfp_max_num_messages, args->sfp_max_num_changes, args->sfp_num_message_average);
 	// setSleepDuration(500);
 
 	fso->setToLink(other_rack_id, other_fso_id);
 
+	bool run_switch = false;
+
 	if(args->sfp_map_power) {
 		mapRun();
+	} else if(run_switch) {
+		switchRun();
 	} else {
 		int init_h_gm = fso->getHorizontalGMVal();
 		int init_v_gm = fso->getVerticalGMVal();
@@ -272,6 +278,8 @@ void SFPAutoAligner::findError(float center_rssi,
 
 	bool first = true;
 	float best_diff = 0.0;
+	float diff_epsilon = args->sfp_table_epsilon;
+	float best_epsilon = 0.01;
 
 	{
 		std::stringstream sstr;
@@ -295,6 +303,10 @@ void SFPAutoAligner::findError(float center_rssi,
 			this_diff += pow(search_itr->second - lookup_rssi, 2);
 		}
 
+		if(this_diff <= diff_epsilon) {
+			this_diff = 0.0;
+		}
+
 		if(first) {
 			first = false;
 			h_err = itr->first.first;
@@ -303,12 +315,14 @@ void SFPAutoAligner::findError(float center_rssi,
 			best_diff = this_diff;
 		} else {
 			if(this_diff < best_diff ||
-					(this_diff == best_diff &&
+					(fabs(this_diff - best_diff) <= best_epsilon &&
 						(pow(itr->first.first, 2) + pow(itr->first.second, 2) < pow(h_err, 2) + pow(v_err, 2)))) {
 				h_err = itr->first.first;
 				v_err = itr->first.second;
 
-				best_diff = this_diff;
+				if(this_diff < best_diff) {
+					best_diff = this_diff;
+				}
 			}
 		}
 	}
@@ -358,13 +372,68 @@ void SFPAutoAligner::mapRun() {
 	std::cout << "SFPAutoAligner::mapRun end" << std::endl;
 }
 
+void SFPAutoAligner::switchRun() {
+	setSleepDuration(0);
+
+	int h_gm_init = fso->getHorizontalGMVal();
+	int v_gm_init = fso->getVerticalGMVal();
+
+	int pre_switch_h_offset = 0, pre_switch_v_offset = 0;
+	int post_switch_h_offset = 10, post_switch_v_offset = 0;
+
+	typedef std::chrono::time_point<std::chrono::system_clock> time;
+	typedef std::pair<float,std::pair<time, time> > switchData;
+
+	std::vector<switchData> rssi_times;
+
+	int num_messages = 5000;
+
+	fso->setHorizontalGMVal(h_gm_init + pre_switch_h_offset);
+	fso->setVerticalGMVal(v_gm_init + pre_switch_v_offset);
+
+	for(int i = 0; i < num_messages; ++i) {
+		time pre_get_rssi = std::chrono::system_clock::now();
+		float rssi = getRSSI(h_gm_init + pre_switch_h_offset, v_gm_init + pre_switch_v_offset);
+		time post_get_rssi = std::chrono::system_clock::now();
+		rssi_times.push_back(std::make_pair(rssi, std::make_pair(pre_get_rssi, post_get_rssi)));
+	}
+
+	time pre_switch_time = std::chrono::system_clock::now();
+	fso->setHorizontalGMVal(h_gm_init + post_switch_h_offset);
+	fso->setVerticalGMVal(v_gm_init + post_switch_v_offset);
+	time post_switch_time = std::chrono::system_clock::now();
+
+	for(int i = 0; i < num_messages; ++i) {
+		time pre_get_rssi = std::chrono::system_clock::now();
+		float rssi = getRSSI(h_gm_init + post_switch_h_offset, v_gm_init + post_switch_v_offset);
+		time post_get_rssi = std::chrono::system_clock::now();
+		rssi_times.push_back(std::make_pair(rssi, std::make_pair(pre_get_rssi, post_get_rssi)));
+	}
+
+	std::string out_file = args->sfp_map_out_file;
+	std::ofstream ofstr(out_file, std::ofstream::out);
+
+	time relative_time = pre_switch_time;
+
+	ofstr << "event pre_time(s) post_time(s) val" << std::endl;
+	ofstr << "switch " << (pre_switch_time - relative_time).count() << " " << (post_switch_time - relative_time).count() << " " << pre_switch_h_offset << "," << pre_switch_v_offset << "," << post_switch_h_offset << "," << post_switch_v_offset << std::endl;
+	for(unsigned int i = 0; i < rssi_times.size(); ++i) {
+		ofstr << "rssi " << (rssi_times[i].second.first - relative_time).count() << " " << (rssi_times[i].second.second - relative_time).count() << " " << rssi_times[i].first << std::endl;
+	}
+
+	ofstr.close();
+
+	fso->setHorizontalGMVal(h_gm_init);
+	fso->setVerticalGMVal(v_gm_init);
+}
+
 float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 	// TODO confirm "good" RSSI values:
 	// 		0) Log values so they can be inspected later.
 	// 		1) Sleep for longer.
 	// 		2) Read k values and return the first edge value.
 	// 		3) Constantly read values in separate thread. Update a shared variable when changes.
-	if(get_rssi_mode == GetRSSIMode::SLEEP) {
+	if(get_rssi_mode == GetRSSIMode::SLEEP && sleep_milliseconds > 0) {
 		LOG("getRSSI: start sleep");
 		usleep(1000 * sleep_milliseconds);
 		LOG("getRSSI: end sleep");
@@ -378,7 +447,7 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 		get_rssi_msg = sstr.str();
 	}
 
-	float rssi= 0.0;
+	float rssi = 0.0;
 
 	if(get_rssi_mode == GetRSSIMode::SLEEP) {
 		sendMsg(get_rssi_msg);
@@ -391,14 +460,14 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 	} else if(get_rssi_mode == GetRSSIMode::MULTI) {
 		bool first = true;
 		float prev_rssi = 0.0;
-		int max_num_changes = 10;
+		std::vector<float> unique_rssis;
 		int num_changes = 0;
 
 
 		std::stringstream rcv_rssis;
 		rcv_rssis << "received rssis: {";
 
-		for(int i = 0; i < num_messages; i++) {
+		for(int i = 0; i < max_num_messages; i++) {
 			prev_rssi = rssi;
 
 			sendMsg(get_rssi_msg);
@@ -414,8 +483,18 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 			}
 			rcv_rssis << rssi;
 
+			if(first) {
+				unique_rssis.push_back(rssi);
+			}
+
 			if(!first && prev_rssi != rssi) {
 				num_changes++;
+
+				while(int(unique_rssis.size()) <= num_message_average) {
+					unique_rssis.erase(unique_rssis.begin());
+				}
+				unique_rssis.push_back(rssi);
+
 				if(num_changes >= max_num_changes) {
 					break;
 				}
@@ -428,13 +507,15 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 
 		rcv_rssis << "}";
 		LOG(rcv_rssis.str());
+
+		if(unique_rssis.size() != 0) {
+			float sum_rssi = 0.0;
+			for(unsigned int i = 0; i < unique_rssis.size(); ++i) {
+				sum_rssi += unique_rssis[i];
+			}
+			rssi = sum_rssi / float(unique_rssis.size());
+		}
 	}
-
-	std::string rssi_str;
-	recvMsg(rssi_str);
-
-	std::stringstream sstr(rssi_str);
-	sstr >> rssi;
 
 	{
 		std::stringstream sstr;
@@ -444,7 +525,6 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 	if(rssi <= args->sfp_rssi_zero_value) {
 		rssi = 0.0;
 	}
-
 
 	return rssi;
 }

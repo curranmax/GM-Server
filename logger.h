@@ -13,6 +13,7 @@ class Logger {
 	static void init(const std::string &filename, int verbose_level_, bool log_stderr_);
 	static void log(const std::string &message, const std::string &file, int line_number, int message_level);
 
+	static std::string Now();
   private:
 	Logger();
 	~Logger();

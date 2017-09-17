@@ -17,8 +17,8 @@ class Args {
 
 		Arg_Val(const Arg_Val& av) {val_ptr = av.val_ptr; flag_str = av.flag_str; val_type = av.val_type; input_name = av.input_name; help_text = av.help_text; }
 
-		bool isMatch(char const **vs,int &i, int num_v);
-		void setVal(char const **vs,int &i, int num_v);
+		bool isMatch(const std::vector<std::string> &cmd_args, unsigned int &i);
+		void setVal(const std::vector<std::string> &cmd_args, unsigned int &i);
 
 		void* val_ptr;
 		std::string flag_str;
@@ -86,6 +86,7 @@ class Args {
 
 	int sfp_search_delta;
 	int sfp_num_search_locs;
+	float sfp_table_epsilon;
 
 	// SFP Auto Alignment - map
 	bool sfp_map_power;
@@ -95,6 +96,11 @@ class Args {
 
 	// SFP Auto Alignment - debug options
 	bool sfp_test_server;
+
+	// SFP Auto Alignment - getRSSI options
+	int sfp_max_num_messages;
+	int sfp_max_num_changes;
+	int sfp_num_message_average;
 
 	// LOGGER
 	std::string log_file;

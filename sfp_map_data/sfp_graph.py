@@ -41,6 +41,35 @@ def readInData(filename):
 
 	return params, data
 
+def readInSwitchData(filename):
+	f = open(filename)
+
+	col_hdrs = None
+
+	# Data value is (pre-time, post-time, val)
+	gm_data = None
+	rssi_data = []
+
+	for line in f:
+		if line == '\n':
+			continue
+
+		spl = line.split()
+		if col_hdrs == None:
+			col_hdrs = spl
+		elif spl[0] == 'switch':
+			pre_switch_time, post_switch_time = map(lambda x: float(x) / 1000000.0, spl[1:3])
+			vals = tuple(map(int, spl[3].split(',')))
+			gm_data = (pre_switch_time, post_switch_time, vals)
+		elif spl[0] == 'rssi':
+			pre_rssi_time, post_rssi_time = map(lambda x: float(x) / 1000000.0, spl[1:3])
+			rssi = int(spl[3])
+			rssi_data.append((pre_rssi_time, post_rssi_time, rssi))
+		else:
+			raise Exception('Invalide file format: ' + line[:-1])
+
+	return gm_data, rssi_data
+
 def generateXY(params):
 	val_range = params['map_range']
 	val_step = params['map_step']
@@ -119,14 +148,41 @@ def plotHeatMap(x, y, z, xy_units = '', xy_lim = None, title = '', zlabel = '', 
 
 	return fig
 
+def plotSwitchData(gm_data, rssi_data, plot_range):
+	title = 'GM moved from (%d, %d) to (%d, %d), starting at t = %.2f and ending at %.2f' % (gm_data[2][0], gm_data[2][1], gm_data[2][2], gm_data[2][3], gm_data[0], gm_data[1])
+	x_title = 'Time (in milliseconds)'
+	y_title = 'Received RSSI'
+
+	x = []
+	y = []
+	for pre, post, rssi in rssi_data:
+		if plot_range != None and abs(post) > plot_range:
+			continue
+		x.append(post)
+		y.append(rssi)
+
+	plt.plot(x, y)
+	plt.title(title)
+	plt.xlabel(x_title)
+	plt.ylabel(y_title)
+
+	plt.show()
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description = 'Graph SFP map output files')
 
 	parser.add_argument('-df', '--data_file_name', metavar = 'FILE_NAME', type = str, nargs = 1, default = [None], help = 'File to plot')
 
+	parser.add_argument('-sd', '--switch_data', help = 'If given, parses data file as a "switch" data experiment', action = 'store_true')
+	parser.add_argument('-pr', '--plot_range', metavar = 'PLOT_RANGE', type = float, nargs = 1, default = [None], help = 'Range to plot data')
+
 	args = parser.parse_args()
 
-	params, data = readInData(args.data_file_name[0])
+	if args.switch_data:
+		gm_data, rssi_data = readInSwitchData(args.data_file_name[0])
 
-	plotRSSI(params, data, plot_func = plot3D, xy_func = None)
+		plotSwitchData(gm_data, rssi_data, args.plot_range[0])
+	else:
+		params, data = readInData(args.data_file_name[0])
+
+		plotRSSI(params, data, plot_func = plot3D, xy_func = None)

@@ -23,7 +23,12 @@ public:
 	void setForeignSockAddr(const struct sockaddr_in &foreign_host_) { foreign_host = foreign_host_; }
 
 	void setSleepDuration(int sleep_milliseconds_) { get_rssi_mode = GetRSSIMode::SLEEP; sleep_milliseconds = sleep_milliseconds_; }
-	void setMultiParam(int num_messages_) { get_rssi_mode = GetRSSIMode::MULTI; num_messages = num_messages_; }
+	void setMultiParam(int max_num_messages_, int max_num_changes_, int num_message_average_) {
+		get_rssi_mode = GetRSSIMode::MULTI;
+		max_num_messages = max_num_messages_;
+		max_num_changes = max_num_changes_;
+		num_message_average = num_message_average_;
+	}
 
 	// Helper functions to create SFPAutoAligner
 	static SFPAutoAligner* connectTo(int send_port, SFPAutoAligner::SockType sock_type, const std::string &host_addr, const std::string &rack_id, const std::string &fso_id);
@@ -33,6 +38,7 @@ private:
 	
 	void controllerRun();
 	void mapRun();
+	void switchRun();
 
 	void findError(float center_rssi, const std::vector<std::pair<std::pair<int, int>, float> > &search_rssis, const std::map<std::pair<int, int>, float> &rssi_map, int &h_err, int &v_err);
 
@@ -49,7 +55,9 @@ private:
 
 	GetRSSIMode get_rssi_mode;
 	int sleep_milliseconds;
-	int num_messages;
+	int max_num_messages;
+	int max_num_changes;
+	int num_message_average;
 
 	Args* args;
 };
