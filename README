@@ -1,0 +1,128 @@
+-c
+	Coarse Align mode
+
+-s
+	Unused
+
+-n
+	Unused
+
+-dom
+	Unusued
+
+-v
+	Unused
+
+-d
+	Debug GM
+
+-fso FOLDER
+	Folder that contains the GM file
+
+-fake_dom
+	Unused
+
+-ma_save
+	Unused
+
+-con
+	Unused
+
+-aad
+	Unused
+
+-peak_file
+	Unused
+
+-npt
+	Unused
+
+-peak_rand_min
+	Unused
+
+-peak_rand_max
+	Unused
+
+-dom_iters
+	Unused
+
+-kp FLOAT
+	Proprortional factor in PID controller
+
+-ki FLOAT
+	Integral factor in PID controller
+
+-kd FLOAT
+	Derivative factor in PID controller
+
+-kbs
+	Unused
+
+-eps
+	Unused
+
+-dp_map
+	Unused
+
+-mr
+	Unused
+
+-ms
+	Unused
+
+-record_type
+	Unused
+
+-map_voltage_out_file
+	Unused
+
+-sfp_map_in FILE
+	(Should be set every time) The file with the map data used in the table look up
+
+-sfp_start FLOAT
+	(Probably won't need to change) A value of 0.1 means that the tracking won't start until the RSSI is 10% less than the peak RSSI.
+
+-sfp_stop FLOAT
+	(Probably won't need to change) A value of 0.1 means that tracking will stop once the RSSI is above 10% less than the peak RSSI
+
+-sfp_zero FLOAT
+	(Probably won't need to change) Any RSSIs less than the given value will be clamped to 0
+
+-sfp_sd INT
+	(Should be set everytime (Good value is ~10)) The delta used when searching during tracking
+
+-sfp_nsl INT
+	(May change, and the only good values are 3 and 5) If three is given, then the tracking will query (0,0), (sd, 0), and (0, sd). If five is given, then tracking will query (0,0), (sd, 0), (0, sd), (-sd, 0), and (0, -sd).
+
+-sfp_eps FLOAT
+	(Should be set each time, but not clear what value to use) During the table lookup of tracking, if the difference between the two vectors is less than the given value, then the difference is clamped to 0.0.
+
+-map_sfp
+	If given, will run "map" (i.e. it will scan a grid of GM positions and record the RSSI at each)
+
+-sfp_mr INT
+	The range to "map". If a value of 100 is given, then values from -100 to 100 will be scanned
+
+-sfp_ms INT
+	The step to "map". If a value of 5 is given (and a sfp_mr value of 100 is given), then values {-100, -95, -90, -85, ..., 95, 100} will be scanned.
+
+-sfp_map_out FILE
+	The file to output the "map" data to. If the data already exists, it will be overwritten
+
+-sfp_mnm INT
+	The maximum number of messages to fetch a RSSI
+
+-sfp_mnc INT
+	Once the RSSI changes mnc times, the RSSI is returned
+
+-sfp_nma INT
+	The number of RSSIs to average
+
+-log_file FILE
+	The file where information is logged to. Defaults to "log/log_MM/DD/YY_HH:MM:SS.txt"
+
+-vlog INT
+	Determines the logging level.
+
+-log_stderr
+	If given, all log information is also written to stderr

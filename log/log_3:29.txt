@@ -1,0 +1,1604 @@
+args.cpp:122 NO | cmd_args: {-c, -fso, tracking_experiment/gm_side/, -sfp_map_in, sfp_map_data/data/9-18/map_60_1.txt, -sfp_sd, 10, -sfp_nsl, 3, -sfp_mnm, 50, -sfp_mnc, 10, -sfp_nma, 1, -log_file, log/log_3:29.txt, -sfp_eps, 1}
+sfp_auto_align.cpp:76 NO | controllerRun start
+sfp_auto_align.cpp:83 NO | getting data from: sfp_map_data/data/9-18/map_60_1.txt
+sfp_auto_align.cpp:154 NO | search locs are: {(10, 0), (0, 10)}
+sfp_auto_align.cpp:509 NO | received rssis: {9930, 9930, 9930, 9930, 9971, 9971, 9971, 9971, 9935, 9935, 9935, 9935, 9935, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9971, 9971, 9971, 9971, 9971, 9971, 9971, 9971, 9971, 9971, 9890, 9890, 9890, 9890, 9941, 9941, 9941, 9941, 9941, 9849, 9849, 9849, 9849, 9849, 9864, 9864, 9864, 9864}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9864
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36574) with RSSI of 9864
+sfp_auto_align.cpp:192 NO | tracking turned on
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36574[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9834, 9834, 9834, 9834, 9834, 9829, 9829, 9829, 9829, 9829, 9804, 9804, 9804, 9804, 9804, 9869, 9869, 9869, 9869, 9824, 9824, 9824, 9824, 9824, 9874, 9874, 9874, 9874, 9874, 9915, 9915, 9915, 9915, 9809, 9809, 9809, 9809, 9809, 9794, 9794, 9794, 9794, 9794, 9783, 9783, 9783, 9783, 9783, 9753}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9753
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36574[0]) with RSSI of 9753
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36584[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9753, 9753, 9753, 9758, 9758, 9758, 9758, 9758, 9874, 9874, 9874, 9874, 9834, 9834, 9834, 9834, 9834, 9824, 9824, 9824, 9824, 9824, 9859, 9859, 9859, 9859, 9895, 9895, 9895, 9895, 9895, 9905, 9905, 9905, 9905, 9905, 9895, 9895, 9895, 9895, 9941, 9941, 9941, 9941, 9941, 9925}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9925
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36584[10]) with RSSI of 9925
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9864, (10,0)->9753, (0,10)->9925
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 1), and best_diff = 8521.1
+sfp_auto_align.cpp:231 NO | computed error is (-1, 1)
+sfp_auto_align.cpp:243 NO | response is (1, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9925, 9925, 9925, 9925, 9925, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 9976, 9976, 9976, 9976, 9976, 9976, 9976, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 10012, 10012, 10012, 10012, 9971, 9971, 9971, 9971, 9971, 9910, 9910, 9910, 9910, 9910, 9971, 9971, 9971}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9971
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9971
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9971, 9941, 9941, 9941, 9941, 9941, 9915, 9915, 9915, 9915, 10017, 10017, 10017, 10017, 10017, 10007, 10007, 10007, 10007, 10007, 9956, 9956, 9956, 9956, 9890, 9890, 9890, 9890, 9890, 9946, 9946, 9946, 9946, 9935, 9935, 9935, 9935, 9935, 10033, 10033, 10033, 10033, 10033, 10105}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10105
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 10105
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10105, 10105, 10105, 9753, 9753, 9753, 9753, 9753, 9783, 9783, 9783, 9783, 9783, 9768, 9768, 9768, 9768, 9768, 9748, 9748, 9748, 9748, 9789, 9789, 9789, 9789, 9789, 9723, 9723, 9723, 9723, 9723, 9763, 9763, 9763, 9763, 9758, 9758, 9758, 9758, 9758, 9763, 9763, 9763, 9763, 9763, 9789}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9789
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9789
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9971, (10,0)->10105, (0,10)->9789
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 29410.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9789, 9789, 9789, 9783, 9783, 9783, 9783, 9783, 9703, 9703, 9703, 9703, 9703, 9703, 9703, 9703, 9703, 9733, 9733, 9733, 9733, 9733, 9905, 9905, 9905, 9905, 9951, 9951, 9951, 9951, 9951, 9930, 9930, 9930, 9930, 9930, 9935, 9935, 9935, 9935, 9930, 9930, 9930, 9930, 9930, 9992, 9992, 9992, 9992, 9992}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9992
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36573) with RSSI of 9992
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9961, 9961, 9961, 9961, 10064, 10064, 10064, 10064, 10064, 10028, 10028, 10028, 10028, 10028, 10079, 10079, 10079, 10079, 10064, 10064, 10064, 10064, 10064, 10033, 10033, 10033, 10033, 10033, 10017, 10017, 10017, 10017, 10069, 10069, 10069, 10069, 10069, 10079, 10079, 10079, 10079, 10012, 10012, 10012, 10012, 10012, 10043}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10043
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36573[0]) with RSSI of 10043
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10043, 10043, 10043, 10043, 9599, 9599, 9599, 9599, 9643, 9643, 9643, 9643, 9643, 9688, 9688, 9688, 9688, 9703, 9703, 9703, 9703, 9703, 9713, 9713, 9713, 9713, 9713, 9708, 9708, 9708, 9708, 9733, 9733, 9733, 9733, 9733, 9683, 9683, 9683, 9683, 9683, 9693, 9693, 9693, 9693, 9693, 9698}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9698
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36583[10]) with RSSI of 9698
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9992, (10,0)->10043, (0,10)->9698
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 11328.9
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9698, 9698, 9698, 9748, 9748, 9748, 9748, 9748, 9768, 9768, 9768, 9768, 9768, 9753, 9753, 9753, 9753, 9789, 9789, 9789, 9789, 9789, 10053, 10053, 10053, 10053, 10053, 10038, 10038, 10038, 10038, 10033, 10033, 10033, 10033, 10033, 10017, 10017, 10017, 10017, 10017, 10028, 10028, 10028, 10028, 10017}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10017
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36573) with RSSI of 10017
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10017, 10017, 10017, 10017, 9905, 9905, 9905, 9905, 9905, 9956, 9956, 9956, 9956, 9961, 9961, 9961, 9961, 9961, 9956, 9956, 9956, 9956, 9956, 9879, 9879, 9879, 9879, 9879, 9930, 9930, 9930, 9930, 9971, 9971, 9971, 9971, 9971, 9910, 9910, 9910, 9910, 9986, 9986, 9986, 9986, 9986, 9864}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9864
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36573[0]) with RSSI of 9864
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9864, 9864, 9864, 9864, 9829, 9829, 9829, 9829, 9951, 9951, 9951, 9951, 9951, 9941, 9941, 9941, 9941, 9941, 9900, 9900, 9900, 9900, 9910, 9910, 9910, 9910, 9910, 9915, 9915, 9915, 9915, 9915, 9869, 9869, 9869, 9869, 9905, 9905, 9905, 9905, 9905, 9874, 9874, 9874, 9874, 9874, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36583[10]) with RSSI of 9956
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10017, (10,0)->9864, (0,10)->9956
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 21029
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9956, 9956, 9946, 9946, 9946, 9946, 9946, 9935, 9935, 9935, 9935, 9935, 9915, 9915, 9915, 9915, 9905, 9905, 9905, 9905, 9905, 9915, 9915, 9915, 9915, 9915, 9941, 9941, 9941, 9941, 9946, 9946, 9946, 9946, 9946, 9844, 9844, 9844, 9844, 9844, 9981, 9981, 9981, 9981, 9981, 9930}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9930
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9930
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9930, 9930, 9930, 9915, 9915, 9915, 9915, 9915, 9966, 9966, 9966, 9966, 9900, 9900, 9900, 9900, 9900, 9890, 9890, 9890, 9890, 9890, 9864, 9864, 9864, 9864, 9864, 9869, 9869, 9869, 9869, 9879, 9879, 9879, 9879, 9879, 9814, 9814, 9814, 9814, 9925, 9925, 9925, 9925, 9925, 9900}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9900
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 9900
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9900, 9900, 9900, 9900, 9809, 9809, 9809, 9809, 9844, 9844, 9844, 9844, 9844, 9829, 9829, 9829, 9829, 9874, 9874, 9874, 9874, 9874, 9859, 9859, 9859, 9859, 9859, 9859, 9859, 9859, 9859, 9799, 9799, 9799, 9799, 9799, 9809, 9809, 9809, 9809, 9783, 9783, 9783, 9783, 9783, 9773, 9773, 9773, 9773, 9773}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9773
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9773
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9930, (10,0)->9900, (0,10)->9773
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 1), and best_diff = 6006.05
+sfp_auto_align.cpp:231 NO | computed error is (0, 1)
+sfp_auto_align.cpp:243 NO | response is (0, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9799, 9799, 9799, 9799, 9783, 9783, 9783, 9783, 9783, 9809, 9809, 9809, 9809, 9809, 9768, 9768, 9768, 9768, 9789, 9789, 9789, 9789, 9789, 9824, 9824, 9824, 9824, 9824, 9986, 9986, 9986, 9986, 10084, 10084, 10084, 10084, 10084, 10017, 10017, 10017, 10017, 10022, 10022, 10022, 10022, 10022, 10007}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10007
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10007
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10007, 10007, 10007, 9976, 9976, 9976, 9976, 9976, 9961, 9961, 9961, 9961, 9956, 9956, 9956, 9956, 9956, 9910, 9910, 9910, 9910, 9961, 9961, 9961, 9961, 9961, 9935, 9935, 9935, 9935, 9935, 9946, 9946, 9946, 9946, 9951, 9951, 9951, 9951, 9951, 9946, 9946, 9946, 9946, 9910}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9910
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9910
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9910, 9910, 9910, 9910, 9834, 9834, 9834, 9834, 9905, 9905, 9905, 9905, 9905, 9859, 9859, 9859, 9859, 9804, 9804, 9804, 9804, 9804, 9789, 9789, 9789, 9789, 9789, 9768, 9768, 9768, 9768, 9743, 9743, 9743, 9743, 9743, 9819, 9819, 9819, 9819, 9854, 9854, 9854, 9854, 9854, 9874}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9874
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9874
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10007, (10,0)->9910, (0,10)->9874
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 7157.44
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9874, 9874, 9874, 9874, 9874, 9874, 9874, 9874, 9844, 9844, 9844, 9844, 9844, 9859, 9859, 9859, 9859, 9783, 9783, 9783, 9783, 9783, 9728, 9728, 9728, 9728, 9728, 10002, 10002, 10002, 10002, 9930, 9930, 9930, 9930, 9930, 9925, 9925, 9925, 9925, 9930, 9930, 9930, 9930, 9930, 9930, 9930, 9930, 9930, 9930}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9930
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9930
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9935, 9935, 9935, 9935, 10033, 10033, 10033, 10033, 10033, 10048, 10048, 10048, 10048, 10048, 10064, 10064, 10064, 10064, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10105, 10105, 10105, 10105, 10105, 10105, 10105, 10105, 10105, 10053, 10053, 10053, 10053, 10053, 10069, 10069, 10069, 10069, 10038, 10038, 10038, 10038}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10038
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10038
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10038, 10074, 10074, 10074, 10074, 10074, 9698, 9698, 9698, 9698, 9723, 9723, 9723, 9723, 9723, 9703, 9703, 9703, 9703, 9703, 9743, 9743, 9743, 9743, 9783, 9783, 9783, 9783, 9783, 9758, 9758, 9758, 9758, 9758, 9748, 9748, 9748, 9748, 9728, 9728, 9728, 9728, 9728, 9733}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9733
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9733
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9930, (10,0)->10038, (0,10)->9733
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 26917.1
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9733, 9733, 9733, 9733, 9738, 9738, 9738, 9738, 9733, 9733, 9733, 9733, 9733, 9728, 9728, 9728, 9728, 9728, 9794, 9794, 9794, 9794, 10183, 10183, 10183, 10183, 10183, 10074, 10074, 10074, 10074, 10033, 10033, 10033, 10033, 10033, 10053, 10053, 10053, 10053, 10094, 10094, 10094, 10094, 10069}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10069
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10069
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10069, 10069, 10069, 10069, 10028, 10028, 10028, 10028, 10028, 9946, 9946, 9946, 9946, 9992, 9992, 9992, 9992, 9992, 9956, 9956, 9956, 9956, 9956, 9971, 9971, 9971, 9971, 9930, 9930, 9930, 9930, 9930, 9854, 9854, 9854, 9854, 9920, 9920, 9920, 9920, 9920, 9869, 9869, 9869, 9869, 9869, 9859}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9859
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9859
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9859, 9859, 9859, 9854, 9854, 9854, 9854, 9854, 9941, 9941, 9941, 9941, 9941, 9895, 9895, 9895, 9895, 9869, 9869, 9869, 9869, 9869, 9874, 9874, 9874, 9874, 9874, 9799, 9799, 9799, 9799, 9869, 9869, 9869, 9869, 9869, 9849, 9849, 9849, 9849, 9849, 9839, 9839, 9839, 9839, 9864}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9864
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9864
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10069, (10,0)->9859, (0,10)->9864
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 15871.3
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9864, 9864, 9864, 9864, 9910, 9910, 9910, 9910, 9910, 9885, 9885, 9885, 9885, 9854, 9854, 9854, 9854, 9854, 9799, 9799, 9799, 9799, 9799, 10007, 10007, 10007, 10007, 10053, 10053, 10053, 10053, 10053, 10084, 10084, 10084, 10084, 10053, 10053, 10053, 10053, 10053, 9981, 9981, 9981, 9981, 10033}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10033
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10033
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10033, 10033, 10033, 10033, 10053, 10053, 10053, 10053, 10053, 10089, 10089, 10089, 10089, 10007, 10007, 10007, 10007, 10007, 9976, 9976, 9976, 9976, 9976, 10048, 10048, 10048, 10048, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10028, 10028, 10028, 10028, 9986, 9986, 9986, 9986, 9986, 9986, 9986, 9986, 9986}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9986
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9986
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9986, 10002, 10002, 10002, 10002, 9733, 9733, 9733, 9733, 9733, 9778, 9778, 9778, 9778, 9778, 9758, 9758, 9758, 9758, 9794, 9794, 9794, 9794, 9794, 9814, 9814, 9814, 9814, 9814, 9829, 9829, 9829, 9829, 9809, 9809, 9809, 9809, 9809, 9839, 9839, 9839, 9839, 9839, 9834}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9834
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9834
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10033, (10,0)->9986, (0,10)->9834
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 2365.15
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9834, 9834, 9834, 9758, 9758, 9758, 9758, 9758, 9829, 9829, 9829, 9829, 9829, 9804, 9804, 9804, 9804, 9794, 9794, 9794, 9794, 9794, 9935, 9935, 9935, 9935, 10043, 10043, 10043, 10043, 10043, 9981, 9981, 9981, 9981, 10017, 10017, 10017, 10017, 10017, 9910, 9910, 9910, 9910, 9925}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9925
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9925
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9925, 9925, 9925, 9925, 9966, 9966, 9966, 9966, 9966, 9992, 9992, 9992, 9992, 10022, 10022, 10022, 10022, 10022, 10033, 10033, 10033, 10033, 10033, 10043, 10043, 10043, 10043, 9961, 9961, 9961, 9961, 9961, 10007, 10007, 10007, 10007, 10007, 10022, 10022, 10022, 10022, 10033, 10033, 10033, 10033, 10033, 10105}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10105
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10105
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10105, 10105, 10105, 9614, 9614, 9614, 9614, 9614, 9663, 9663, 9663, 9663, 9663, 9713, 9713, 9713, 9713, 9713, 9713, 9713, 9713, 9713, 9683, 9683, 9683, 9683, 9758, 9758, 9758, 9758, 9758, 9738, 9738, 9738, 9738, 9763, 9763, 9763, 9763, 9763, 9713, 9713, 9713, 9713, 9713, 9713, 9713, 9713, 9713, 9713}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9713
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9713
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9925, (10,0)->10105, (0,10)->9713
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 24033.1
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9718, 9718, 9718, 9718, 9834, 9834, 9834, 9834, 9834, 9809, 9809, 9809, 9809, 9809, 9768, 9768, 9768, 9768, 9864, 9864, 9864, 9864, 9864, 10043, 10043, 10043, 10043, 10043, 10053, 10053, 10053, 10053, 10048, 10048, 10048, 10048, 10048, 10053, 10053, 10053, 10053, 10157, 10157, 10157, 10157, 10157, 10167}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10167
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10167
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10167, 10167, 10167, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 9997, 9997, 9997, 9997, 9956, 9956, 9956, 9956, 9956, 10012, 10012, 10012, 10012, 10043, 10043, 10043, 10043, 10043, 9951, 9951, 9951, 9951, 10058, 10058, 10058, 10058, 10058, 9951, 9951, 9951, 9951, 9951, 9981, 9981, 9981, 9981, 10038}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10038
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 10038
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10038, 10038, 10038, 10038, 9849, 9849, 9849, 9849, 9849, 9905, 9905, 9905, 9905, 9874, 9874, 9874, 9874, 9874, 9834, 9834, 9834, 9834, 9834, 9844, 9844, 9844, 9844, 9844, 9869, 9869, 9869, 9869, 9859, 9859, 9859, 9859, 9859, 9829, 9829, 9829, 9829, 9829, 9844, 9844, 9844, 9844, 9819}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9819
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9819
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10167, (10,0)->10038, (0,10)->9819
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 0), and best_diff = 1531.68
+sfp_auto_align.cpp:231 NO | computed error is (0, 0)
+sfp_auto_align.cpp:243 NO | response is (0, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9819, 9819, 9819, 9819, 9839, 9839, 9839, 9839, 9839, 9819, 9819, 9819, 9819, 9849, 9849, 9849, 9849, 9849, 9895, 9895, 9895, 9895, 9895, 10177, 10177, 10177, 10177, 10151, 10151, 10151, 10151, 10198, 10198, 10198, 10198, 10198, 10084, 10084, 10084, 10084, 10069, 10069, 10069, 10069, 10069, 10094}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10094
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10094
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10094, 10094, 10094, 10094, 10048, 10048, 10048, 10048, 10079, 10079, 10079, 10079, 10079, 9966, 9966, 9966, 9966, 9966, 10033, 10033, 10033, 10033, 10043, 10043, 10043, 10043, 10043, 10012, 10012, 10012, 10012, 10012, 10038, 10038, 10038, 10038, 10033, 10033, 10033, 10033, 10033, 10074, 10074, 10074, 10074, 10064}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10064
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 10064
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10064, 10064, 10064, 10064, 9789, 9789, 9789, 9789, 9789, 9814, 9814, 9814, 9814, 9778, 9778, 9778, 9778, 9778, 9794, 9794, 9794, 9794, 9794, 9844, 9844, 9844, 9844, 9824, 9824, 9824, 9824, 9824, 9961, 9961, 9961, 9961, 9961, 9981, 9981, 9981, 9981, 9981, 9961, 9961, 9961, 9961, 9859}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9859
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9859
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10094, (10,0)->10064, (0,10)->9859
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 8969.44
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9859, 9859, 9859, 9859, 9946, 9946, 9946, 9946, 9946, 9920, 9920, 9920, 9920, 9951, 9951, 9951, 9951, 9951, 9935, 9935, 9935, 9935, 9935, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9981, 9981, 9981, 9981, 9946, 9946, 9946, 9946, 9946, 9981, 9981, 9981, 9981, 10012, 10012, 10012, 10012, 10012}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10012
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10012
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9966, 9966, 9966, 9966, 9915, 9915, 9915, 9915, 9915, 9930, 9930, 9930, 9930, 9930, 9941, 9941, 9941, 9941, 9935, 9935, 9935, 9935, 9935, 9961, 9961, 9961, 9961, 10017, 10017, 10017, 10017, 10017, 9941, 9941, 9941, 9941, 10007, 10007, 10007, 10007, 10007, 9992, 9992, 9992, 9992, 10007}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10007
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10007
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10007, 10007, 10007, 10007, 9733, 9733, 9733, 9733, 9733, 9758, 9758, 9758, 9758, 9794, 9794, 9794, 9794, 9794, 9758, 9758, 9758, 9758, 9758, 9794, 9794, 9794, 9794, 9778, 9778, 9778, 9778, 9778, 9773, 9773, 9773, 9773, 9773, 9768, 9768, 9768, 9768, 9809, 9809, 9809, 9809, 9809, 9758}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9758
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9758
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10012, (10,0)->10007, (0,10)->9758
+sfp_auto_align.cpp:333 NO | end findError: err = (1, 0), and best_diff = 14737.2
+sfp_auto_align.cpp:231 NO | computed error is (1, 0)
+sfp_auto_align.cpp:243 NO | response is (-1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9758, 9758, 9758, 9758, 9809, 9809, 9809, 9809, 9809, 9718, 9718, 9718, 9718, 9758, 9758, 9758, 9758, 9758, 9804, 9804, 9804, 9804, 10012, 10012, 10012, 10012, 10012, 9992, 9992, 9992, 9992, 10007, 10007, 10007, 10007, 10007, 9915, 9915, 9915, 9915, 9910, 9910, 9910, 9910, 9910, 9951}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9951
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 9951
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9951, 9951, 9951, 9829, 9829, 9829, 9829, 9829, 9809, 9809, 9809, 9809, 9854, 9854, 9854, 9854, 9854, 9824, 9824, 9824, 9824, 9824, 9849, 9849, 9849, 9849, 9849, 9839, 9839, 9839, 9839, 9905, 9905, 9905, 9905, 9905, 9925, 9925, 9925, 9925, 9854, 9854, 9854, 9854, 9854, 9900}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9900
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9900
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9900, 9900, 9900, 9900, 9748, 9748, 9748, 9748, 9804, 9804, 9804, 9804, 9804, 9773, 9773, 9773, 9773, 9773, 9789, 9789, 9789, 9789, 9809, 9809, 9809, 9809, 9809, 9804, 9804, 9804, 9804, 9804, 9824, 9824, 9824, 9824, 9824, 9869, 9869, 9869, 9869, 9849, 9849, 9849, 9849, 9849, 9789}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9789
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9789
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9951, (10,0)->9900, (0,10)->9789
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 1), and best_diff = 4915.65
+sfp_auto_align.cpp:231 NO | computed error is (0, 1)
+sfp_auto_align.cpp:243 NO | response is (0, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9789, 9789, 9789, 9789, 9814, 9814, 9814, 9814, 9804, 9804, 9804, 9804, 9804, 9819, 9819, 9819, 9819, 9819, 9869, 9869, 9869, 9869, 10188, 10188, 10188, 10188, 10188, 10214, 10214, 10214, 10214, 10261, 10261, 10261, 10261, 10261, 10277, 10277, 10277, 10277, 10209, 10209, 10209, 10209, 10209, 10167}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10167
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 10167
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10167, 10167, 10167, 10177, 10177, 10177, 10177, 10177, 10198, 10198, 10198, 10198, 10198, 10183, 10183, 10183, 10183, 10157, 10157, 10157, 10157, 10157, 10183, 10183, 10183, 10183, 10183, 10136, 10136, 10136, 10136, 10136, 10198, 10198, 10198, 10198, 10100, 10100, 10100, 10100, 10100, 10162, 10162, 10162, 10162, 10120}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10120
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10120
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10120, 10120, 10120, 10120, 9814, 9814, 9814, 9814, 9814, 9814, 9814, 9814, 9814, 9844, 9844, 9844, 9844, 9844, 9910, 9910, 9910, 9910, 9915, 9915, 9915, 9915, 9915, 9885, 9885, 9885, 9885, 9885, 9930, 9930, 9930, 9930, 9910, 9910, 9910, 9910, 9910, 9879, 9879, 9879, 9879, 9925, 9925, 9925, 9925, 9925}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9925
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9925
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10167, (10,0)->10120, (0,10)->9925
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 16396.9
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9905, 9905, 9905, 9905, 9905, 9910, 9910, 9910, 9910, 9879, 9879, 9879, 9879, 9879, 9864, 9864, 9864, 9864, 9864, 9900, 9900, 9900, 9900, 9885, 9885, 9885, 9885, 9885, 10146, 10146, 10146, 10146, 10146, 10125, 10125, 10125, 10125, 10162, 10162, 10162, 10162, 10167, 10167, 10167, 10167, 10167, 10172}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10172
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10172
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10172, 10172, 10172, 10224, 10224, 10224, 10224, 10224, 10340, 10340, 10340, 10340, 10340, 10245, 10245, 10245, 10245, 10256, 10256, 10256, 10256, 10256, 10287, 10287, 10287, 10287, 10287, 10250, 10250, 10250, 10250, 10209, 10209, 10209, 10209, 10209, 10235, 10235, 10235, 10235, 10172, 10172, 10172, 10172, 10172, 10125}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10125
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10125
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10125, 10125, 10125, 9713, 9713, 9713, 9713, 9713, 9763, 9763, 9763, 9763, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9869, 9869, 9869, 9869, 9859, 9859, 9859, 9859, 9859, 9879, 9879, 9879, 9879, 9824, 9824, 9824, 9824, 9773, 9773, 9773, 9773, 9773, 9844, 9844}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9844
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9844
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10172, (10,0)->10125, (0,10)->9844
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 11036
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9844, 9844, 9824, 9824, 9824, 9824, 9824, 9778, 9778, 9778, 9778, 9778, 9804, 9804, 9804, 9804, 9804, 9758, 9758, 9758, 9758, 9748, 9748, 9748, 9748, 9748, 9895, 9895, 9895, 9895, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9966, 9966, 9966, 9966, 9966, 9946, 9946, 9946, 9946, 9976}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9976
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36573) with RSSI of 9976
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9976, 9976, 9976, 9976, 10100, 10100, 10100, 10100, 10100, 10120, 10120, 10120, 10120, 10069, 10069, 10069, 10069, 10069, 9997, 9997, 9997, 9997, 10017, 10017, 10017, 10017, 10017, 9997, 9997, 9997, 9997, 9997, 10038, 10038, 10038, 10038, 10007, 10007, 10007, 10007, 10007, 9971, 9971, 9971, 9971, 9997}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9997
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36573[0]) with RSSI of 9997
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9997, 9997, 9997, 9997, 9663, 9663, 9663, 9663, 9663, 9743, 9743, 9743, 9743, 9773, 9773, 9773, 9773, 9773, 9753, 9753, 9753, 9753, 9753, 9718, 9718, 9718, 9718, 9708, 9708, 9708, 9708, 9708, 9713, 9713, 9713, 9713, 9713, 9678, 9678, 9678, 9678, 9683, 9683, 9683, 9683, 9683, 9673}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9673
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36583[10]) with RSSI of 9673
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9976, (10,0)->9997, (0,10)->9673
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 11824.5
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9673, 9673, 9673, 9673, 9688, 9688, 9688, 9688, 9718, 9718, 9718, 9718, 9718, 9723, 9723, 9723, 9723, 9723, 9819, 9819, 9819, 9819, 10089, 10089, 10089, 10089, 10089, 10043, 10043, 10043, 10043, 10033, 10033, 10033, 10033, 10033, 10033, 10033, 10033, 10033, 10043, 10043, 10043, 10043, 10043, 9992, 9992, 9992, 9992, 9992}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9992
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36573) with RSSI of 9992
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10064, 10064, 10064, 10064, 9971, 9971, 9971, 9971, 9971, 10028, 10028, 10028, 10028, 10007, 10007, 10007, 10007, 10007, 9915, 9915, 9915, 9915, 9915, 9935, 9935, 9935, 9935, 9935, 9941, 9941, 9941, 9941, 10028, 10028, 10028, 10028, 10028, 10007, 10007, 10007, 10007, 9986, 9986, 9986, 9986, 9986, 9997}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9997
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36573[0]) with RSSI of 9997
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9997, 9997, 9997, 9997, 9885, 9885, 9885, 9885, 9900, 9900, 9900, 9900, 9900, 9900, 9900, 9900, 9900, 9900, 9864, 9864, 9864, 9864, 9864, 9864, 9864, 9864, 9864, 9809, 9809, 9809, 9809, 9783, 9783, 9783, 9783, 9783, 9854, 9854, 9854, 9854, 9854, 9879, 9879, 9879, 9879, 9879, 9869, 9869, 9869, 9869}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9869
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36583[10]) with RSSI of 9869
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9992, (10,0)->9997, (0,10)->9869
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 3691.1
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9814, 9814, 9814, 9814, 9814, 9804, 9804, 9804, 9804, 9804, 9809, 9809, 9809, 9809, 9819, 9819, 9819, 9819, 9819, 9930, 9930, 9930, 9930, 9930, 9930, 9930, 9930, 9930, 9941, 9941, 9941, 9941, 9941, 9997, 9997, 9997, 9997, 10017, 10017, 10017, 10017, 10017, 9992, 9992, 9992, 9992, 9956, 9956, 9956, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9956
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9910, 9910, 9910, 9910, 10069, 10069, 10069, 10069, 10069, 9976, 9976, 9976, 9976, 9946, 9946, 9946, 9946, 9946, 10017, 10017, 10017, 10017, 10033, 10033, 10033, 10033, 10033, 10043, 10043, 10043, 10043, 10012, 10012, 10012, 10012, 10012, 10033, 10033, 10033, 10033, 10043}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10043
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 10043
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10043, 10043, 10043, 10043, 9638, 9638, 9638, 9638, 9683, 9683, 9683, 9683, 9683, 9668, 9668, 9668, 9668, 9668, 9693, 9693, 9693, 9693, 9693, 9693, 9693, 9693, 9693, 9663, 9663, 9663, 9663, 9663, 9663, 9663, 9663, 9663, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9673
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9673
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9956, (10,0)->10043, (0,10)->9673
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 10032.5
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9653, 9653, 9653, 9653, 9653, 9658, 9658, 9658, 9658, 9658, 9658, 9658, 9658, 9658, 9658, 9653, 9653, 9653, 9653, 9668, 9668, 9668, 9668, 9668, 9743, 9743, 9743, 9743, 9743, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9703, 9703, 9703, 9703, 9703, 9703, 9703, 9703, 9678, 9678, 9678, 9678, 9678}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9678
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36573) with RSSI of 9678
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9678, 9678, 9951, 9951, 9951, 9951, 9986, 9986, 9986, 9986, 9986, 10002, 10002, 10002, 10002, 10012, 10012, 10012, 10012, 10012, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9946, 9890, 9890, 9890, 9890, 9930, 9930, 9930, 9930, 9930, 9920, 9920, 9920, 9920, 9976, 9976, 9976, 9976, 9976, 9864}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9864
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36573[0]) with RSSI of 9864
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9864, 9864, 9864, 9864, 10002, 10002, 10002, 10002, 9986, 9986, 9986, 9986, 9986, 10089, 10089, 10089, 10089, 10053, 10053, 10053, 10053, 10053, 9976, 9976, 9976, 9976, 10038, 10038, 10038, 10038, 10038, 10028, 10028, 10028, 10028, 10074, 10074, 10074, 10074, 10074, 10043, 10043, 10043, 10043, 10058}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10058
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36583[10]) with RSSI of 10058
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9678, (10,0)->9864, (0,10)->10058
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 4), and best_diff = 88881
+sfp_auto_align.cpp:231 NO | computed error is (0, 4)
+sfp_auto_align.cpp:243 NO | response is (0, -4)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36569)
+sfp_auto_align.cpp:509 NO | received rssis: {10058, 10058, 10058, 10058, 10043, 10043, 10043, 10043, 10043, 10048, 10048, 10048, 10048, 10038, 10038, 10038, 10038, 10038, 10028, 10028, 10028, 10028, 10028, 10053, 10053, 10053, 10053, 10467, 10467, 10467, 10467, 10467, 10579, 10579, 10579, 10579, 10579, 10611, 10611, 10611, 10611, 10552, 10552, 10552, 10552, 10552, 10488}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10488
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36569) with RSSI of 10488
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36569[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10488, 10488, 10488, 10308, 10308, 10308, 10308, 10308, 10287, 10287, 10287, 10287, 10377, 10377, 10377, 10377, 10377, 10261, 10261, 10261, 10261, 10308, 10308, 10308, 10308, 10271, 10271, 10271, 10271, 10271, 10308, 10308, 10308, 10308, 10377, 10377, 10377, 10377, 10377, 10340, 10340, 10340, 10340, 10313}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10313
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36569[0]) with RSSI of 10313
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36579[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10313, 10313, 10313, 10313, 9930, 9930, 9930, 9930, 9956, 9956, 9956, 9956, 9956, 9900, 9900, 9900, 9900, 9992, 9992, 9992, 9992, 9992, 9997, 9997, 9997, 9997, 9971, 9971, 9971, 9971, 9976, 9976, 9976, 9976, 9976, 9961, 9961, 9961, 9961, 9946, 9946, 9946, 9946, 9946, 9915}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9915
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36579[10]) with RSSI of 9915
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10488, (10,0)->10313, (0,10)->9915
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -3), and best_diff = 4368.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, -3)
+sfp_auto_align.cpp:243 NO | response is (1, 3)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9915, 9915, 9915, 9941, 9941, 9941, 9941, 9941, 9946, 9946, 9946, 9946, 9946, 9920, 9920, 9920, 9920, 9920, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 10058, 10058, 10058, 10058, 10136, 10136, 10136, 10136, 10136, 10100, 10100, 10100, 10100, 10100, 10110, 10110, 10110, 10110, 10048, 10048, 10048, 10048, 10033}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10033
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10033
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10033, 10033, 10033, 10033, 9981, 9981, 9981, 9981, 9981, 10033, 10033, 10033, 10033, 9992, 9992, 9992, 9992, 9992, 10058, 10058, 10058, 10058, 10058, 10028, 10028, 10028, 10028, 10028, 10028, 10028, 10028, 10028, 10038, 10038, 10038, 10038, 9951, 9951, 9951, 9951, 9951, 10007, 10007, 10007, 10007, 10007, 9961, 9961, 9961, 9961}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9961
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9961
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9966, 9966, 9966, 9966, 9966, 9783, 9783, 9783, 9783, 9783, 9844, 9844, 9844, 9844, 9854, 9854, 9854, 9854, 9854, 9839, 9839, 9839, 9839, 9839, 9799, 9799, 9799, 9799, 9824, 9824, 9824, 9824, 9824, 9814, 9814, 9814, 9814, 9814, 9885, 9885, 9885, 9885, 9874, 9874, 9874, 9874, 9874, 9849}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9849
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9849
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10033, (10,0)->9961, (0,10)->9849
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 1683.12
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9849, 9849, 9849, 9849, 9839, 9839, 9839, 9839, 9829, 9829, 9829, 9829, 9829, 9844, 9844, 9844, 9844, 9844, 9819, 9819, 9819, 9819, 9966, 9966, 9966, 9966, 9966, 9976, 9976, 9976, 9976, 9976, 10038, 10038, 10038, 10038, 10012, 10012, 10012, 10012, 10012, 9961, 9961, 9961, 9961, 9971}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9971
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9971
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9971, 9971, 9971, 9971, 9981, 9981, 9981, 9981, 10002, 10002, 10002, 10002, 10058, 10058, 10058, 10058, 10058, 10089, 10089, 10089, 10089, 9997, 9997, 9997, 9997, 9997, 9992, 9992, 9992, 9992, 10033, 10033, 10033, 10033, 10033, 10038, 10038, 10038, 10038, 10033, 10033, 10033, 10033, 10074}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10074
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10074
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10074, 10074, 10074, 10074, 9703, 9703, 9703, 9703, 9743, 9743, 9743, 9743, 9743, 9819, 9819, 9819, 9819, 9794, 9794, 9794, 9794, 9794, 9723, 9723, 9723, 9723, 9728, 9728, 9728, 9728, 9728, 9708, 9708, 9708, 9708, 9683, 9683, 9683, 9683, 9678, 9678, 9678, 9678, 9678, 9673}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9673
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9673
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9971, (10,0)->10074, (0,10)->9673
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 8186.47
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9673, 9673, 9673, 9673, 9693, 9693, 9693, 9693, 9688, 9688, 9688, 9688, 9688, 9693, 9693, 9693, 9693, 9693, 9718, 9718, 9718, 9718, 10022, 10022, 10022, 10022, 10022, 10012, 10012, 10012, 10012, 10084, 10084, 10084, 10084, 10084, 10064, 10064, 10064, 10064, 10022, 10022, 10022, 10022, 10022, 10120}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10120
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36572) with RSSI of 10120
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10120, 10120, 10120, 9971, 9971, 9971, 9971, 9971, 10043, 10043, 10043, 10043, 10017, 10017, 10017, 10017, 10017, 9885, 9885, 9885, 9885, 9844, 9844, 9844, 9844, 9844, 9844, 9844, 9844, 9844, 9849, 9849, 9849, 9849, 9849, 9854, 9854, 9854, 9854, 9854, 9885, 9885, 9885, 9885, 9869, 9869, 9869, 9869, 9920}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9920
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36572[0]) with RSSI of 9920
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9920, 9920, 9920, 9920, 9930, 9930, 9930, 9930, 9930, 9966, 9966, 9966, 9966, 9941, 9941, 9941, 9941, 9941, 9920, 9920, 9920, 9920, 9966, 9966, 9966, 9966, 9966, 9961, 9961, 9961, 9961, 9981, 9981, 9981, 9981, 9976, 9976, 9976, 9976, 9976, 9966, 9966, 9966, 9966, 9935}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9935
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36582[10]) with RSSI of 9935
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10120, (10,0)->9920, (0,10)->9935
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 11896.1
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9935, 9935, 9935, 9935, 9966, 9966, 9966, 9966, 9966, 9997, 9997, 9997, 9997, 9961, 9961, 9961, 9961, 9961, 9951, 9951, 9951, 9951, 9951, 9935, 9935, 9935, 9935, 9910, 9910, 9910, 9910, 9910, 9941, 9941, 9941, 9941, 9941, 9895, 9895, 9895, 9895, 9961, 9961, 9961, 9961, 9961, 9900}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9900
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 9900
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9900, 9900, 9900, 9900, 9925, 9925, 9925, 9925, 10002, 10002, 10002, 10002, 10002, 9997, 9997, 9997, 9997, 9966, 9966, 9966, 9966, 9966, 10017, 10017, 10017, 10017, 10064, 10064, 10064, 10064, 10064, 10007, 10007, 10007, 10007, 9992, 9992, 9992, 9992, 9941, 9941, 9941, 9941, 9941, 9981}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9981
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9981
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9981, 9981, 9981, 9981, 9905, 9905, 9905, 9905, 9905, 9905, 9905, 9905, 9905, 9900, 9900, 9900, 9900, 9900, 9946, 9946, 9946, 9946, 9915, 9915, 9915, 9915, 9915, 9874, 9874, 9874, 9874, 9874, 9849, 9849, 9849, 9849, 9849, 9849, 9849, 9849, 9849, 9809, 9809, 9809, 9809, 9809, 9849, 9849, 9849, 9849}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9849
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9849
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9900, (10,0)->9981, (0,10)->9849
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 23456.6
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9910, 9910, 9910, 9910, 9910, 9839, 9839, 9839, 9839, 9839, 9890, 9890, 9890, 9890, 9920, 9920, 9920, 9920, 9920, 9900, 9900, 9900, 9900, 9900, 9905, 9905, 9905, 9905, 9935, 9935, 9935, 9935, 9935, 9956, 9956, 9956, 9956, 9956, 9930, 9930, 9930, 9930, 9930, 9976, 9976, 9976, 9976, 9986}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9986
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9986
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9986, 9986, 9986, 9986, 9986, 10043, 10043, 10043, 10043, 10043, 9910, 9910, 9910, 9910, 9920, 9920, 9920, 9920, 9920, 9910, 9910, 9910, 9910, 9920, 9920, 9920, 9920, 9925, 9925, 9925, 9925, 9925, 9951, 9951, 9951, 9951, 9976, 9976, 9976, 9976, 9976, 10028, 10028, 10028, 10028, 10033}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10033
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10033
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10033, 10033, 10033, 10033, 9864, 9864, 9864, 9864, 9864, 9854, 9854, 9854, 9854, 9854, 9854, 9854, 9854, 9854, 9849, 9849, 9849, 9849, 9849, 9885, 9885, 9885, 9885, 9920, 9920, 9920, 9920, 9920, 9930, 9930, 9930, 9930, 9930, 9890, 9890, 9890, 9890, 9890, 9854, 9854, 9854, 9854, 9849, 9849, 9849, 9849}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9849
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9849
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9986, (10,0)->10033, (0,10)->9849
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 7573.14
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9849, 9854, 9854, 9854, 9854, 9854, 9910, 9910, 9910, 9910, 9890, 9890, 9890, 9890, 9890, 9941, 9941, 9941, 9941, 9941, 9925, 9925, 9925, 9925, 9986, 9986, 9986, 9986, 9986, 9997, 9997, 9997, 9997, 10002, 10002, 10002, 10002, 10002, 9961, 9961, 9961, 9961, 9966}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9966
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9966
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9966, 9966, 9966, 9966, 9986, 9986, 9986, 9986, 9986, 9976, 9976, 9976, 9976, 9986, 9986, 9986, 9986, 9986, 9930, 9930, 9930, 9930, 9930, 9997, 9997, 9997, 9997, 10043, 10043, 10043, 10043, 10043, 10022, 10022, 10022, 10022, 10022, 10012, 10012, 10012, 10012, 10043, 10043, 10043, 10043, 10043, 10079}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10079
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10079
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10079, 10079, 10079, 9728, 9728, 9728, 9728, 9728, 9728, 9728, 9728, 9728, 9758, 9758, 9758, 9758, 9758, 9789, 9789, 9789, 9789, 9789, 9844, 9844, 9844, 9844, 9834, 9834, 9834, 9834, 9834, 9829, 9829, 9829, 9829, 9829, 9824, 9824, 9824, 9824, 9879, 9879, 9879, 9879, 9879, 9905, 9905, 9905, 9905, 9905}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9905
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9905
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9966, (10,0)->10079, (0,10)->9905
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 17021.1
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4684, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9885, 9885, 9885, 9885, 9874, 9874, 9874, 9874, 9874, 9819, 9819, 9819, 9819, 9819, 9768, 9768, 9768, 9768, 9809, 9809, 9809, 9809, 9809, 9834, 9834, 9834, 9834, 9930, 9930, 9930, 9930, 9930, 9935, 9935, 9935, 9935, 9925, 9925, 9925, 9925, 9925, 9946, 9946, 9946, 9946, 9915}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9915
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4684, 36572) with RSSI of 9915
+sfp_auto_align.cpp:210 NO | search: GM set to (4694[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9915, 9915, 9915, 9915, 9925, 9925, 9925, 9925, 9925, 9986, 9986, 9986, 9986, 10012, 10012, 10012, 10012, 10012, 10033, 10033, 10033, 10033, 10033, 10002, 10002, 10002, 10002, 10089, 10089, 10089, 10089, 10089, 10017, 10017, 10017, 10017, 10017, 10110, 10110, 10110, 10110, 10012, 10012, 10012, 10012, 10012, 10022}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10022
+sfp_auto_align.cpp:218 NO | search: GM at (4694[10], 36572[0]) with RSSI of 10022
+sfp_auto_align.cpp:210 NO | search: GM set to (4684[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10022, 10022, 10022, 9604, 9604, 9604, 9604, 9604, 9648, 9648, 9648, 9648, 9589, 9589, 9589, 9589, 9589, 9609, 9609, 9609, 9609, 9609, 9624, 9624, 9624, 9624, 9633, 9633, 9633, 9633, 9633, 9628, 9628, 9628, 9628, 9554, 9554, 9554, 9554, 9554, 9614, 9614, 9614, 9614, 9604}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9604
+sfp_auto_align.cpp:218 NO | search: GM at (4684[0], 36582[10]) with RSSI of 9604
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9915, (10,0)->10022, (0,10)->9604
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 12224
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9604, 9604, 9604, 9604, 9579, 9579, 9579, 9579, 9579, 9589, 9589, 9589, 9589, 9549, 9549, 9549, 9549, 9549, 9559, 9559, 9559, 9559, 9559, 9574, 9574, 9574, 9574, 9574, 9574, 9574, 9574, 9574, 10028, 10028, 10028, 10028, 9997, 9997, 9997, 9997, 9997, 10017, 10017, 10017, 10017, 10028, 10028, 10028, 10028, 10028}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10028
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10028
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10053, 10053, 10053, 10053, 10028, 10028, 10028, 10028, 10028, 10125, 10125, 10125, 10125, 10125, 10105, 10105, 10105, 10105, 10033, 10033, 10033, 10033, 10033, 10069, 10069, 10069, 10069, 10120, 10120, 10120, 10120, 10120, 10064, 10064, 10064, 10064, 10115, 10115, 10115, 10115, 10115, 10069, 10069, 10069, 10069, 10038}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10038
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10038
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10038, 10038, 10038, 10038, 9773, 9773, 9773, 9773, 9859, 9859, 9859, 9859, 9859, 9869, 9869, 9869, 9869, 9824, 9824, 9824, 9824, 9824, 9844, 9844, 9844, 9844, 9864, 9864, 9864, 9864, 9859, 9859, 9859, 9859, 9859, 9824, 9824, 9824, 9824, 9829, 9829, 9829, 9829, 9829, 9814}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9814
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9814
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10028, (10,0)->10038, (0,10)->9814
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 7834.81
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9814, 9814, 9814, 9814, 9789, 9789, 9789, 9789, 9814, 9814, 9814, 9814, 9814, 9864, 9864, 9864, 9864, 9864, 9834, 9834, 9834, 9834, 9930, 9930, 9930, 9930, 9930, 9941, 9941, 9941, 9941, 9930, 9930, 9930, 9930, 9930, 9986, 9986, 9986, 9986, 9951, 9951, 9951, 9951, 9951, 10043}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10043
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 10043
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10043, 10043, 10043, 10048, 10048, 10048, 10048, 10048, 10074, 10074, 10074, 10074, 10074, 10089, 10089, 10089, 10089, 10069, 10069, 10069, 10069, 10069, 10094, 10094, 10094, 10094, 10094, 10131, 10131, 10131, 10131, 10084, 10084, 10084, 10084, 10084, 10110, 10110, 10110, 10110, 10110, 10110, 10110, 10110, 10110, 10157, 10157, 10157, 10157, 10157}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10157
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10157
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10183, 10183, 10183, 10183, 9604, 9604, 9604, 9604, 9604, 9708, 9708, 9708, 9708, 9713, 9713, 9713, 9713, 9713, 9708, 9708, 9708, 9708, 9713, 9713, 9713, 9713, 9713, 9678, 9678, 9678, 9678, 9678, 9678, 9678, 9678, 9678, 9743, 9743, 9743, 9743, 9743, 9743, 9743, 9743, 9743, 9743, 9758, 9758, 9758, 9758}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9758
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9758
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10043, (10,0)->10157, (0,10)->9758
+sfp_auto_align.cpp:333 NO | end findError: err = (1, -1), and best_diff = 26255.3
+sfp_auto_align.cpp:231 NO | computed error is (1, -1)
+sfp_auto_align.cpp:243 NO | response is (-1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9708, 9708, 9708, 9708, 9708, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9743, 9743, 9743, 9743, 9753, 9753, 9753, 9753, 9753, 9728, 9728, 9728, 9728, 9728, 9683, 9683, 9683, 9683, 9693, 9693, 9693, 9693, 9693, 9946, 9946, 9946, 9946, 10028, 10028, 10028, 10028, 10028, 10043, 10043, 10043}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10043
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 10043
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10043, 10002, 10002, 10002, 10002, 10002, 10038, 10038, 10038, 10038, 10069, 10069, 10069, 10069, 10033, 10033, 10033, 10033, 10033, 10110, 10110, 10110, 10110, 10094, 10094, 10094, 10094, 10094, 10105, 10105, 10105, 10105, 10028, 10028, 10028, 10028, 10028, 10043, 10043, 10043, 10043, 9971}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9971
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 9971
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9971, 9971, 9971, 9971, 9738, 9738, 9738, 9738, 9829, 9829, 9829, 9829, 9829, 9829, 9829, 9829, 9829, 9829, 9809, 9809, 9809, 9809, 9789, 9789, 9789, 9789, 9789, 9869, 9869, 9869, 9869, 9869, 9809, 9809, 9809, 9809, 9819, 9819, 9819, 9819, 9819, 9768, 9768, 9768, 9768, 9768, 9768, 9768, 9768, 9768}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9768
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9768
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10043, (10,0)->9971, (0,10)->9768
+sfp_auto_align.cpp:333 NO | end findError: err = (1, 0), and best_diff = 6510.06
+sfp_auto_align.cpp:231 NO | computed error is (1, 0)
+sfp_auto_align.cpp:243 NO | response is (-1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9778, 9778, 9778, 9778, 9778, 9824, 9824, 9824, 9824, 9824, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9758, 9758, 9758, 9758, 9758, 9708, 9708, 9708, 9708, 9723, 9723, 9723, 9723, 9723, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9723, 9723, 9723, 9723, 9723, 9753, 9753, 9753}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9753
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36573) with RSSI of 9753
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9753, 9753, 9986, 9986, 9986, 9986, 9986, 10002, 10002, 10002, 10002, 9992, 9992, 9992, 9992, 9992, 10017, 10017, 10017, 10017, 9997, 9997, 9997, 9997, 9997, 10100, 10100, 10100, 10100, 10022, 10022, 10022, 10022, 10022, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 10002, 10002, 10002, 10002, 9910}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9910
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36573[0]) with RSSI of 9910
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9910, 9910, 9910, 9910, 9854, 9854, 9854, 9854, 9854, 9849, 9849, 9849, 9849, 9829, 9829, 9829, 9829, 9829, 9864, 9864, 9864, 9864, 9864, 9834, 9834, 9834, 9834, 9930, 9930, 9930, 9930, 9930, 9920, 9920, 9920, 9920, 9920, 9849, 9849, 9849, 9849, 9854, 9854, 9854, 9854, 9854, 9864}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9864
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36583[10]) with RSSI of 9864
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9753, (10,0)->9910, (0,10)->9864
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 2), and best_diff = 26877.6
+sfp_auto_align.cpp:231 NO | computed error is (0, 2)
+sfp_auto_align.cpp:243 NO | response is (0, -2)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9864, 9864, 9864, 9864, 9869, 9869, 9869, 9869, 9890, 9890, 9890, 9890, 9890, 9981, 9981, 9981, 9981, 9981, 9966, 9966, 9966, 9966, 9966, 9992, 9992, 9992, 9992, 9976, 9976, 9976, 9976, 9976, 9935, 9935, 9935, 9935, 9935, 9910, 9910, 9910, 9910, 9910, 9910, 9910, 9910, 9910, 9935, 9935, 9935, 9935}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9935
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 9935
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9935, 10033, 10033, 10033, 10033, 10074, 10074, 10074, 10074, 10074, 10069, 10069, 10069, 10069, 10084, 10084, 10084, 10084, 10079, 10079, 10079, 10079, 10079, 10105, 10105, 10105, 10105, 10177, 10177, 10177, 10177, 10177, 10167, 10167, 10167, 10167, 10167, 10229, 10229, 10229, 10229, 10224}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10224
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10224
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10224, 10224, 10224, 10224, 9713, 9713, 9713, 9713, 9713, 9778, 9778, 9778, 9778, 9763, 9763, 9763, 9763, 9763, 9768, 9768, 9768, 9768, 9768, 9748, 9748, 9748, 9748, 9778, 9778, 9778, 9778, 9778, 9773, 9773, 9773, 9773, 9773, 9809, 9809, 9809, 9809, 9814, 9814, 9814, 9814, 9814, 9758}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9758
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9758
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9935, (10,0)->10224, (0,10)->9758
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 59182.1
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4679, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9758, 9758, 9758, 9758, 9763, 9763, 9763, 9763, 9763, 9763, 9763, 9763, 9763, 9778, 9778, 9778, 9778, 9778, 10094, 10094, 10094, 10094, 10094, 10382, 10382, 10382, 10382, 10313, 10313, 10313, 10313, 10313, 10303, 10303, 10303, 10303, 10366, 10366, 10366, 10366, 10366, 10355, 10355, 10355, 10355, 10355, 10377, 10377, 10377, 10377}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10377
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4679, 36571) with RSSI of 10377
+sfp_auto_align.cpp:210 NO | search: GM set to (4689[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10319, 10319, 10319, 10319, 10319, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10105, 10105, 10105, 10105, 10105, 10017, 10017, 10017, 10017, 10017, 9997, 9997, 9997, 9997, 10038, 10038, 10038, 10038, 10038, 10079, 10079, 10079, 10079, 10079, 10125, 10125, 10125, 10125, 10084, 10084, 10084, 10084, 10084, 10043, 10043, 10043}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10043
+sfp_auto_align.cpp:218 NO | search: GM at (4689[10], 36571[0]) with RSSI of 10043
+sfp_auto_align.cpp:210 NO | search: GM set to (4679[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10043, 10043, 10089, 10089, 10089, 10089, 10074, 10074, 10074, 10074, 10074, 10141, 10141, 10141, 10141, 10141, 10141, 10141, 10141, 10141, 10094, 10094, 10094, 10094, 10094, 10110, 10110, 10110, 10110, 10038, 10038, 10038, 10038, 10038, 9997, 9997, 9997, 9997, 9997, 9961, 9961, 9961, 9961, 9966, 9966, 9966, 9966, 9966, 9930}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9930
+sfp_auto_align.cpp:218 NO | search: GM at (4679[0], 36581[10]) with RSSI of 9930
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10377, (10,0)->10043, (0,10)->9930
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, -1), and best_diff = 14984
+sfp_auto_align.cpp:231 NO | computed error is (-2, -1)
+sfp_auto_align.cpp:243 NO | response is (2, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9930, 9930, 9930, 9930, 9961, 9961, 9961, 9961, 10002, 10002, 10002, 10002, 10002, 9986, 9986, 9986, 9986, 9986, 10053, 10053, 10053, 10053, 10079, 10079, 10079, 10079, 10079, 10058, 10058, 10058, 10058, 10028, 10028, 10028, 10028, 10028, 9992, 9992, 9992, 9992, 10012, 10012, 10012, 10012, 10012, 9997}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9997
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 9997
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9997, 9997, 9997, 10053, 10053, 10053, 10053, 10053, 10069, 10069, 10069, 10069, 10069, 10079, 10079, 10079, 10079, 10089, 10089, 10089, 10089, 10089, 10064, 10064, 10064, 10064, 10064, 10058, 10058, 10058, 10058, 10094, 10094, 10094, 10094, 10094, 10084, 10084, 10084, 10084, 10110, 10110, 10110, 10110, 10110, 10002}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10002
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 10002
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10002, 10002, 10002, 10002, 9718, 9718, 9718, 9718, 9799, 9799, 9799, 9799, 9799, 9789, 9789, 9789, 9789, 9789, 9794, 9794, 9794, 9794, 9768, 9768, 9768, 9768, 9768, 9783, 9783, 9783, 9783, 9743, 9743, 9743, 9743, 9743, 9733, 9733, 9733, 9733, 9733, 9773, 9773, 9773, 9773, 9809}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9809
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9809
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9997, (10,0)->10002, (0,10)->9809
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 8152.16
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9809, 9809, 9809, 9809, 9819, 9819, 9819, 9819, 9819, 9824, 9824, 9824, 9824, 9804, 9804, 9804, 9804, 9804, 9753, 9753, 9753, 9753, 9753, 9920, 9920, 9920, 9920, 9997, 9997, 9997, 9997, 9997, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 9981, 10069, 10069, 10069, 10069, 10033, 10033, 10033, 10033, 10033}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10033
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10033
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10022, 10022, 10022, 10022, 10105, 10105, 10105, 10105, 10105, 10120, 10120, 10120, 10120, 10120, 10141, 10141, 10141, 10141, 10183, 10183, 10183, 10183, 10183, 10136, 10136, 10136, 10136, 10136, 10198, 10198, 10198, 10198, 10136, 10136, 10136, 10136, 10136, 10120, 10120, 10120, 10120, 10089, 10089, 10089, 10089, 10089, 10064}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10064
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10064
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10064, 10064, 10064, 10064, 9569, 9569, 9569, 9569, 9569, 9604, 9604, 9604, 9604, 9633, 9633, 9633, 9633, 9633, 9653, 9653, 9653, 9653, 9678, 9678, 9678, 9678, 9678, 9658, 9658, 9658, 9658, 9658, 9633, 9633, 9633, 9633, 9633, 9723, 9723, 9723, 9723, 9703, 9703, 9703, 9703, 9708}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9708
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9708
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10033, (10,0)->10064, (0,10)->9708
+sfp_auto_align.cpp:333 NO | end findError: err = (1, -1), and best_diff = 10927.3
+sfp_auto_align.cpp:231 NO | computed error is (1, -1)
+sfp_auto_align.cpp:243 NO | response is (-1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9708, 9708, 9708, 9708, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9668, 9668, 9668, 9668, 9723, 9723, 9723, 9723, 9723, 9748, 9748, 9748, 9748, 9864, 9864, 9864, 9864, 9864, 10028, 10028, 10028, 10028, 9966, 9966, 9966, 9966, 9966, 9961, 9961, 9961, 9961, 9910, 9910, 9910, 9910, 9910}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9910
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36573) with RSSI of 9910
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9895, 9895, 9895, 9895, 9844, 9844, 9844, 9844, 9844, 9935, 9935, 9935, 9935, 9920, 9920, 9920, 9920, 9976, 9976, 9976, 9976, 9976, 9951, 9951, 9951, 9951, 9915, 9915, 9915, 9915, 9915, 9900, 9900, 9900, 9900, 9946, 9946, 9946, 9946, 9946, 9941, 9941, 9941, 9941, 9961}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9961
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36573[0]) with RSSI of 9961
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9961, 9961, 9961, 9961, 9758, 9758, 9758, 9758, 9809, 9809, 9809, 9809, 9809, 9789, 9789, 9789, 9789, 9814, 9814, 9814, 9814, 9814, 9799, 9799, 9799, 9799, 9839, 9839, 9839, 9839, 9839, 9864, 9864, 9864, 9864, 9900, 9900, 9900, 9900, 9935, 9935, 9935, 9935, 9935, 9905}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9905
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36583[10]) with RSSI of 9905
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9910, (10,0)->9961, (0,10)->9905
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 20749.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9905, 9905, 9905, 9885, 9885, 9885, 9885, 9885, 9930, 9930, 9930, 9930, 9930, 9910, 9910, 9910, 9910, 9910, 9849, 9849, 9849, 9849, 9879, 9879, 9879, 9879, 9879, 9941, 9941, 9941, 9941, 9930, 9930, 9930, 9930, 9930, 9961, 9961, 9961, 9961, 9946, 9946, 9946, 9946, 9946, 9951}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9951
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9951
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9951, 9951, 9951, 9920, 9920, 9920, 9920, 9920, 9915, 9915, 9915, 9915, 9915, 9976, 9976, 9976, 9976, 9981, 9981, 9981, 9981, 9981, 9946, 9946, 9946, 9946, 9946, 9930, 9930, 9930, 9930, 9971, 9971, 9971, 9971, 9971, 9956, 9956, 9956, 9956, 10017, 10017, 10017, 10017, 10017, 10012}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10012
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 10012
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10012, 10012, 10012, 10012, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9648, 9653, 9653, 9653, 9653, 9653, 9668, 9668, 9668, 9668, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9678, 9678, 9678, 9678, 9678, 9663, 9663, 9663, 9663, 9658, 9658, 9658, 9658, 9658, 9713, 9713, 9713, 9713}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9713
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9713
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9951, (10,0)->10012, (0,10)->9713
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 20534.5
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9713, 9688, 9688, 9688, 9688, 9693, 9693, 9693, 9693, 9693, 9738, 9738, 9738, 9738, 9738, 9733, 9733, 9733, 9733, 10089, 10089, 10089, 10089, 10089, 10069, 10069, 10069, 10069, 10094, 10094, 10094, 10094, 10094, 10064, 10064, 10064, 10064, 10043, 10043, 10043, 10043, 10043, 10069}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10069
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36573) with RSSI of 10069
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10069, 10069, 10069, 9971, 9971, 9971, 9971, 9971, 9997, 9997, 9997, 9997, 9997, 10012, 10012, 10012, 10012, 10002, 10002, 10002, 10002, 10002, 9935, 9935, 9935, 9935, 9935, 9930, 9930, 9930, 9930, 9925, 9925, 9925, 9925, 9925, 9986, 9986, 9986, 9986, 9986, 10007, 10007, 10007, 10007, 9935}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9935
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36573[0]) with RSSI of 9935
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9935, 9935, 9935, 9935, 9951, 9951, 9951, 9951, 9951, 9992, 9992, 9992, 9992, 9966, 9966, 9966, 9966, 9966, 10038, 10038, 10038, 10038, 10038, 10053, 10053, 10053, 10053, 10017, 10017, 10017, 10017, 10017, 10002, 10002, 10002, 10002, 10002, 9956, 9956, 9956, 9956, 9976, 9976, 9976, 9976, 9976, 10074}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10074
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36583[10]) with RSSI of 10074
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10069, (10,0)->9935, (0,10)->10074
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, 1), and best_diff = 22554.9
+sfp_auto_align.cpp:231 NO | computed error is (-2, 1)
+sfp_auto_align.cpp:243 NO | response is (2, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {10074, 10074, 10074, 10074, 10058, 10058, 10058, 10058, 10028, 10028, 10028, 10028, 10028, 10110, 10110, 10110, 10110, 10110, 10084, 10084, 10084, 10084, 10043, 10043, 10043, 10043, 10043, 10094, 10094, 10094, 10094, 10151, 10151, 10151, 10151, 10151, 10079, 10079, 10079, 10079, 10151, 10151, 10151, 10151, 10151, 10089}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10089
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10089
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10089, 10089, 10089, 10084, 10084, 10084, 10084, 10084, 10043, 10043, 10043, 10043, 10038, 10038, 10038, 10038, 10038, 10131, 10131, 10131, 10131, 10115, 10115, 10115, 10115, 10115, 10064, 10064, 10064, 10064, 10105, 10105, 10105, 10105, 10105, 10069, 10069, 10069, 10069, 10110, 10110, 10110, 10110, 10110, 10028}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10028
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10028
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10028, 10028, 10028, 10028, 9753, 9753, 9753, 9753, 9738, 9738, 9738, 9738, 9738, 9743, 9743, 9743, 9743, 9743, 9778, 9778, 9778, 9778, 9738, 9738, 9738, 9738, 9738, 9753, 9753, 9753, 9753, 9753, 9758, 9758, 9758, 9758, 9733, 9733, 9733, 9733, 9733, 9839, 9839, 9839, 9839, 9839, 9789}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9789
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9789
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10089, (10,0)->10028, (0,10)->9789
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 0), and best_diff = 5014.94
+sfp_auto_align.cpp:231 NO | computed error is (0, 0)
+sfp_auto_align.cpp:243 NO | response is (0, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9789, 9789, 9789, 9789, 9738, 9738, 9738, 9738, 9738, 9738, 9738, 9738, 9738, 9708, 9708, 9708, 9708, 9708, 9804, 9804, 9804, 9804, 9829, 9829, 9829, 9829, 9829, 9809, 9809, 9809, 9809, 9809, 9778, 9778, 9778, 9778, 9773, 9773, 9773, 9773, 9773, 9758, 9758, 9758, 9758, 9758, 9768, 9768, 9768, 9768}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9768
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9768
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9997, 9997, 9997, 9997, 9997, 10058, 10058, 10058, 10058, 10069, 10069, 10069, 10069, 10069, 10115, 10115, 10115, 10115, 10110, 10110, 10110, 10110, 10110, 10110, 10110, 10110, 10110, 10058, 10058, 10058, 10058, 10058, 10110, 10110, 10110, 10110, 10074, 10074, 10074, 10074, 10074, 10043, 10043, 10043, 10043, 10110, 10110, 10110, 10110, 10110}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10110
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10110
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10110, 10110, 10110, 10110, 9723, 9723, 9723, 9723, 9728, 9728, 9728, 9728, 9728, 9718, 9718, 9718, 9718, 9718, 9723, 9723, 9723, 9723, 9723, 9723, 9723, 9723, 9723, 9728, 9728, 9728, 9728, 9728, 9698, 9698, 9698, 9698, 9713, 9713, 9713, 9713, 9713, 9804, 9804, 9804, 9804, 9804, 9783, 9783, 9783, 9783}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9783
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9783
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9768, (10,0)->10110, (0,10)->9783
+sfp_auto_align.cpp:333 NO | end findError: err = (4, -1), and best_diff = 69001.4
+sfp_auto_align.cpp:231 NO | computed error is (4, -1)
+sfp_auto_align.cpp:243 NO | response is (-4, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4678, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9783, 9768, 9768, 9768, 9768, 9748, 9748, 9748, 9748, 9748, 9728, 9728, 9728, 9728, 9728, 9768, 9768, 9768, 9768, 9783, 9783, 9783, 9783, 9783, 9753, 9753, 9753, 9753, 9753, 9794, 9794, 9794, 9794, 9789, 9789, 9789, 9789, 9789, 9748, 9748, 9748, 9748, 9748, 9738}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9738
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4678, 36573) with RSSI of 9738
+sfp_auto_align.cpp:210 NO | search: GM set to (4688[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9738, 9738, 9738, 9748, 9748, 9748, 9748, 9748, 9920, 9920, 9920, 9920, 9920, 9915, 9915, 9915, 9915, 9895, 9895, 9895, 9895, 9895, 9966, 9966, 9966, 9966, 9966, 9966, 9966, 9966, 9966, 9961, 9961, 9961, 9961, 9961, 9946, 9946, 9946, 9946, 9961, 9961, 9961, 9961, 9961, 9920, 9920, 9920, 9920, 9905}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9905
+sfp_auto_align.cpp:218 NO | search: GM at (4688[10], 36573[0]) with RSSI of 9905
+sfp_auto_align.cpp:210 NO | search: GM set to (4678[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9905, 9905, 9905, 9905, 10146, 10146, 10146, 10146, 10146, 10203, 10203, 10203, 10203, 10229, 10229, 10229, 10229, 10229, 10277, 10277, 10277, 10277, 10266, 10266, 10266, 10266, 10266, 10162, 10162, 10162, 10162, 10188, 10188, 10188, 10188, 10188, 10172, 10172, 10172, 10172, 10198, 10198, 10198, 10198, 10266}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10266
+sfp_auto_align.cpp:218 NO | search: GM at (4678[0], 36583[10]) with RSSI of 10266
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9738, (10,0)->9905, (0,10)->10266
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 4), and best_diff = 196190
+sfp_auto_align.cpp:231 NO | computed error is (0, 4)
+sfp_auto_align.cpp:243 NO | response is (0, -4)
+sfp_auto_align.cpp:252 NO | GM set to (4678, 36569)
+sfp_auto_align.cpp:509 NO | received rssis: {10266, 10266, 10266, 10266, 10235, 10235, 10235, 10235, 10235, 10219, 10219, 10219, 10219, 10188, 10188, 10188, 10188, 10188, 10193, 10193, 10193, 10193, 10193, 10151, 10151, 10151, 10151, 10408, 10408, 10408, 10408, 10408, 10398, 10398, 10398, 10398, 10408, 10408, 10408, 10408, 10408, 10509, 10509, 10509, 10509, 10483}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10483
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4678, 36569) with RSSI of 10483
+sfp_auto_align.cpp:210 NO | search: GM set to (4688[10], 36569[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10483, 10483, 10483, 10483, 10313, 10313, 10313, 10313, 10313, 10313, 10313, 10313, 10313, 10287, 10287, 10287, 10287, 10287, 10324, 10324, 10324, 10324, 10324, 10350, 10350, 10350, 10350, 10266, 10266, 10266, 10266, 10266, 10355, 10355, 10355, 10355, 10355, 10292, 10292, 10292, 10292, 10292, 10292, 10292, 10292, 10292, 10277, 10277, 10277, 10277}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10277
+sfp_auto_align.cpp:218 NO | search: GM at (4688[10], 36569[0]) with RSSI of 10277
+sfp_auto_align.cpp:210 NO | search: GM set to (4678[0], 36579[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10277, 10319, 10319, 10319, 10319, 10177, 10177, 10177, 10177, 10177, 10157, 10157, 10157, 10157, 10177, 10177, 10177, 10177, 10172, 10172, 10172, 10172, 10172, 10177, 10177, 10177, 10177, 10146, 10146, 10146, 10146, 10146, 10151, 10151, 10151, 10151, 10183, 10183, 10183, 10183, 10214}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10214
+sfp_auto_align.cpp:218 NO | search: GM at (4678[0], 36579[10]) with RSSI of 10214
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10483, (10,0)->10277, (0,10)->10214
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, -2), and best_diff = 5216.74
+sfp_auto_align.cpp:231 NO | computed error is (-2, -2)
+sfp_auto_align.cpp:243 NO | response is (2, 2)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {10214, 10214, 10214, 10214, 10141, 10141, 10141, 10141, 10141, 10235, 10235, 10235, 10235, 10235, 10198, 10198, 10198, 10198, 10125, 10125, 10125, 10125, 10125, 10271, 10271, 10271, 10271, 10250, 10250, 10250, 10250, 10250, 10298, 10298, 10298, 10298, 10313, 10313, 10313, 10313, 10313, 10271, 10271, 10271, 10271, 10271, 10271, 10271, 10271, 10271}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10271
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36571) with RSSI of 10271
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10209, 10209, 10209, 10209, 10043, 10043, 10043, 10043, 10043, 10110, 10110, 10110, 10110, 10110, 10007, 10007, 10007, 10007, 9951, 9951, 9951, 9951, 9951, 9915, 9915, 9915, 9915, 9915, 9869, 9869, 9869, 9869, 9895, 9895, 9895, 9895, 9895, 9890, 9890, 9890, 9890, 9920, 9920, 9920, 9920, 9895}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9895
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36571[0]) with RSSI of 9895
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9895, 9895, 9895, 9895, 9920, 9920, 9920, 9920, 9930, 9930, 9930, 9930, 9930, 9900, 9900, 9900, 9900, 9935, 9935, 9935, 9935, 9935, 9905, 9905, 9905, 9905, 9864, 9864, 9864, 9864, 9864, 9895, 9895, 9895, 9895, 9915, 9915, 9915, 9915, 9839, 9839, 9839, 9839, 9839, 9854}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9854
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36581[10]) with RSSI of 9854
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10271, (10,0)->9895, (0,10)->9854
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 0), and best_diff = 28051
+sfp_auto_align.cpp:231 NO | computed error is (0, 0)
+sfp_auto_align.cpp:243 NO | response is (0, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9854, 9854, 9854, 9819, 9819, 9819, 9819, 9819, 9814, 9814, 9814, 9814, 9814, 9864, 9864, 9864, 9864, 9864, 9900, 9900, 9900, 9900, 10229, 10229, 10229, 10229, 10229, 10193, 10193, 10193, 10193, 10319, 10319, 10319, 10319, 10319, 10277, 10277, 10277, 10277, 10287, 10287, 10287, 10287, 10287, 10271}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10271
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36571) with RSSI of 10271
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10271, 10271, 10271, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10183, 10183, 10183, 10183, 10183, 10167, 10167, 10167, 10167, 10172, 10172, 10172, 10172, 10172, 10141, 10141, 10141, 10141, 10131, 10131, 10131, 10131, 10131, 10157, 10157, 10157, 10157, 10110, 10110, 10110, 10110, 10110, 10167, 10167, 10167, 10167, 10167, 10172}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10172
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36571[0]) with RSSI of 10172
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10172, 10172, 10172, 9854, 9854, 9854, 9854, 9854, 9946, 9946, 9946, 9946, 9951, 9951, 9951, 9951, 9951, 9910, 9910, 9910, 9910, 9910, 9869, 9869, 9869, 9869, 9885, 9885, 9885, 9885, 9885, 9890, 9890, 9890, 9890, 9890, 9956, 9956, 9956, 9956, 9925, 9925, 9925, 9925, 9925, 9879}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9879
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36581[10]) with RSSI of 9879
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10271, (10,0)->10172, (0,10)->9879
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 2738.14
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9879, 9879, 9879, 9879, 9864, 9864, 9864, 9864, 9859, 9859, 9859, 9859, 9859, 9885, 9885, 9885, 9885, 9885, 9804, 9804, 9804, 9804, 10115, 10115, 10115, 10115, 10115, 10089, 10089, 10089, 10089, 10089, 10069, 10069, 10069, 10069, 10120, 10120, 10120, 10120, 10131, 10131, 10131, 10131, 10131, 10017}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10017
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10017
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10017, 10017, 10017, 10017, 10048, 10048, 10048, 10048, 10105, 10105, 10105, 10105, 10105, 10084, 10084, 10084, 10084, 10084, 10058, 10058, 10058, 10058, 10058, 10084, 10084, 10084, 10084, 10094, 10094, 10094, 10094, 10094, 10136, 10136, 10136, 10136, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10064, 10064, 10064, 10064, 10064}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10064
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 10064
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9992, 9992, 9992, 9992, 9869, 9869, 9869, 9869, 9869, 9905, 9905, 9905, 9905, 9971, 9971, 9971, 9971, 9971, 10017, 10017, 10017, 10017, 9966, 9966, 9966, 9966, 9961, 9961, 9961, 9961, 9961, 9930, 9930, 9930, 9930, 9900, 9900, 9900, 9900, 9900, 9925, 9925, 9925, 9925, 9915}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9915
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9915
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10017, (10,0)->10064, (0,10)->9915
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 8988.94
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9915, 9915, 9915, 9915, 9930, 9930, 9930, 9930, 9930, 9910, 9910, 9910, 9910, 9905, 9905, 9905, 9905, 9905, 9809, 9809, 9809, 9809, 9809, 9971, 9971, 9971, 9971, 9956, 9956, 9956, 9956, 10064, 10064, 10064, 10064, 10064, 10048, 10048, 10048, 10048, 10022, 10022, 10022, 10022, 10022, 10038}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10038
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10038
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10038, 10038, 10038, 10043, 10043, 10043, 10043, 10043, 10100, 10100, 10100, 10100, 10105, 10105, 10105, 10105, 10105, 10110, 10110, 10110, 10110, 10110, 10064, 10064, 10064, 10064, 10100, 10100, 10100, 10100, 10100, 10038, 10038, 10038, 10038, 9971, 9971, 9971, 9971, 9971, 9992, 9992, 9992, 9992, 9992, 9966}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9966
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9966
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9966, 9966, 9966, 9708, 9708, 9708, 9708, 9708, 9763, 9763, 9763, 9763, 9763, 9773, 9773, 9773, 9773, 9738, 9738, 9738, 9738, 9738, 9703, 9703, 9703, 9703, 9718, 9718, 9718, 9718, 9718, 9783, 9783, 9783, 9783, 9783, 9814, 9814, 9814, 9814, 9829, 9829, 9829, 9829, 9829, 9799}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9799
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9799
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10038, (10,0)->9966, (0,10)->9799
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 6886.17
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9799, 9799, 9799, 9799, 9783, 9783, 9783, 9783, 9778, 9778, 9778, 9778, 9778, 9753, 9753, 9753, 9753, 9753, 9789, 9789, 9789, 9789, 9910, 9910, 9910, 9910, 9910, 9844, 9844, 9844, 9844, 9844, 9879, 9879, 9879, 9879, 9839, 9839, 9839, 9839, 9869, 9869, 9869, 9869, 9869, 9885}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9885
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9885
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9885, 9885, 9885, 9885, 9890, 9890, 9890, 9890, 9905, 9905, 9905, 9905, 9905, 9895, 9895, 9895, 9895, 9895, 9966, 9966, 9966, 9966, 9956, 9956, 9956, 9956, 9956, 9849, 9849, 9849, 9849, 9849, 9824, 9824, 9824, 9824, 9956, 9956, 9956, 9956, 9956, 9910, 9910, 9910, 9910, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 9956
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9956, 9956, 9956, 9683, 9683, 9683, 9683, 9708, 9708, 9708, 9708, 9708, 9743, 9743, 9743, 9743, 9743, 9708, 9708, 9708, 9708, 9708, 9728, 9728, 9728, 9728, 9738, 9738, 9738, 9738, 9738, 9733, 9733, 9733, 9733, 9733, 9703, 9703, 9703, 9703, 9698, 9698, 9698, 9698, 9698, 9703}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9703
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9703
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9885, (10,0)->9956, (0,10)->9703
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 1), and best_diff = 29385.2
+sfp_auto_align.cpp:231 NO | computed error is (0, 1)
+sfp_auto_align.cpp:243 NO | response is (0, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9703, 9703, 9703, 9703, 9708, 9708, 9708, 9708, 9773, 9773, 9773, 9773, 9773, 9804, 9804, 9804, 9804, 9804, 9753, 9753, 9753, 9753, 9976, 9976, 9976, 9976, 9976, 10094, 10094, 10094, 10094, 10043, 10043, 10043, 10043, 10043, 10084, 10084, 10084, 10084, 10048, 10048, 10048, 10048, 10048, 10069}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10069
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36571) with RSSI of 10069
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10069, 10069, 10069, 10069, 10125, 10125, 10125, 10125, 10125, 10125, 10125, 10125, 10125, 10209, 10209, 10209, 10209, 10177, 10177, 10177, 10177, 10177, 10193, 10193, 10193, 10193, 10193, 10198, 10198, 10198, 10198, 10209, 10209, 10209, 10209, 10209, 10224, 10224, 10224, 10224, 10235, 10235, 10235, 10235, 10235, 10298, 10298, 10298, 10298, 10298}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10298
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36571[0]) with RSSI of 10298
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10340, 10340, 10340, 10340, 9525, 9525, 9525, 9525, 9525, 9564, 9564, 9564, 9564, 9564, 9579, 9579, 9579, 9579, 9589, 9589, 9589, 9589, 9589, 9653, 9653, 9653, 9653, 9653, 9643, 9643, 9643, 9643, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9663, 9663, 9663, 9663, 9643, 9643, 9643, 9643}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9643
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36581[10]) with RSSI of 9643
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10069, (10,0)->10298, (0,10)->9643
+sfp_auto_align.cpp:333 NO | end findError: err = (3, -2), and best_diff = 32586.3
+sfp_auto_align.cpp:231 NO | computed error is (3, -2)
+sfp_auto_align.cpp:243 NO | response is (-3, 2)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9643, 9633, 9633, 9633, 9633, 9633, 9638, 9638, 9638, 9638, 9614, 9614, 9614, 9614, 9614, 9703, 9703, 9703, 9703, 9703, 10012, 10012, 10012, 10012, 10043, 10043, 10043, 10043, 10048, 10048, 10048, 10048, 10048, 10002, 10002, 10002, 10002, 10022, 10022, 10022, 10022, 10022, 9992}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9992
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36573) with RSSI of 9992
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9992, 9992, 9992, 9829, 9829, 9829, 9829, 9829, 9859, 9859, 9859, 9859, 9864, 9864, 9864, 9864, 9864, 9874, 9874, 9874, 9874, 9874, 9930, 9930, 9930, 9930, 9885, 9885, 9885, 9885, 9885, 9920, 9920, 9920, 9920, 9935, 9935, 9935, 9935, 9935, 9874, 9874, 9874, 9874, 9879}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9879
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36573[0]) with RSSI of 9879
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9879, 9879, 9879, 9879, 9951, 9951, 9951, 9951, 9997, 9997, 9997, 9997, 9997, 10043, 10043, 10043, 10043, 10110, 10110, 10110, 10110, 10084, 10084, 10084, 10084, 10084, 10053, 10053, 10053, 10053, 10048, 10048, 10048, 10048, 10048, 10022, 10022, 10022, 10022, 10017, 10017, 10017, 10017, 10017, 10038}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10038
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36583[10]) with RSSI of 10038
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9992, (10,0)->9879, (0,10)->10038
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, 1), and best_diff = 34627.1
+sfp_auto_align.cpp:231 NO | computed error is (-2, 1)
+sfp_auto_align.cpp:243 NO | response is (2, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {10038, 10038, 10038, 10074, 10074, 10074, 10074, 10074, 10053, 10053, 10053, 10053, 10053, 10069, 10069, 10069, 10069, 10074, 10074, 10074, 10074, 10074, 10022, 10022, 10022, 10022, 9997, 9997, 9997, 9997, 9997, 10038, 10038, 10038, 10038, 10094, 10094, 10094, 10094, 10094, 10043, 10043, 10043, 10043, 10043, 10110}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10110
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10110
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10110, 10110, 10110, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10074, 10048, 10048, 10048, 10048, 10048, 10074, 10074, 10074, 10074, 10074, 10079, 10079, 10079, 10079, 10022, 10022, 10022, 10022, 10022, 10064, 10064, 10064, 10064, 10120, 10120, 10120, 10120, 10120, 10120, 10120, 10120, 10120, 10125, 10125, 10125, 10125, 10125, 10120}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10120
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10120
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10120, 10120, 10120, 10120, 9743, 9743, 9743, 9743, 9799, 9799, 9799, 9799, 9799, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9728, 9728, 9728, 9728, 9728, 9748, 9748, 9748, 9748, 9748, 9783, 9783, 9783, 9783, 9794, 9794, 9794, 9794, 9794, 9773, 9773, 9773, 9773, 9768, 9768, 9768, 9768, 9768}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9768
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9768
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10110, (10,0)->10120, (0,10)->9768
+sfp_auto_align.cpp:333 NO | end findError: err = (1, -1), and best_diff = 12946.1
+sfp_auto_align.cpp:231 NO | computed error is (1, -1)
+sfp_auto_align.cpp:243 NO | response is (-1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9763, 9763, 9763, 9763, 9763, 9728, 9728, 9728, 9728, 9748, 9748, 9748, 9748, 9748, 9748, 9748, 9748, 9748, 9748, 9859, 9859, 9859, 9859, 9910, 9910, 9910, 9910, 9910, 10028, 10028, 10028, 10028, 10012, 10012, 10012, 10012, 10012, 9976, 9976, 9976, 9976, 9971, 9971, 9971, 9971, 9971, 10002, 10002, 10002, 10002}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10002
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36573) with RSSI of 10002
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10002, 10022, 10022, 10022, 10022, 9920, 9920, 9920, 9920, 9920, 9910, 9910, 9910, 9910, 9920, 9920, 9920, 9920, 9920, 10048, 10048, 10048, 10048, 10048, 10048, 10048, 10048, 10048, 9961, 9961, 9961, 9961, 9961, 9981, 9981, 9981, 9981, 9981, 9961, 9961, 9961, 9961, 10022, 10022, 10022, 10022, 10022, 9986}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9986
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36573[0]) with RSSI of 9986
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9986, 9986, 9986, 9915, 9915, 9915, 9915, 9915, 9879, 9879, 9879, 9879, 9879, 9900, 9900, 9900, 9900, 9900, 9915, 9915, 9915, 9915, 9900, 9900, 9900, 9900, 9900, 9920, 9920, 9920, 9920, 9920, 9910, 9910, 9910, 9910, 9925, 9925, 9925, 9925, 9925, 9930, 9930, 9930, 9930, 9930, 9915}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9915
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36583[10]) with RSSI of 9915
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10002, (10,0)->9986, (0,10)->9915
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 3592.47
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9915, 9915, 9915, 9961, 9961, 9961, 9961, 9961, 9941, 9941, 9941, 9941, 9941, 9890, 9890, 9890, 9890, 9890, 9869, 9869, 9869, 9869, 9874, 9874, 9874, 9874, 9874, 9890, 9890, 9890, 9890, 9844, 9844, 9844, 9844, 9844, 9874, 9874, 9874, 9874, 9966, 9966, 9966, 9966, 9966, 9951}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9951
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9951
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9951, 9951, 9951, 9951, 9869, 9869, 9869, 9869, 9895, 9895, 9895, 9895, 9900, 9900, 9900, 9900, 9900, 9915, 9915, 9915, 9915, 9920, 9920, 9920, 9920, 9920, 9920, 9920, 9920, 9920, 9905, 9905, 9905, 9905, 9905, 9874, 9874, 9874, 9874, 9925, 9925, 9925, 9925, 9925, 9874, 9874, 9874, 9874, 9920}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9920
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 9920
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9920, 9920, 9920, 9920, 9794, 9794, 9794, 9794, 9794, 9819, 9819, 9819, 9819, 9789, 9789, 9789, 9789, 9789, 9819, 9819, 9819, 9819, 9819, 9819, 9819, 9819, 9819, 9794, 9794, 9794, 9794, 9794, 9758, 9758, 9758, 9758, 9829, 9829, 9829, 9829, 9829, 9854, 9854, 9854, 9854, 9854, 9849, 9849, 9849, 9849}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9849
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9849
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9951, (10,0)->9920, (0,10)->9849
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 1), and best_diff = 10775.6
+sfp_auto_align.cpp:231 NO | computed error is (0, 1)
+sfp_auto_align.cpp:243 NO | response is (0, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9849, 9849, 9849, 9849, 9849, 9879, 9879, 9879, 9879, 9879, 9895, 9895, 9895, 9895, 9910, 9910, 9910, 9910, 9910, 9859, 9859, 9859, 9859, 9859, 9824, 9824, 9824, 9824, 9824, 9859, 9859, 9859, 9859, 9900, 9900, 9900, 9900, 9900, 9864, 9864, 9864, 9864, 9864, 9849, 9849, 9849, 9849, 9864}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9864
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9864
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9864, 9864, 9864, 9864, 9869, 9869, 9869, 9869, 9869, 9966, 9966, 9966, 9966, 9997, 9997, 9997, 9997, 9997, 9976, 9976, 9976, 9976, 9951, 9951, 9951, 9951, 9951, 9869, 9869, 9869, 9869, 9869, 9930, 9930, 9930, 9930, 9976, 9976, 9976, 9976, 9976, 9966, 9966, 9966, 9966, 9976}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9976
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9976
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9976, 9976, 9976, 9976, 9799, 9799, 9799, 9799, 9804, 9804, 9804, 9804, 9804, 9819, 9819, 9819, 9819, 9819, 9799, 9799, 9799, 9799, 9778, 9778, 9778, 9778, 9778, 9758, 9758, 9758, 9758, 9773, 9773, 9773, 9773, 9773, 9768, 9768, 9768, 9768, 9809, 9809, 9809, 9809, 9809, 9859}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9859
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9859
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9864, (10,0)->9976, (0,10)->9859
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 2), and best_diff = 30676.6
+sfp_auto_align.cpp:231 NO | computed error is (0, 2)
+sfp_auto_align.cpp:243 NO | response is (0, -2)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36570)
+sfp_auto_align.cpp:509 NO | received rssis: {9859, 9859, 9859, 9859, 9834, 9834, 9834, 9834, 9834, 9809, 9809, 9809, 9809, 9794, 9794, 9794, 9794, 9794, 9814, 9814, 9814, 9814, 9814, 9834, 9834, 9834, 9834, 9824, 9824, 9824, 9824, 9824, 9789, 9789, 9789, 9789, 9789, 9854, 9854, 9854, 9854, 9869, 9869, 9869, 9869, 9869, 10193}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10193
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36570) with RSSI of 10193
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36570[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10193, 10193, 10193, 10193, 10162, 10162, 10162, 10162, 10125, 10125, 10125, 10125, 10125, 10261, 10261, 10261, 10261, 10162, 10162, 10162, 10162, 10162, 10256, 10256, 10256, 10256, 10214, 10214, 10214, 10214, 10214, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10203, 10229, 10229, 10229, 10229, 10224, 10224}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10224
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36570[0]) with RSSI of 10224
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36580[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10224, 10224, 10224, 9693, 9693, 9693, 9693, 9814, 9814, 9814, 9814, 9814, 9804, 9804, 9804, 9804, 9804, 9789, 9789, 9789, 9789, 9829, 9829, 9829, 9829, 9829, 9804, 9804, 9804, 9804, 9804, 9794, 9794, 9794, 9794, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9799, 9799, 9799, 9799, 9794}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9794
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36580[10]) with RSSI of 9794
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10193, (10,0)->10224, (0,10)->9794
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 20954.4
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9794, 9794, 9794, 9794, 9885, 9885, 9885, 9885, 9885, 9885, 9885, 9885, 9885, 9885, 9900, 9900, 9900, 9900, 9829, 9829, 9829, 9829, 9829, 9799, 9799, 9799, 9799, 9799, 9778, 9778, 9778, 9778, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9834, 9834, 9834, 9834, 9854, 9854, 9854, 9854}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9854
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36571) with RSSI of 9854
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9854, 9956, 9956, 9956, 9956, 10028, 10028, 10028, 10028, 10028, 10053, 10053, 10053, 10053, 10053, 10110, 10110, 10110, 10110, 10100, 10100, 10100, 10100, 10100, 10094, 10094, 10094, 10094, 10183, 10183, 10183, 10183, 10183, 10115, 10115, 10115, 10115, 10115, 10105, 10105, 10105, 10105, 10157}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10157
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36571[0]) with RSSI of 10157
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10157, 10157, 10157, 10157, 9668, 9668, 9668, 9668, 9668, 9733, 9733, 9733, 9733, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9678, 9678, 9678, 9678, 9678, 9789, 9789, 9789, 9789, 9789, 9773, 9773, 9773, 9773, 9703, 9703, 9703, 9703, 9703, 9718, 9718, 9718, 9718, 9718, 9723, 9723, 9723, 9723}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9723
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36581[10]) with RSSI of 9723
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9854, (10,0)->10157, (0,10)->9723
+sfp_auto_align.cpp:333 NO | end findError: err = (4, -1), and best_diff = 47137.3
+sfp_auto_align.cpp:231 NO | computed error is (4, -1)
+sfp_auto_align.cpp:243 NO | response is (-4, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4679, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9723, 9678, 9678, 9678, 9678, 9703, 9703, 9703, 9703, 9703, 9698, 9698, 9698, 9698, 9698, 9703, 9703, 9703, 9703, 9768, 9768, 9768, 9768, 9768, 9809, 9809, 9809, 9809, 9809, 9768, 9768, 9768, 9768, 9768, 9809, 9809, 9809, 9809, 9799, 9799, 9799, 9799, 9799, 9839}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9839
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4679, 36572) with RSSI of 9839
+sfp_auto_align.cpp:210 NO | search: GM set to (4689[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9839, 9839, 9839, 9839, 9864, 9864, 9864, 9864, 9885, 9885, 9885, 9885, 9885, 9693, 9693, 9693, 9693, 9748, 9748, 9748, 9748, 9748, 9920, 9920, 9920, 9920, 9910, 9910, 9910, 9910, 9910, 9935, 9935, 9935, 9935, 9910, 9910, 9910, 9910, 9910, 9874, 9874, 9874, 9874, 9839}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9839
+sfp_auto_align.cpp:218 NO | search: GM at (4689[10], 36572[0]) with RSSI of 9839
+sfp_auto_align.cpp:210 NO | search: GM set to (4679[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9839, 9839, 9839, 9839, 10219, 10219, 10219, 10219, 10287, 10287, 10287, 10287, 10287, 10282, 10282, 10282, 10282, 10266, 10266, 10266, 10266, 10266, 10303, 10303, 10303, 10303, 10287, 10287, 10287, 10287, 10287, 10245, 10245, 10245, 10245, 10256, 10256, 10256, 10256, 10229, 10229, 10229, 10229, 10229, 10188}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10188
+sfp_auto_align.cpp:218 NO | search: GM at (4679[0], 36582[10]) with RSSI of 10188
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9839, (10,0)->9839, (0,10)->10188
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 1), and best_diff = 117925
+sfp_auto_align.cpp:231 NO | computed error is (-1, 1)
+sfp_auto_align.cpp:243 NO | response is (1, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {10188, 10188, 10188, 10188, 10245, 10245, 10245, 10245, 10261, 10261, 10261, 10261, 10261, 10209, 10209, 10209, 10209, 10209, 10245, 10245, 10245, 10245, 10292, 10292, 10292, 10292, 10292, 10250, 10250, 10250, 10250, 10261, 10261, 10261, 10261, 10261, 10266, 10266, 10266, 10266, 10271, 10271, 10271, 10271, 10271, 10308}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10308
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36571) with RSSI of 10308
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10308, 10308, 10308, 10308, 10069, 10069, 10069, 10069, 10146, 10146, 10146, 10146, 10146, 10079, 10079, 10079, 10079, 10079, 10017, 10017, 10017, 10017, 10064, 10064, 10064, 10064, 10064, 10079, 10079, 10079, 10079, 10079, 9981, 9981, 9981, 9981, 9971, 9971, 9971, 9971, 9971, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10002
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36571[0]) with RSSI of 10002
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10074, 10074, 10074, 10074, 10074, 10017, 10017, 10017, 10017, 10017, 10022, 10022, 10022, 10022, 9992, 9992, 9992, 9992, 9992, 9961, 9961, 9961, 9961, 9961, 9956, 9956, 9956, 9956, 9925, 9925, 9925, 9925, 9925, 9951, 9951, 9951, 9951, 9951, 9997, 9997, 9997, 9997, 9951, 9951, 9951, 9951, 9951, 9935}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9935
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36581[10]) with RSSI of 9935
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10308, (10,0)->10002, (0,10)->9935
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 21888.5
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9935, 9935, 9935, 9935, 9925, 9925, 9925, 9925, 10022, 10022, 10022, 10022, 10022, 10012, 10012, 10012, 10012, 10012, 9971, 9971, 9971, 9971, 10100, 10100, 10100, 10100, 10100, 10131, 10131, 10131, 10131, 10136, 10136, 10136, 10136, 10136, 10131, 10131, 10131, 10131, 10151, 10151, 10151, 10151, 10151, 10094}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10094
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10094
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10094, 10094, 10094, 10017, 10017, 10017, 10017, 10017, 9981, 9981, 9981, 9981, 9935, 9935, 9935, 9935, 9935, 9915, 9915, 9915, 9915, 9915, 9976, 9976, 9976, 9976, 9925, 9925, 9925, 9925, 9925, 9935, 9935, 9935, 9935, 9976, 9976, 9976, 9976, 9951, 9951, 9951, 9951, 9951, 9961}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9961
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9961
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9961, 9961, 9961, 9956, 9956, 9956, 9956, 9956, 9976, 9976, 9976, 9976, 9976, 9981, 9981, 9981, 9981, 10002, 10002, 10002, 10002, 10002, 10074, 10074, 10074, 10074, 10012, 10012, 10012, 10012, 10012, 9992, 9992, 9992, 9992, 9992, 10028, 10028, 10028, 10028, 10012, 10012, 10012, 10012, 10012, 10017}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10017
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 10017
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10094, (10,0)->9961, (0,10)->10017
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, 1), and best_diff = 19502.8
+sfp_auto_align.cpp:231 NO | computed error is (-2, 1)
+sfp_auto_align.cpp:243 NO | response is (2, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {10017, 10017, 10017, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10007, 10007, 10007, 10007, 10007, 10028, 10028, 10028, 10028, 10028, 10224, 10224, 10224, 10224, 10188, 10188, 10188, 10188, 10188, 10100, 10100, 10100, 10100, 10100, 10214, 10214, 10214, 10214, 10151, 10151, 10151, 10151, 10110, 10110, 10110, 10110, 10110, 10183}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10183
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36571) with RSSI of 10183
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10183, 10183, 10183, 10277, 10277, 10277, 10277, 10277, 10219, 10219, 10219, 10219, 10219, 10193, 10193, 10193, 10193, 10177, 10177, 10177, 10177, 10177, 10183, 10183, 10183, 10183, 10183, 10162, 10162, 10162, 10162, 10209, 10209, 10209, 10209, 10209, 10203, 10203, 10203, 10203, 10198, 10198, 10198, 10198, 10198, 10198, 10198, 10198, 10198, 10198}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10198
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36571[0]) with RSSI of 10198
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10177, 10177, 10177, 10177, 9738, 9738, 9738, 9738, 9738, 9829, 9829, 9829, 9829, 9829, 9809, 9809, 9809, 9809, 9773, 9773, 9773, 9773, 9773, 9768, 9768, 9768, 9768, 9768, 9753, 9753, 9753, 9753, 9768, 9768, 9768, 9768, 9768, 9799, 9799, 9799, 9799, 9799, 9819, 9819, 9819, 9819, 9819, 9758}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9758
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36581[10]) with RSSI of 9758
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10183, (10,0)->10198, (0,10)->9758
+sfp_auto_align.cpp:333 NO | end findError: err = (0, -1), and best_diff = 21673.8
+sfp_auto_align.cpp:231 NO | computed error is (0, -1)
+sfp_auto_align.cpp:243 NO | response is (0, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9758, 9758, 9758, 9763, 9763, 9763, 9763, 9763, 9738, 9738, 9738, 9738, 9738, 9783, 9783, 9783, 9783, 9789, 9789, 9789, 9789, 9789, 9814, 9814, 9814, 9814, 9814, 9915, 9915, 9915, 9915, 10017, 10017, 10017, 10017, 10017, 9997, 9997, 9997, 9997, 9920, 9920, 9920, 9920, 9920, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9956
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9956, 9956, 10048, 10048, 10048, 10048, 10048, 10053, 10053, 10053, 10053, 10084, 10084, 10084, 10084, 10084, 10043, 10043, 10043, 10043, 10110, 10110, 10110, 10110, 10110, 10120, 10120, 10120, 10120, 10094, 10094, 10094, 10094, 10007, 10007, 10007, 10007, 10007, 10094, 10094, 10094, 10094, 10079}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10079
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10079
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10079, 10079, 10079, 10079, 9614, 9614, 9614, 9614, 9614, 9638, 9638, 9638, 9638, 9653, 9653, 9653, 9653, 9653, 9673, 9673, 9673, 9673, 9658, 9658, 9658, 9658, 9658, 9653, 9653, 9653, 9653, 9708, 9708, 9708, 9708, 9708, 9723, 9723, 9723, 9723, 9723, 9708, 9708, 9708, 9708, 9693}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9693
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9693
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9956, (10,0)->10079, (0,10)->9693
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 13420.5
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9693, 9693, 9693, 9693, 9673, 9673, 9673, 9673, 9673, 9653, 9653, 9653, 9653, 9688, 9688, 9688, 9688, 9688, 9678, 9678, 9678, 9678, 9678, 9799, 9799, 9799, 9799, 10141, 10141, 10141, 10141, 10141, 10094, 10094, 10094, 10094, 10136, 10136, 10136, 10136, 10136, 10141, 10141, 10141, 10141, 10209}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10209
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10209
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10209, 10209, 10209, 10209, 10064, 10064, 10064, 10064, 10094, 10094, 10094, 10094, 10094, 10053, 10053, 10053, 10053, 10084, 10084, 10084, 10084, 10084, 10033, 10033, 10033, 10033, 10110, 10110, 10110, 10110, 10110, 10033, 10033, 10033, 10033, 10120, 10120, 10120, 10120, 10120, 10089, 10089, 10089, 10089, 10105}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10105
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 10105
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10105, 10105, 10105, 10105, 9854, 9854, 9854, 9854, 9829, 9829, 9829, 9829, 9829, 9859, 9859, 9859, 9859, 9859, 9885, 9885, 9885, 9885, 9930, 9930, 9930, 9930, 9930, 9829, 9829, 9829, 9829, 9854, 9854, 9854, 9854, 9854, 9834, 9834, 9834, 9834, 9834, 9900, 9900, 9900, 9900, 9834}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9834
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9834
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10209, (10,0)->10105, (0,10)->9834
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 5455.63
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9834, 9834, 9834, 9834, 9819, 9819, 9819, 9819, 9819, 9849, 9849, 9849, 9849, 9874, 9874, 9874, 9874, 9874, 9768, 9768, 9768, 9768, 9768, 9778, 9778, 9778, 9778, 9935, 9935, 9935, 9935, 9935, 9905, 9905, 9905, 9905, 9992, 9992, 9992, 9992, 9992, 9976, 9976, 9976, 9976, 9941}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9941
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9941
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9941, 9941, 9941, 9941, 9971, 9971, 9971, 9971, 9961, 9961, 9961, 9961, 10028, 10028, 10028, 10028, 10028, 9971, 9971, 9971, 9971, 9986, 9986, 9986, 9986, 9986, 9997, 9997, 9997, 9997, 9930, 9930, 9930, 9930, 9930, 9981, 9981, 9981, 9981, 9951, 9951, 9951, 9951, 9925}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9925
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 9925
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9925, 9925, 9925, 9925, 9698, 9698, 9698, 9698, 9778, 9778, 9778, 9778, 9778, 9768, 9768, 9768, 9768, 9804, 9804, 9804, 9804, 9804, 9814, 9814, 9814, 9814, 9778, 9778, 9778, 9778, 9778, 9773, 9773, 9773, 9773, 9804, 9804, 9804, 9804, 9804, 9783, 9783, 9783, 9783, 9794}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9794
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9794
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9941, (10,0)->9925, (0,10)->9794
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 1), and best_diff = 9138.63
+sfp_auto_align.cpp:231 NO | computed error is (0, 1)
+sfp_auto_align.cpp:243 NO | response is (0, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9794, 9794, 9794, 9794, 9768, 9768, 9768, 9768, 9723, 9723, 9723, 9723, 9723, 9743, 9743, 9743, 9743, 9743, 9809, 9809, 9809, 9809, 9778, 9778, 9778, 9778, 9778, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9708, 9733, 9733, 9733, 9733, 9733, 9733, 9733, 9733, 9733, 9738, 9738, 9738, 9738}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9738
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9738
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9738, 9758, 9758, 9758, 9758, 9910, 9910, 9910, 9910, 9910, 9992, 9992, 9992, 9992, 10012, 10012, 10012, 10012, 10012, 9946, 9946, 9946, 9946, 9935, 9935, 9935, 9935, 9935, 9859, 9859, 9859, 9859, 9890, 9890, 9890, 9890, 9890, 9895, 9895, 9895, 9895, 9895, 9951}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9951
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9951
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9951, 9951, 9951, 9804, 9804, 9804, 9804, 9804, 9819, 9819, 9819, 9819, 9814, 9814, 9814, 9814, 9814, 9778, 9778, 9778, 9778, 9778, 9794, 9794, 9794, 9794, 9768, 9768, 9768, 9768, 9768, 9768, 9768, 9768, 9768, 9789, 9789, 9789, 9789, 9789, 9839, 9839, 9839, 9839, 9799, 9799, 9799, 9799, 9799, 9854}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9854
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9854
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9738, (10,0)->9951, (0,10)->9854
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 2), and best_diff = 40399.4
+sfp_auto_align.cpp:231 NO | computed error is (0, 2)
+sfp_auto_align.cpp:243 NO | response is (0, -2)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36570)
+sfp_auto_align.cpp:509 NO | received rssis: {9854, 9854, 9854, 9854, 9794, 9794, 9794, 9794, 9789, 9789, 9789, 9789, 9789, 9794, 9794, 9794, 9794, 9794, 9814, 9814, 9814, 9814, 9844, 9844, 9844, 9844, 9844, 9799, 9799, 9799, 9799, 9799, 9783, 9783, 9783, 9783, 9783, 9839, 9839, 9839, 9839, 9864, 9864, 9864, 9864, 9864, 10340}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10340
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36570) with RSSI of 10340
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36570[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10340, 10340, 10340, 10277, 10277, 10277, 10277, 10277, 10329, 10329, 10329, 10329, 10319, 10319, 10319, 10319, 10319, 10303, 10303, 10303, 10303, 10303, 10282, 10282, 10282, 10282, 10308, 10308, 10308, 10308, 10350, 10350, 10350, 10350, 10350, 10334, 10334, 10334, 10334, 10334, 10287, 10287, 10287, 10287, 10292}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10292
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36570[0]) with RSSI of 10292
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36580[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10292, 10292, 10292, 10292, 9708, 9708, 9708, 9708, 9708, 9753, 9753, 9753, 9753, 9804, 9804, 9804, 9804, 9804, 9789, 9789, 9789, 9789, 9789, 9763, 9763, 9763, 9763, 9783, 9783, 9783, 9783, 9783, 9799, 9799, 9799, 9799, 9799, 9804, 9804, 9804, 9804, 9748, 9748, 9748, 9748, 9748, 9743}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9743
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36580[10]) with RSSI of 9743
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10340, (10,0)->10292, (0,10)->9743
+sfp_auto_align.cpp:333 NO | end findError: err = (0, -3), and best_diff = 8746.51
+sfp_auto_align.cpp:231 NO | computed error is (0, -3)
+sfp_auto_align.cpp:243 NO | response is (0, 3)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9743, 9743, 9743, 9743, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9819, 9819, 9819, 9819, 9819, 9809, 9809, 9809, 9809, 9758, 9758, 9758, 9758, 9758, 9849, 9849, 9849, 9849, 9849, 9834, 9834, 9834, 9834, 9834, 9794, 9794, 9794, 9794, 9758, 9758, 9758, 9758, 9758, 9728, 9728, 9728, 9728}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9728
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36573) with RSSI of 9728
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9728, 9708, 9708, 9708, 9708, 9773, 9773, 9773, 9773, 9773, 9824, 9824, 9824, 9824, 9885, 9885, 9885, 9885, 9885, 9859, 9859, 9859, 9859, 9946, 9946, 9946, 9946, 9946, 9961, 9961, 9961, 9961, 9961, 9925, 9925, 9925, 9925, 9874, 9874, 9874, 9874, 9874, 9879}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9879
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36573[0]) with RSSI of 9879
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9879, 9879, 9879, 9763, 9763, 9763, 9763, 9763, 9844, 9844, 9844, 9844, 9844, 9829, 9829, 9829, 9829, 9829, 9789, 9789, 9789, 9789, 9814, 9814, 9814, 9814, 9814, 9794, 9794, 9794, 9794, 9778, 9778, 9778, 9778, 9778, 9834, 9834, 9834, 9834, 9834, 9783, 9783, 9783, 9783, 9789}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9789
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36583[10]) with RSSI of 9789
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9728, (10,0)->9879, (0,10)->9789
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 2), and best_diff = 18100.8
+sfp_auto_align.cpp:231 NO | computed error is (2, 2)
+sfp_auto_align.cpp:243 NO | response is (-2, -2)
+sfp_auto_align.cpp:252 NO | GM set to (4680, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9789, 9789, 9789, 9789, 9809, 9809, 9809, 9809, 9809, 9804, 9804, 9804, 9804, 9804, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9778, 9824, 9824, 9824, 9824, 9824, 9859, 9859, 9859, 9859, 9890, 9890, 9890, 9890, 9890, 9854, 9854, 9854, 9854, 9854, 9890, 9890, 9890, 9890, 9854, 9854, 9854, 9854}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9854
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4680, 36571) with RSSI of 9854
+sfp_auto_align.cpp:210 NO | search: GM set to (4690[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9854, 10038, 10038, 10038, 10038, 10007, 10007, 10007, 10007, 10007, 10043, 10043, 10043, 10043, 10079, 10079, 10079, 10079, 10079, 10028, 10028, 10028, 10028, 10084, 10084, 10084, 10084, 10084, 10043, 10043, 10043, 10043, 10058, 10058, 10058, 10058, 10058, 10074, 10074, 10074, 10074, 10058}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10058
+sfp_auto_align.cpp:218 NO | search: GM at (4690[10], 36571[0]) with RSSI of 10058
+sfp_auto_align.cpp:210 NO | search: GM set to (4680[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10058, 10058, 10058, 10058, 9844, 9844, 9844, 9844, 9930, 9930, 9930, 9930, 9930, 10012, 10012, 10012, 10012, 10012, 9971, 9971, 9971, 9971, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9997, 9997, 9997, 9997, 9997, 10038, 10038, 10038, 10038, 10038, 9992, 9992, 9992, 9992, 9961, 9961, 9961, 9961, 9961}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9961
+sfp_auto_align.cpp:218 NO | search: GM at (4680[0], 36581[10]) with RSSI of 9961
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9854, (10,0)->10058, (0,10)->9961
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 50798.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9930, 9930, 9930, 9930, 9930, 9961, 9961, 9961, 9961, 9986, 9986, 9986, 9986, 9986, 9971, 9971, 9971, 9971, 9971, 9930, 9930, 9930, 9930, 10266, 10266, 10266, 10266, 10266, 10198, 10198, 10198, 10198, 10198, 10172, 10172, 10172, 10172, 10287, 10287, 10287, 10287, 10287, 10167, 10167, 10167, 10167, 10141}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10141
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 10141
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10141, 10141, 10141, 10141, 10069, 10069, 10069, 10069, 10167, 10167, 10167, 10167, 10167, 10110, 10110, 10110, 10110, 10084, 10084, 10084, 10084, 10084, 10074, 10074, 10074, 10074, 10120, 10120, 10120, 10120, 10120, 10100, 10100, 10100, 10100, 10100, 10183, 10183, 10183, 10183, 10188, 10188, 10188, 10188, 10188, 10151}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10151
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10151
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10151, 10151, 10151, 9778, 9778, 9778, 9778, 9778, 9783, 9783, 9783, 9783, 9783, 9758, 9758, 9758, 9758, 9773, 9773, 9773, 9773, 9773, 9783, 9783, 9783, 9783, 9829, 9829, 9829, 9829, 9829, 9778, 9778, 9778, 9778, 9778, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9809, 9809, 9809, 9809, 9809}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9809
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9809
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10141, (10,0)->10151, (0,10)->9809
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 21375.6
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9859, 9859, 9859, 9859, 9869, 9869, 9869, 9869, 9869, 9829, 9829, 9829, 9829, 9829, 9849, 9849, 9849, 9849, 9849, 9864, 9864, 9864, 9864, 9849, 9849, 9849, 9849, 9849, 9859, 9859, 9859, 9859, 9859, 9839, 9839, 9839, 9839, 9895, 9895, 9895, 9895, 9895, 9885, 9885, 9885, 9885, 9885, 9854}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9854
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9854
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9854, 9854, 9854, 9941, 9941, 9941, 9941, 9941, 10084, 10084, 10084, 10084, 9997, 9997, 9997, 9997, 9997, 10017, 10017, 10017, 10017, 10017, 9971, 9971, 9971, 9971, 9935, 9935, 9935, 9935, 9935, 9946, 9946, 9946, 9946, 9946, 9935, 9935, 9935, 9935, 9920, 9920, 9920, 9920, 9920, 9849}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9849
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9849
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9849, 9849, 9849, 9849, 9829, 9829, 9829, 9829, 9885, 9885, 9885, 9885, 9885, 9839, 9839, 9839, 9839, 9839, 9809, 9809, 9809, 9809, 9890, 9890, 9890, 9890, 9890, 9935, 9935, 9935, 9935, 9935, 9905, 9905, 9905, 9905, 9895, 9895, 9895, 9895, 9895, 9859, 9859, 9859, 9859, 9859, 9814}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9814
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9814
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9854, (10,0)->9849, (0,10)->9814
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 2), and best_diff = 2510.87
+sfp_auto_align.cpp:231 NO | computed error is (0, 2)
+sfp_auto_align.cpp:243 NO | response is (0, -2)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36570)
+sfp_auto_align.cpp:509 NO | received rssis: {9814, 9814, 9814, 9809, 9809, 9809, 9809, 9809, 9733, 9733, 9733, 9733, 9733, 9738, 9738, 9738, 9738, 9708, 9708, 9708, 9708, 9708, 9718, 9718, 9718, 9718, 9718, 9693, 9693, 9693, 9693, 9693, 9698, 9698, 9698, 9698, 9698, 9698, 9698, 9698, 9698, 9718, 9718, 9718, 9718, 9718, 9698, 9698, 9698, 9698}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9698
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36570) with RSSI of 9698
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36570[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9733, 9733, 9733, 9733, 9733, 10079, 10079, 10079, 10079, 10287, 10287, 10287, 10287, 10287, 10245, 10245, 10245, 10245, 10261, 10261, 10261, 10261, 10261, 10266, 10266, 10266, 10266, 10256, 10256, 10256, 10256, 10256, 10198, 10198, 10198, 10198, 10266, 10266, 10266, 10266, 10266, 10266, 10266, 10266, 10266, 10266, 10334, 10334, 10334, 10334}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10334
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36570[0]) with RSSI of 10334
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36580[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10334, 10271, 10271, 10271, 10271, 9624, 9624, 9624, 9624, 9624, 9609, 9609, 9609, 9609, 9609, 9619, 9619, 9619, 9619, 9609, 9609, 9609, 9609, 9609, 9609, 9609, 9609, 9609, 9609, 9628, 9628, 9628, 9628, 9624, 9624, 9624, 9624, 9624, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9673, 9693, 9693, 9693}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9693
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36580[10]) with RSSI of 9693
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9698, (10,0)->10334, (0,10)->9693
+sfp_auto_align.cpp:333 NO | end findError: err = (4, -1), and best_diff = 97440.1
+sfp_auto_align.cpp:231 NO | computed error is (4, -1)
+sfp_auto_align.cpp:243 NO | response is (-4, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4678, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9693, 9693, 9688, 9688, 9688, 9688, 9688, 9683, 9683, 9683, 9683, 9673, 9673, 9673, 9673, 9673, 9633, 9633, 9633, 9633, 9633, 10219, 10219, 10219, 10219, 10313, 10313, 10313, 10313, 10313, 10324, 10324, 10324, 10324, 10324, 10371, 10371, 10371, 10371, 10319, 10319, 10319, 10319, 10398}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10398
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4678, 36571) with RSSI of 10398
+sfp_auto_align.cpp:210 NO | search: GM set to (4688[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10398, 10398, 10398, 10398, 9966, 9966, 9966, 9966, 9966, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9925, 9946, 9946, 9946, 9946, 9946, 9915, 9915, 9915, 9915, 9915, 9799, 9799, 9799, 9799, 9859, 9859, 9859, 9859, 9859, 9789, 9789, 9789, 9789}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9789
+sfp_auto_align.cpp:218 NO | search: GM at (4688[10], 36571[0]) with RSSI of 9789
+sfp_auto_align.cpp:210 NO | search: GM set to (4678[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9819, 9819, 9819, 9819, 9819, 10371, 10371, 10371, 10371, 10387, 10387, 10387, 10387, 10387, 10387, 10387, 10387, 10387, 10398, 10398, 10398, 10398, 10403, 10403, 10403, 10403, 10403, 10340, 10340, 10340, 10340, 10292, 10292, 10292, 10292, 10292, 10329, 10329, 10329, 10329, 10308, 10308, 10308, 10308, 10398, 10398, 10398, 10398, 10398, 10329}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10329
+sfp_auto_align.cpp:218 NO | search: GM at (4678[0], 36581[10]) with RSSI of 10329
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10398, (10,0)->9789, (0,10)->10329
+sfp_auto_align.cpp:333 NO | end findError: err = (-3, 1), and best_diff = 3167.54
+sfp_auto_align.cpp:231 NO | computed error is (-3, 1)
+sfp_auto_align.cpp:243 NO | response is (3, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36570)
+sfp_auto_align.cpp:509 NO | received rssis: {10329, 10329, 10329, 10382, 10382, 10382, 10382, 10382, 10456, 10456, 10456, 10456, 10456, 10398, 10398, 10398, 10398, 10424, 10424, 10424, 10424, 10424, 10371, 10371, 10371, 10371, 10371, 10266, 10266, 10266, 10266, 10292, 10292, 10292, 10292, 10292, 10361, 10361, 10361, 10361, 10392, 10392, 10392, 10392, 10392, 10408}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10408
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36570) with RSSI of 10408
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36570[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10408, 10408, 10408, 10219, 10219, 10219, 10219, 10219, 10198, 10198, 10198, 10198, 10271, 10271, 10271, 10271, 10271, 10256, 10256, 10256, 10256, 10256, 10193, 10193, 10193, 10193, 10177, 10177, 10177, 10177, 10177, 10177, 10177, 10177, 10177, 10198, 10198, 10198, 10198, 10209, 10209, 10209, 10209, 10209, 10193, 10193, 10193, 10193, 10157}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10157
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36570[0]) with RSSI of 10157
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36580[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10157, 10157, 10157, 10157, 9814, 9814, 9814, 9814, 9854, 9854, 9854, 9854, 9854, 9874, 9874, 9874, 9874, 9879, 9879, 9879, 9879, 9879, 9885, 9885, 9885, 9885, 9885, 9915, 9915, 9915, 9915, 9900, 9900, 9900, 9900, 9900, 9885, 9885, 9885, 9885, 9885, 9925, 9925, 9925, 9925, 9890}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9890
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36580[10]) with RSSI of 9890
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10408, (10,0)->10157, (0,10)->9890
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -2), and best_diff = 7562.48
+sfp_auto_align.cpp:231 NO | computed error is (-1, -2)
+sfp_auto_align.cpp:243 NO | response is (1, 2)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9890, 9890, 9890, 9890, 9890, 9890, 9890, 9890, 9890, 9920, 9920, 9920, 9920, 9874, 9874, 9874, 9874, 9874, 9905, 9905, 9905, 9905, 9905, 9895, 9895, 9895, 9895, 9885, 9885, 9885, 9885, 9885, 9890, 9890, 9890, 9890, 9890, 9844, 9844, 9844, 9844, 9844, 9874, 9874, 9874, 9874, 9895, 9895, 9895, 9895}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9895
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9895
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9895, 9976, 9976, 9976, 9976, 10012, 10012, 10012, 10012, 10012, 9992, 9992, 9992, 9992, 10100, 10100, 10100, 10100, 10100, 9997, 9997, 9997, 9997, 10002, 10002, 10002, 10002, 10002, 10007, 10007, 10007, 10007, 10012, 10012, 10012, 10012, 10012, 10002, 10002, 10002, 10002, 10058}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10058
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10058
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10058, 10058, 10058, 9763, 9763, 9763, 9763, 9763, 9854, 9854, 9854, 9854, 9854, 9879, 9879, 9879, 9879, 9900, 9900, 9900, 9900, 9900, 9844, 9844, 9844, 9844, 9844, 9844, 9844, 9844, 9844, 9814, 9814, 9814, 9814, 9814, 9859, 9859, 9859, 9859, 9859, 9874, 9874, 9874, 9874, 9879, 9879, 9879, 9879, 9879}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9879
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9879
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9895, (10,0)->10058, (0,10)->9879
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 29741.3
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9925, 9925, 9925, 9925, 9925, 9910, 9910, 9910, 9910, 9849, 9849, 9849, 9849, 9849, 9844, 9844, 9844, 9844, 9844, 9864, 9864, 9864, 9864, 9864, 9874, 9874, 9874, 9874, 9920, 9920, 9920, 9920, 9920, 9951, 9951, 9951, 9951, 9951, 9915, 9915, 9915, 9915, 9935, 9935, 9935, 9935, 9935, 9915}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9915
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9915
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9915, 9915, 9915, 9915, 9986, 9986, 9986, 9986, 10069, 10069, 10069, 10069, 10069, 10038, 10038, 10038, 10038, 10038, 10007, 10007, 10007, 10007, 10038, 10038, 10038, 10038, 9966, 9966, 9966, 9966, 9966, 9976, 9976, 9976, 9976, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 10002, 9981, 9981, 9981, 9981, 9981, 10007}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10007
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10007
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10007, 10007, 10007, 10007, 9678, 9678, 9678, 9678, 9723, 9723, 9723, 9723, 9723, 9728, 9728, 9728, 9728, 9718, 9718, 9718, 9718, 9718, 9783, 9783, 9783, 9783, 9773, 9773, 9773, 9773, 9763, 9763, 9763, 9763, 9763, 9758, 9758, 9758, 9758, 9718, 9718, 9718, 9718, 9718, 9723}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9723
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9723
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9915, (10,0)->10007, (0,10)->9723
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 29595.1
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9723, 9723, 9723, 9763, 9763, 9763, 9763, 9763, 9804, 9804, 9804, 9804, 9804, 9738, 9738, 9738, 9738, 9738, 9748, 9748, 9748, 9748, 10069, 10069, 10069, 10069, 10069, 10074, 10074, 10074, 10074, 10089, 10089, 10089, 10089, 10089, 10125, 10125, 10125, 10125, 10105, 10105, 10105, 10105, 10141}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10141
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10141
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10141, 10141, 10141, 10141, 10012, 10012, 10012, 10012, 9976, 9976, 9976, 9976, 9976, 10048, 10048, 10048, 10048, 10033, 10033, 10033, 10033, 10033, 9981, 9981, 9981, 9981, 10012, 10012, 10012, 10012, 10012, 10012, 10012, 10012, 10012, 9910, 9910, 9910, 9910, 9905, 9905, 9905, 9905, 9905, 9956, 9956, 9956, 9956, 9961}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9961
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9961
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9961, 9961, 9961, 9961, 9920, 9920, 9920, 9920, 9920, 9930, 9930, 9930, 9930, 9946, 9946, 9946, 9946, 9946, 9900, 9900, 9900, 9900, 9900, 9885, 9885, 9885, 9885, 9895, 9895, 9895, 9895, 9895, 9869, 9869, 9869, 9869, 9869, 9890, 9890, 9890, 9890, 9895, 9895, 9895, 9895, 9895, 9941}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9941
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 9941
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10141, (10,0)->9961, (0,10)->9941
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 12523.9
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9941, 9941, 9941, 9941, 9895, 9895, 9895, 9895, 9895, 9895, 9895, 9895, 9895, 9885, 9885, 9885, 9885, 9885, 9879, 9879, 9879, 9879, 10028, 10028, 10028, 10028, 10028, 10110, 10110, 10110, 10110, 10110, 10033, 10033, 10033, 10033, 10053, 10053, 10053, 10053, 10053, 10043, 10043, 10043, 10043, 10028, 10028, 10028, 10028, 10028}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10028
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 10028
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10007, 10007, 10007, 10007, 9961, 9961, 9961, 9961, 9961, 10012, 10012, 10012, 10012, 9971, 9971, 9971, 9971, 10002, 10002, 10002, 10002, 10002, 9992, 9992, 9992, 9992, 10058, 10058, 10058, 10058, 10058, 10048, 10048, 10048, 10048, 10064, 10064, 10064, 10064, 10064, 10022, 10022, 10022, 10022, 9992}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9992
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 9992
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9992, 9992, 9992, 9992, 9839, 9839, 9839, 9839, 9839, 9839, 9839, 9839, 9839, 9859, 9859, 9859, 9859, 9849, 9849, 9849, 9849, 9879, 9879, 9879, 9879, 9879, 9854, 9854, 9854, 9854, 9849, 9849, 9849, 9849, 9849, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9844, 9844, 9844, 9844, 9844, 9874}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9874
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9874
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10028, (10,0)->9992, (0,10)->9874
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 605.924
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9874, 9874, 9874, 9874, 9874, 9874, 9874, 9874, 9789, 9789, 9789, 9789, 9789, 9804, 9804, 9804, 9804, 9804, 9799, 9799, 9799, 9799, 9834, 9834, 9834, 9834, 9834, 9854, 9854, 9854, 9854, 9854, 9824, 9824, 9824, 9824, 9905, 9905, 9905, 9905, 9905, 9859, 9859, 9859, 9859, 9859, 9839, 9839, 9839, 9839}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9839
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 9839
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9879, 9879, 9879, 9879, 9879, 9946, 9946, 9946, 9946, 9966, 9966, 9966, 9966, 9966, 10084, 10084, 10084, 10084, 10084, 10100, 10100, 10100, 10100, 10053, 10053, 10053, 10053, 10058, 10058, 10058, 10058, 10058, 10074, 10074, 10074, 10074, 10074, 10079, 10079, 10079, 10079, 10094, 10094, 10094, 10094, 10094, 10048}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10048
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10048
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10048, 10048, 10048, 10048, 9698, 9698, 9698, 9698, 9748, 9748, 9748, 9748, 9748, 9743, 9743, 9743, 9743, 9743, 9728, 9728, 9728, 9728, 9778, 9778, 9778, 9778, 9778, 9773, 9773, 9773, 9773, 9804, 9804, 9804, 9804, 9804, 9773, 9773, 9773, 9773, 9773, 9748, 9748, 9748, 9748, 9748, 9748, 9748, 9748, 9748}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9748
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9748
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9839, (10,0)->10048, (0,10)->9748
+sfp_auto_align.cpp:333 NO | end findError: err = (4, -1), and best_diff = 54275.6
+sfp_auto_align.cpp:231 NO | computed error is (4, -1)
+sfp_auto_align.cpp:243 NO | response is (-4, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4679, 36573)
+sfp_auto_align.cpp:509 NO | received rssis: {9773, 9773, 9773, 9773, 9773, 9748, 9748, 9748, 9748, 9723, 9723, 9723, 9723, 9723, 9804, 9804, 9804, 9804, 9804, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9809, 9773, 9773, 9773, 9773, 9773, 9738, 9738, 9738, 9738, 9733, 9733, 9733, 9733, 9733, 9718, 9718, 9718, 9718, 9718, 10033, 10033, 10033}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10033
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4679, 36573) with RSSI of 10033
+sfp_auto_align.cpp:210 NO | search: GM set to (4689[10], 36573[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10033, 9981, 9981, 9981, 9981, 9981, 9789, 9789, 9789, 9789, 9819, 9819, 9819, 9819, 9879, 9879, 9879, 9879, 9879, 9844, 9844, 9844, 9844, 9819, 9819, 9819, 9819, 9819, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9804, 9758, 9758, 9758, 9758, 9748, 9748, 9748, 9748, 9748, 9728}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9728
+sfp_auto_align.cpp:218 NO | search: GM at (4689[10], 36573[0]) with RSSI of 9728
+sfp_auto_align.cpp:210 NO | search: GM set to (4679[0], 36583[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9728, 9728, 9728, 9976, 9976, 9976, 9976, 9976, 10172, 10172, 10172, 10172, 10172, 10183, 10183, 10183, 10183, 10089, 10089, 10089, 10089, 10089, 10069, 10069, 10069, 10069, 10069, 10084, 10084, 10084, 10084, 10120, 10120, 10120, 10120, 10120, 10141, 10141, 10141, 10141, 10141, 10183, 10183, 10183, 10183, 10183, 10167}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10167
+sfp_auto_align.cpp:218 NO | search: GM at (4679[0], 36583[10]) with RSSI of 10167
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10033, (10,0)->9728, (0,10)->10167
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, 2), and best_diff = 25998.5
+sfp_auto_align.cpp:231 NO | computed error is (-2, 2)
+sfp_auto_align.cpp:243 NO | response is (2, -2)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {10167, 10167, 10167, 10151, 10151, 10151, 10151, 10151, 10141, 10141, 10141, 10141, 10141, 10198, 10198, 10198, 10198, 10240, 10240, 10240, 10240, 10240, 10261, 10261, 10261, 10261, 10261, 10224, 10224, 10224, 10224, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10219, 10245, 10245, 10245, 10245, 10131, 10131, 10131, 10131, 10146}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10146
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 10146
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10146, 10146, 10146, 10146, 10002, 10002, 10002, 10002, 9992, 9992, 9992, 9992, 9992, 10002, 10002, 10002, 10002, 10089, 10089, 10089, 10089, 10089, 10048, 10048, 10048, 10048, 10089, 10089, 10089, 10089, 10089, 10084, 10084, 10084, 10084, 10110, 10110, 10110, 10110, 10110, 10084, 10084, 10084, 10084, 10069}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10069
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10069
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10069, 10069, 10069, 10069, 9854, 9854, 9854, 9854, 9915, 9915, 9915, 9915, 9915, 9890, 9890, 9890, 9890, 9895, 9895, 9895, 9895, 9895, 9814, 9814, 9814, 9814, 9935, 9935, 9935, 9935, 9935, 9890, 9890, 9890, 9890, 9905, 9905, 9905, 9905, 9905, 9910, 9910, 9910, 9910, 9910, 9910, 9910, 9910, 9910, 9905}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9905
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9905
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10146, (10,0)->10069, (0,10)->9905
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 0), and best_diff = 14304.2
+sfp_auto_align.cpp:231 NO | computed error is (0, 0)
+sfp_auto_align.cpp:243 NO | response is (0, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9905, 9905, 9905, 9925, 9925, 9925, 9925, 9925, 9941, 9941, 9941, 9941, 9941, 9885, 9885, 9885, 9885, 9992, 9992, 9992, 9992, 9992, 9951, 9951, 9951, 9951, 9951, 9925, 9925, 9925, 9925, 9956, 9956, 9956, 9956, 9956, 9951, 9951, 9951, 9951, 9951, 9941, 9941, 9941, 9941, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 9956
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9956, 9956, 9956, 9935, 9935, 9935, 9935, 9935, 10053, 10053, 10053, 10053, 10084, 10084, 10084, 10084, 10084, 10094, 10094, 10094, 10094, 10120, 10120, 10120, 10120, 10120, 10094, 10094, 10094, 10094, 10151, 10151, 10151, 10151, 10151, 10151, 10151, 10151, 10151, 10115, 10115, 10115, 10115, 10115, 10141, 10141, 10141, 10141, 10141}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10141
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10141
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10219, 10219, 10219, 10219, 9834, 9834, 9834, 9834, 9834, 9829, 9829, 9829, 9829, 9829, 9814, 9814, 9814, 9814, 9799, 9799, 9799, 9799, 9799, 9789, 9789, 9789, 9789, 9789, 9773, 9773, 9773, 9773, 9778, 9778, 9778, 9778, 9778, 9763, 9763, 9763, 9763, 9763, 9799, 9799, 9799, 9799, 9799, 9804}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9804
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9804
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9956, (10,0)->10141, (0,10)->9804
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 39630.6
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9804, 9804, 9804, 9809, 9809, 9809, 9809, 9809, 9804, 9804, 9804, 9804, 9804, 9809, 9809, 9809, 9809, 9789, 9789, 9789, 9789, 9789, 10131, 10131, 10131, 10131, 10188, 10188, 10188, 10188, 10188, 10131, 10131, 10131, 10131, 10131, 10079, 10079, 10079, 10079, 10136, 10136, 10136, 10136, 10151}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10151
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36571) with RSSI of 10151
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10151, 10151, 10151, 10151, 10141, 10141, 10141, 10141, 10141, 10183, 10183, 10183, 10183, 10172, 10172, 10172, 10172, 10172, 10188, 10188, 10188, 10188, 10188, 10209, 10209, 10209, 10209, 10256, 10256, 10256, 10256, 10256, 10261, 10261, 10261, 10261, 10261, 10214, 10214, 10214, 10214, 10183, 10183, 10183, 10183, 10183, 10151}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10151
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36571[0]) with RSSI of 10151
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10151, 10151, 10151, 9648, 9648, 9648, 9648, 9648, 9728, 9728, 9728, 9728, 9763, 9763, 9763, 9763, 9763, 9783, 9783, 9783, 9783, 9783, 9758, 9758, 9758, 9758, 9783, 9783, 9783, 9783, 9783, 9799, 9799, 9799, 9799, 9799, 9824, 9824, 9824, 9824, 9783, 9783, 9783, 9783, 9783, 9773}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9773
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36581[10]) with RSSI of 9773
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10151, (10,0)->10151, (0,10)->9773
+sfp_auto_align.cpp:333 NO | end findError: err = (1, -1), and best_diff = 19359.5
+sfp_auto_align.cpp:231 NO | computed error is (1, -1)
+sfp_auto_align.cpp:243 NO | response is (-1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9773, 9773, 9773, 9773, 9768, 9768, 9768, 9768, 9834, 9834, 9834, 9834, 9834, 9814, 9814, 9814, 9814, 9814, 9839, 9839, 9839, 9839, 10079, 10079, 10079, 10079, 10079, 9976, 9976, 9976, 9976, 10064, 10064, 10064, 10064, 10064, 10053, 10053, 10053, 10053, 10002, 10002, 10002, 10002, 10002, 10110}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10110
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36572) with RSSI of 10110
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10110, 10110, 10110, 10110, 9895, 9895, 9895, 9895, 10053, 10053, 10053, 10053, 10053, 9966, 9966, 9966, 9966, 9966, 9966, 9966, 9966, 10022, 10022, 10022, 10022, 10022, 9859, 9859, 9859, 9859, 10048, 10048, 10048, 10048, 10048, 9915, 9915, 9915, 9915, 9961, 9961, 9961, 9961, 9961, 9956, 9956, 9956, 9956, 9935}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9935
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36572[0]) with RSSI of 9935
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9935, 9935, 9935, 9935, 9859, 9859, 9859, 9859, 9869, 9869, 9869, 9869, 9869, 9956, 9956, 9956, 9956, 10007, 10007, 10007, 10007, 10007, 9976, 9976, 9976, 9976, 10022, 10022, 10022, 10022, 10022, 10089, 10089, 10089, 10089, 10089, 10131, 10131, 10131, 10131, 10157, 10157, 10157, 10157, 10157, 10146}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10146
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36582[10]) with RSSI of 10146
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10110, (10,0)->9935, (0,10)->10146
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, 1), and best_diff = 29700.7
+sfp_auto_align.cpp:231 NO | computed error is (-2, 1)
+sfp_auto_align.cpp:243 NO | response is (2, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {10146, 10146, 10146, 10146, 10089, 10089, 10089, 10089, 10064, 10064, 10064, 10064, 10064, 10069, 10069, 10069, 10069, 10069, 10048, 10048, 10048, 10048, 10002, 10002, 10002, 10002, 10002, 9997, 9997, 9997, 9997, 9997, 9951, 9951, 9951, 9951, 9956, 9956, 9956, 9956, 9956, 10022, 10022, 10022, 10022, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36571) with RSSI of 9956
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9956, 9956, 9956, 9971, 9971, 9971, 9971, 9976, 9976, 9976, 9976, 9976, 10038, 10038, 10038, 10038, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10089, 10100, 10100, 10100, 10100, 10033, 10033, 10033, 10033, 10033, 10038, 10038, 10038, 10038, 10043, 10043, 10043, 10043, 10043, 9997, 9997, 9997, 9997, 9997}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9997
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36571[0]) with RSSI of 9997
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10033, 10033, 10033, 10033, 9703, 9703, 9703, 9703, 9703, 9738, 9738, 9738, 9738, 9738, 9748, 9748, 9748, 9748, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9753, 9748, 9748, 9748, 9748, 9743, 9743, 9743, 9743, 9743, 9758, 9758, 9758, 9758, 9758, 9743, 9743, 9743, 9743, 9743, 9743, 9743, 9743}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9743
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36581[10]) with RSSI of 9743
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9956, (10,0)->9997, (0,10)->9743
+sfp_auto_align.cpp:333 NO | end findError: err = (1, 0), and best_diff = 22615.2
+sfp_auto_align.cpp:231 NO | computed error is (1, 0)
+sfp_auto_align.cpp:243 NO | response is (-1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9743, 9718, 9718, 9718, 9718, 9718, 9748, 9748, 9748, 9748, 9748, 9814, 9814, 9814, 9814, 9814, 9814, 9814, 9814, 9814, 9794, 9794, 9794, 9794, 9794, 9783, 9783, 9783, 9783, 9768, 9768, 9768, 9768, 9768, 9738, 9738, 9738, 9738, 9738, 9738, 9738, 9738, 9738, 9768, 9768, 9768, 9768, 9768, 9910, 9910}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9910
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36571) with RSSI of 9910
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9910, 9910, 9910, 10183, 10183, 10183, 10183, 10084, 10084, 10084, 10084, 10084, 10079, 10079, 10079, 10079, 10043, 10043, 10043, 10043, 10043, 10125, 10125, 10125, 10125, 10028, 10028, 10028, 10028, 10028, 10064, 10064, 10064, 10064, 10110, 10110, 10110, 10110, 10157, 10157, 10157, 10157, 10157, 10151}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10151
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36571[0]) with RSSI of 10151
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10151, 10151, 10151, 9728, 9728, 9728, 9728, 9728, 9763, 9763, 9763, 9763, 9763, 9763, 9763, 9763, 9763, 9748, 9748, 9748, 9748, 9768, 9768, 9768, 9768, 9768, 9783, 9783, 9783, 9783, 9783, 9723, 9723, 9723, 9723, 9763, 9763, 9763, 9763, 9763, 9809, 9809, 9809, 9809, 9809, 9829, 9829, 9829, 9829, 9829}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9829
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36581[10]) with RSSI of 9829
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9910, (10,0)->10151, (0,10)->9829
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 50526.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9763, 9763, 9763, 9763, 9718, 9718, 9718, 9718, 9718, 9753, 9753, 9753, 9753, 9753, 9763, 9763, 9763, 9763, 9748, 9748, 9748, 9748, 9748, 9718, 9718, 9718, 9718, 9718, 9703, 9703, 9703, 9703, 9683, 9683, 9683, 9683, 9683, 9758, 9758, 9758, 9758, 9758, 9763, 9763, 9763, 9763, 9763, 9743}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9743
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36571) with RSSI of 9743
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9743, 9743, 9743, 9708, 9708, 9708, 9708, 9708, 10094, 10094, 10094, 10094, 10100, 10100, 10100, 10100, 10100, 10125, 10125, 10125, 10125, 10125, 10162, 10162, 10162, 10162, 10157, 10157, 10157, 10157, 10157, 10167, 10167, 10167, 10167, 10094, 10094, 10094, 10094, 10115, 10115, 10115, 10115, 10115, 10136}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10136
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36571[0]) with RSSI of 10136
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10136, 10136, 10136, 9579, 9579, 9579, 9579, 9579, 9619, 9619, 9619, 9619, 9658, 9658, 9658, 9658, 9658, 9648, 9648, 9648, 9648, 9633, 9633, 9633, 9633, 9633, 9599, 9599, 9599, 9599, 9599, 9599, 9599, 9599, 9599, 9638, 9638, 9638, 9638, 9638, 9653, 9653, 9653, 9653, 9633, 9633, 9633, 9633, 9633, 9643}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9643
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36581[10]) with RSSI of 9643
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9743, (10,0)->10136, (0,10)->9643
+sfp_auto_align.cpp:333 NO | end findError: err = (4, -1), and best_diff = 19520.6
+sfp_auto_align.cpp:231 NO | computed error is (4, -1)
+sfp_auto_align.cpp:243 NO | response is (-4, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4679, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9643, 9643, 9643, 9643, 9673, 9673, 9673, 9673, 9673, 9638, 9638, 9638, 9638, 9614, 9614, 9614, 9614, 9614, 9609, 9609, 9609, 9609, 9609, 9614, 9614, 9614, 9614, 9609, 9609, 9609, 9609, 9609, 9549, 9549, 9549, 9549, 9549, 10028, 10028, 10028, 10028, 10028, 10028, 10028, 10028, 10115, 10115, 10115, 10115, 10115}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10115
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4679, 36572) with RSSI of 10115
+sfp_auto_align.cpp:210 NO | search: GM set to (4689[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10100, 10100, 10100, 10100, 9890, 9890, 9890, 9890, 9890, 9879, 9879, 9879, 9879, 9874, 9874, 9874, 9874, 9874, 9869, 9869, 9869, 9869, 9854, 9854, 9854, 9854, 9854, 9874, 9874, 9874, 9874, 9925, 9925, 9925, 9925, 9925, 10002, 10002, 10002, 10002, 9864, 9864, 9864, 9864, 9844}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9844
+sfp_auto_align.cpp:218 NO | search: GM at (4689[10], 36572[0]) with RSSI of 9844
+sfp_auto_align.cpp:210 NO | search: GM set to (4679[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {9844, 9844, 9844, 9844, 9997, 9997, 9997, 9997, 9997, 10048, 10048, 10048, 10048, 10064, 10064, 10064, 10064, 10064, 10100, 10100, 10100, 10100, 10115, 10115, 10115, 10115, 10115, 10136, 10136, 10136, 10136, 10141, 10141, 10141, 10141, 10141, 10167, 10167, 10167, 10167, 10157, 10157, 10157, 10157, 10157, 10136}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10136
+sfp_auto_align.cpp:218 NO | search: GM at (4679[0], 36582[10]) with RSSI of 10136
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10115, (10,0)->9844, (0,10)->10136
+sfp_auto_align.cpp:333 NO | end findError: err = (-2, 1), and best_diff = 18643.1
+sfp_auto_align.cpp:231 NO | computed error is (-2, 1)
+sfp_auto_align.cpp:243 NO | response is (2, -1)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {10136, 10136, 10136, 10136, 10110, 10110, 10110, 10110, 10110, 10131, 10131, 10131, 10131, 10120, 10120, 10120, 10120, 10120, 10079, 10079, 10079, 10079, 10079, 10084, 10084, 10084, 10084, 10105, 10105, 10105, 10105, 10105, 10131, 10131, 10131, 10131, 10131, 10079, 10079, 10079, 10079, 10105, 10105, 10105, 10105, 10105, 10089}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10089
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 10089
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10089, 10089, 10089, 10089, 9981, 9981, 9981, 9981, 9915, 9915, 9915, 9915, 9915, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9956, 9920, 9920, 9920, 9920, 9976, 9976, 9976, 9976, 9976, 10157, 10157, 10157, 10157, 10157, 10038, 10038, 10038, 10038, 10012, 10012, 10012, 10012, 10012, 9986, 9986, 9986, 9986, 9986}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9986
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 9986
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10007, 10007, 10007, 10007, 9839, 9839, 9839, 9839, 9839, 9890, 9890, 9890, 9890, 9890, 9895, 9895, 9895, 9895, 9859, 9859, 9859, 9859, 9859, 9834, 9834, 9834, 9834, 9834, 9834, 9834, 9834, 9834, 9844, 9844, 9844, 9844, 9844, 9895, 9895, 9895, 9895, 9895, 9910, 9910, 9910, 9910, 9920, 9920, 9920, 9920}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9920
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9920
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10089, (10,0)->9986, (0,10)->9920
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 3173.13
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9920, 9910, 9910, 9910, 9910, 9910, 9885, 9885, 9885, 9885, 9834, 9834, 9834, 9834, 9834, 9890, 9890, 9890, 9890, 9890, 9854, 9854, 9854, 9854, 9854, 9900, 9900, 9900, 9900, 9905, 9905, 9905, 9905, 9905, 9879, 9879, 9879, 9879, 9879, 9849, 9849, 9849, 9849, 9834}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9834
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36571) with RSSI of 9834
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9834, 9834, 9834, 9834, 9829, 9829, 9829, 9829, 9829, 10141, 10141, 10141, 10141, 10105, 10105, 10105, 10105, 10105, 10167, 10167, 10167, 10167, 10157, 10157, 10157, 10157, 10157, 10125, 10125, 10125, 10125, 10110, 10110, 10110, 10110, 10110, 10193, 10193, 10193, 10193, 10193, 10105, 10105, 10105, 10105, 10172}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10172
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36571[0]) with RSSI of 10172
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10172, 10172, 10172, 10172, 9693, 9693, 9693, 9693, 9693, 9768, 9768, 9768, 9768, 9773, 9773, 9773, 9773, 9773, 9778, 9778, 9778, 9778, 9778, 9763, 9763, 9763, 9763, 9854, 9854, 9854, 9854, 9854, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9758, 9768, 9768, 9768, 9768, 9768, 9809, 9809, 9809, 9809}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9809
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36581[10]) with RSSI of 9809
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9834, (10,0)->10172, (0,10)->9809
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 87527.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9809, 9824, 9824, 9824, 9824, 9778, 9778, 9778, 9778, 9778, 9723, 9723, 9723, 9723, 9723, 9738, 9738, 9738, 9738, 9738, 9986, 9986, 9986, 9986, 10028, 10028, 10028, 10028, 10028, 10038, 10038, 10038, 10038, 10094, 10094, 10094, 10094, 10094, 9976, 9976, 9976, 9976, 9951}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9951
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36571) with RSSI of 9951
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9951, 9951, 9951, 9951, 10084, 10084, 10084, 10084, 10094, 10094, 10094, 10094, 10094, 10100, 10100, 10100, 10100, 10100, 10141, 10141, 10141, 10141, 10105, 10105, 10105, 10105, 10105, 10069, 10069, 10069, 10069, 10069, 10094, 10094, 10094, 10094, 10069, 10069, 10069, 10069, 10069, 10141, 10141, 10141, 10141, 10141, 10125}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10125
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36571[0]) with RSSI of 10125
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10125, 10125, 10125, 9569, 9569, 9569, 9569, 9569, 9609, 9609, 9609, 9609, 9609, 9668, 9668, 9668, 9668, 9673, 9673, 9673, 9673, 9673, 9628, 9628, 9628, 9628, 9628, 9628, 9628, 9628, 9628, 9643, 9643, 9643, 9643, 9643, 9673, 9673, 9673, 9673, 9673, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683, 9683}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9683
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36581[10]) with RSSI of 9683
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9951, (10,0)->10125, (0,10)->9683
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 15913.5
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9738, 9738, 9738, 9738, 9738, 9758, 9758, 9758, 9758, 9738, 9738, 9738, 9738, 9738, 9648, 9648, 9648, 9648, 9648, 9961, 9961, 9961, 9961, 9961, 10089, 10089, 10089, 10089, 10100, 10100, 10100, 10100, 10100, 10100, 10100, 10100, 10100, 10110, 10110, 10110, 10110, 10105, 10105, 10105, 10105, 10105, 10198, 10198, 10198, 10198}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10198
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 10198
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10198, 10151, 10151, 10151, 10151, 10028, 10028, 10028, 10028, 10028, 10084, 10084, 10084, 10084, 10084, 10033, 10033, 10033, 10033, 10074, 10074, 10074, 10074, 10074, 10064, 10064, 10064, 10064, 10064, 10105, 10105, 10105, 10105, 10100, 10100, 10100, 10100, 10100, 10079, 10079, 10079, 10079, 10079, 10028}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10028
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10028
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10028, 10028, 10028, 9890, 9890, 9890, 9890, 9890, 9956, 9956, 9956, 9956, 9956, 9890, 9890, 9890, 9890, 9941, 9941, 9941, 9941, 9941, 9900, 9900, 9900, 9900, 9900, 9905, 9905, 9905, 9905, 9900, 9900, 9900, 9900, 9900, 9930, 9930, 9930, 9930, 9930, 9956, 9956, 9956, 9956, 9956, 9895}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9895
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9895
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10198, (10,0)->10028, (0,10)->9895
+sfp_auto_align.cpp:333 NO | end findError: err = (0, 0), and best_diff = 10656.4
+sfp_auto_align.cpp:231 NO | computed error is (0, 0)
+sfp_auto_align.cpp:243 NO | response is (0, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4681, 36571)
+sfp_auto_align.cpp:509 NO | received rssis: {9895, 9895, 9895, 9910, 9910, 9910, 9910, 9910, 9905, 9905, 9905, 9905, 9905, 9966, 9966, 9966, 9966, 9925, 9925, 9925, 9925, 9925, 10235, 10235, 10235, 10235, 10229, 10229, 10229, 10229, 10229, 10177, 10177, 10177, 10177, 10203, 10203, 10203, 10203, 10203, 10146, 10146, 10146, 10146, 10203}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10203
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4681, 36571) with RSSI of 10203
+sfp_auto_align.cpp:210 NO | search: GM set to (4691[10], 36571[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10203, 10203, 10203, 10203, 10043, 10043, 10043, 10043, 10043, 10136, 10136, 10136, 10136, 10100, 10100, 10100, 10100, 10100, 10183, 10183, 10183, 10183, 10183, 10183, 10183, 10183, 10183, 10115, 10115, 10115, 10115, 10115, 10162, 10162, 10162, 10162, 10157, 10157, 10157, 10157, 10157, 10115, 10115, 10115, 10115, 10115, 10151, 10151, 10151, 10151}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10151
+sfp_auto_align.cpp:218 NO | search: GM at (4691[10], 36571[0]) with RSSI of 10151
+sfp_auto_align.cpp:210 NO | search: GM set to (4681[0], 36581[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10188, 10188, 10188, 10188, 10188, 9910, 9910, 9910, 9910, 9910, 9935, 9935, 9935, 9935, 9930, 9930, 9930, 9930, 9930, 9890, 9890, 9890, 9890, 9890, 9890, 9890, 9890, 9890, 9895, 9895, 9895, 9895, 9895, 9951, 9951, 9951, 9951, 10002, 10002, 10002, 10002, 10002, 9915, 9915, 9915, 9915, 9910, 9910, 9910, 9910}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9910
+sfp_auto_align.cpp:218 NO | search: GM at (4681[0], 36581[10]) with RSSI of 9910
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10203, (10,0)->10151, (0,10)->9910
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, -1), and best_diff = 8750.1
+sfp_auto_align.cpp:231 NO | computed error is (-1, -1)
+sfp_auto_align.cpp:243 NO | response is (1, 1)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9910, 9900, 9900, 9900, 9900, 9900, 9890, 9890, 9890, 9890, 9859, 9859, 9859, 9859, 9859, 9819, 9819, 9819, 9819, 9819, 9799, 9799, 9799, 9799, 9997, 9997, 9997, 9997, 9997, 9997, 9997, 9997, 9997, 9986, 9986, 9986, 9986, 9986, 10105, 10105, 10105, 10105, 10105, 9992, 9992, 9992, 9992, 9956}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9956
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4682, 36572) with RSSI of 9956
+sfp_auto_align.cpp:210 NO | search: GM set to (4692[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9956, 9956, 9956, 10028, 10028, 10028, 10028, 10028, 10017, 10017, 10017, 10017, 10017, 9997, 9997, 9997, 9997, 10022, 10022, 10022, 10022, 10022, 10058, 10058, 10058, 10058, 10058, 10069, 10069, 10069, 10069, 9986, 9986, 9986, 9986, 9986, 10043, 10043, 10043, 10043, 10017, 10017, 10017, 10017, 10017, 10017, 10017, 10017, 10017, 10033}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10033
+sfp_auto_align.cpp:218 NO | search: GM at (4692[10], 36572[0]) with RSSI of 10033
+sfp_auto_align.cpp:210 NO | search: GM set to (4682[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10033, 10033, 10033, 10033, 9743, 9743, 9743, 9743, 9794, 9794, 9794, 9794, 9794, 9804, 9804, 9804, 9804, 9778, 9778, 9778, 9778, 9778, 9854, 9854, 9854, 9854, 9844, 9844, 9844, 9844, 9844, 9849, 9849, 9849, 9849, 9930, 9930, 9930, 9930, 9930, 9849, 9849, 9849, 9849, 9849, 9854}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9854
+sfp_auto_align.cpp:218 NO | search: GM at (4682[0], 36582[10]) with RSSI of 9854
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9956, (10,0)->10033, (0,10)->9854
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 12040.1
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4683, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9854, 9854, 9854, 9849, 9849, 9849, 9849, 9849, 9941, 9941, 9941, 9941, 9941, 9935, 9935, 9935, 9935, 9935, 9885, 9885, 9885, 9885, 9844, 9844, 9844, 9844, 9844, 9804, 9804, 9804, 9804, 9951, 9951, 9951, 9951, 9951, 10007, 10007, 10007, 10007, 10038, 10038, 10038, 10038, 10038, 10028}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10028
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4683, 36572) with RSSI of 10028
+sfp_auto_align.cpp:210 NO | search: GM set to (4693[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {10028, 10028, 10028, 10043, 10043, 10043, 10043, 10043, 10053, 10053, 10053, 10053, 10094, 10094, 10094, 10094, 10094, 10079, 10079, 10079, 10079, 10084, 10084, 10084, 10084, 10094, 10094, 10094, 10094, 10094, 10053, 10053, 10053, 10053, 10053, 10084, 10084, 10084, 10084, 10094, 10094, 10094, 10094, 10094, 10094, 10094, 10094, 10094, 10038}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10038
+sfp_auto_align.cpp:218 NO | search: GM at (4693[10], 36572[0]) with RSSI of 10038
+sfp_auto_align.cpp:210 NO | search: GM set to (4683[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10038, 10038, 10038, 10038, 9683, 9683, 9683, 9683, 9763, 9763, 9763, 9763, 9763, 9748, 9748, 9748, 9748, 9783, 9783, 9783, 9783, 9783, 9753, 9753, 9753, 9753, 9723, 9723, 9723, 9723, 9723, 9738, 9738, 9738, 9738, 9733, 9733, 9733, 9733, 9733, 9824, 9824, 9824, 9824, 9794}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9794
+sfp_auto_align.cpp:218 NO | search: GM at (4683[0], 36582[10]) with RSSI of 9794
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->10028, (10,0)->10038, (0,10)->9794
+sfp_auto_align.cpp:333 NO | end findError: err = (-1, 0), and best_diff = 10850.8
+sfp_auto_align.cpp:231 NO | computed error is (-1, 0)
+sfp_auto_align.cpp:243 NO | response is (1, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4684, 36572)
+sfp_auto_align.cpp:509 NO | received rssis: {9794, 9794, 9794, 9794, 9743, 9743, 9743, 9743, 9743, 9723, 9723, 9723, 9723, 9753, 9753, 9753, 9753, 9753, 9713, 9713, 9713, 9713, 9713, 9723, 9723, 9723, 9723, 9910, 9910, 9910, 9910, 9910, 9895, 9895, 9895, 9895, 9930, 9930, 9930, 9930, 9930, 9981, 9981, 9981, 9981, 9900}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9900
+sfp_auto_align.cpp:178 NO | ---------start tracking iter---------
+sfp_auto_align.cpp:182 NO | GM at (4684, 36572) with RSSI of 9900
+sfp_auto_align.cpp:210 NO | search: GM set to (4694[10], 36572[0])
+sfp_auto_align.cpp:509 NO | received rssis: {9900, 9900, 9900, 9900, 10048, 10048, 10048, 10048, 10048, 10038, 10038, 10038, 10038, 10022, 10022, 10022, 10022, 10022, 10043, 10043, 10043, 10043, 10017, 10017, 10017, 10017, 10017, 9976, 9976, 9976, 9976, 10033, 10033, 10033, 10033, 10033, 10064, 10064, 10064, 10064, 10043, 10043, 10043, 10043, 10043, 10053}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 10053
+sfp_auto_align.cpp:218 NO | search: GM at (4694[10], 36572[0]) with RSSI of 10053
+sfp_auto_align.cpp:210 NO | search: GM set to (4684[0], 36582[10])
+sfp_auto_align.cpp:509 NO | received rssis: {10053, 10053, 10053, 9515, 9515, 9515, 9515, 9515, 9510, 9510, 9510, 9510, 9500, 9500, 9500, 9500, 9500, 9549, 9549, 9549, 9549, 9579, 9579, 0, 9579, 9579, 9579, 9609, 9609, 9609, 9609, 9604, 9604, 9604, 9604, 9604, 9584}
+sfp_auto_align.cpp:523 NO | fetched RSSI is: 9584
+sfp_auto_align.cpp:218 NO | search: GM at (4684[0], 36582[10]) with RSSI of 9584
+sfp_auto_align.cpp:290 NO | start findError: (0,0)->9900, (10,0)->10053, (0,10)->9584
+sfp_auto_align.cpp:333 NO | end findError: err = (2, 0), and best_diff = 14114
+sfp_auto_align.cpp:231 NO | computed error is (2, 0)
+sfp_auto_align.cpp:243 NO | response is (-2, 0)
+sfp_auto_align.cpp:252 NO | GM set to (4682, 36572)
+sfp_auto_align.cpp:268 NO | controllerRun end

@@ -1,0 +1,12 @@
+rack_id rack_1
+fso_id fso_1
+
+gm1_serial_number 00106925
+gm1_channel 0
+gm2_serial_number 00106925
+gm2_channel 1
+horizontal_gm 2
+vertical_gm 1
+
+link rack_2 fso_1 10000 10000
+

@@ -1,0 +1,2 @@
+PARAMS map_range=100 map_step=50
+H_Delta V_Delta RSSI
