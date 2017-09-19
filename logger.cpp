@@ -10,12 +10,13 @@ int Logger::verbose_level = 0;
 bool Logger::log_stderr = false;
 
 std::string Logger::Now() {
-	std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
-	std::time_t now_c = std::chrono::system_clock::to_time_t(now);
+	// std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+	// std::time_t now_c = std::chrono::system_clock::to_time_t(now);
 
 	std::stringstream sstr;
 	// TODO inlucde millisecond information when printing time.
-	sstr << std::put_time(std::localtime(&now_c), "%m-%d-%y_%H:%M:%S");
+	// sstr << std::put_time(std::localtime(&now_c), "%m-%d-%y_%H:%M:%S");
+	sstr << "NO";
 
 	return sstr.str();
 }

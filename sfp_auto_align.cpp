@@ -349,8 +349,10 @@ void SFPAutoAligner::mapRun() {
 	ofstr << "PARAMS map_range=" << map_range << " map_step=" << map_step << std::endl;  
 	ofstr << "H_Delta V_Delta RSSI" << std::endl;
 
-	for(int h_delta = -map_range; h_delta <= map_range; h_delta += map_step) {
-		for(int v_delta = -map_range; v_delta <= map_range; v_delta += map_step) {
+	// for(int h_delta = -map_range; h_delta <= map_range; h_delta += map_step) {
+		// for(int v_delta = -map_range; v_delta <= map_range; v_delta += map_step) {
+	for(int v_delta = -map_range; v_delta <= map_range; v_delta += map_step) {
+		for(int h_delta = -map_range; h_delta <= map_range; h_delta += map_step) {
 			fso->setHorizontalGMVal(h_delta + h_gm_init);
 			fso->setVerticalGMVal(v_delta + v_gm_init);
 
@@ -490,7 +492,7 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {
 			if(!first && prev_rssi != rssi) {
 				num_changes++;
 
-				while(int(unique_rssis.size()) <= num_message_average) {
+				while(unique_rssis.size() >= (unsigned int)(num_message_average)) {
 					unique_rssis.erase(unique_rssis.begin());
 				}
 				unique_rssis.push_back(rssi);

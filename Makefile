@@ -2,7 +2,7 @@
 INC_PATH = -I /usr/local/include/gm -I /user/include
 LIB_PATH = -L /usr/local/lib -l gm -l ncurses -l ssh -l usb-1.0  -l hidapi-libusb
 
-CC = g++-5
+CC = g++-4.9
 CFLAGS = -Wall -std=c++11 $(INC_PATH)
 
 SOURCES = main.cpp args.cpp FSO.cpp debug_gm.cpp coarse_align.cpp dom_fetcher.cpp auto_align.cpp gm_network_controller.cpp gm_server.cpp dom_timing_test.cpp tracking.cpp half_auto_align.cpp sfp_auto_align.cpp logger.cpp
