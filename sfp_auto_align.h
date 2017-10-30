@@ -7,6 +7,54 @@
 
 #include <string>
 
+class GMVal {
+public:
+	GMVal(int h_gm_, int v_gm_) : h_gm(h_gm_), v_gm(v_gm_) {}
+	~GMVal() {}
+
+	GMVal(const GMVal &other_gm_val) : h_gm(other_gm_val.h_gm), v_gm(other_gm_val.v_gm) {}
+	const GMVal& operator=(const GMVal &other_gm_val) {
+		h_gm = other_gm_val.h_gm;
+		v_gm = other_gm_val.v_gm;
+
+		return *this;
+	}
+
+	int h_gm;
+	int v_gm;
+};
+
+struct GMValComp {
+	bool operator()(const GMVal &lhs, const GMVal &rhs) const {
+		return lhs.h_gm < rhs.h_gm || (lhs.h_gm == rhs.h_gm && lhs.v_gm < rhs.v_gm);
+	}
+};
+
+class RSSITuple {
+public:
+	RSSITuple() : rssis() {}
+
+	void addValue(float v) { rssis.push_back(v); }
+
+	float squaredEuclideanDistance(const RSSITuple& other_tuple) const;
+
+	int size() const { return rssis.size(); }
+
+	bool allZero() const {
+		for(int i = 0; i < size(); ++i) {
+			if(abs(rssis[i]) > 0.0000001) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	std::vector<float> rssis;
+};
+
+typedef std::map<GMVal, float, GMValComp> RSSIMap;
+typedef std::map<GMVal, RSSITuple, GMValComp> RSSITupleMap;
+
 // SFPAutoAligner should already have a udp connection and decided which side is the controller
 class SFPAutoAligner {
 public:
@@ -38,9 +86,14 @@ private:
 	
 	void controllerRun();
 	void mapRun();
+	void mapRunWithSearch();
 	void switchRun();
 
-	void findError(float center_rssi, const std::vector<std::pair<std::pair<int, int>, float> > &search_rssis, const std::map<std::pair<int, int>, float> &rssi_map, int &h_err, int &v_err);
+	void fillSearchLocs(std::vector<GMVal>* search_locs, int num_search_locs, int search_delta);
+	
+	void findError(const RSSITuple &this_tuple,
+					const RSSITupleMap &rssi_map,
+					int &h_err, int &v_err);
 
 	float getRSSI(int h_gm, int v_gm);
 
@@ -61,7 +114,5 @@ private:
 
 	Args* args;
 };
-
-
 
 #endif

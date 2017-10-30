@@ -71,7 +71,7 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&sfp_tracking_start, 0.0, "-sfp_start", "START", "Percent Difference from Peak to start tracking"),
 			Arg_Val(&sfp_tracking_stop, 0.0, "-sfp_stop", "STOP", "Percent Difference from Peak to stop tracking"),
 			Arg_Val(&sfp_rssi_zero_value, 0.0, "-sfp_zero", "ZERO_VAL", "Any RSSI less than or equal to this value will be clamped to 0.0"),
-			Arg_Val(&sfp_search_delta, 1, "-sfp_sd", "SEARCH_DELTA", "The search delta to use for the SFP Auto Alignment"),
+			Arg_Val(&sfp_search_delta, 0, "-sfp_sd", "SEARCH_DELTA", "The search delta to use for the SFP Auto Alignment"),
 			Arg_Val(&sfp_num_search_locs, 3, "-sfp_nsl", "NUM_SEARCH_LOCS", "The number of locations to search when doing SFP Auto Alignment. Must be either 3 or 5."),
 			Arg_Val(&sfp_table_epsilon, 0.0, "-sfp_eps", "EPSILON", "When doing the table lookup, differences between current RSSIs and RSSIs in the table less than the given epsilon will be treated as 0"),
 			Arg_Val(&sfp_map_power, "-map_sfp", "Instead of normal tracking algorithm, maps a large value of GM settings"),
