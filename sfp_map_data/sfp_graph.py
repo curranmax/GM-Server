@@ -9,7 +9,9 @@ from matplotlib.ticker import LinearLocator, FormatStrFormatter
 import matplotlib.pyplot as plt
 
 def tryConvert(v):
-	if '.' in v:
+	if ',' in v:
+		return v.split(',')
+	elif '.' in v:
 		return float(v)
 	else:
 		return int(v)
@@ -30,7 +32,7 @@ def readInData(filename):
 		spl = line.split()
 
 		if spl[0]  == 'PARAMS':
-			params = {a: int(b) for a, b in map(lambda x: x.split('='), spl[1:])}
+			params = {a: tryConvert(b) for a, b in map(lambda x: x.split('='), spl[1:])}
 		elif col_hdrs == None:
 			col_hdrs = spl
 		elif len(spl) == len(col_hdrs):
