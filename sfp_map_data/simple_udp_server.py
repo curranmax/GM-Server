@@ -17,13 +17,19 @@ class Vec:
 		self.v = float(v)
 
 	def move(self, speed, secs):
-		return Vec(self.h + speed.h * secs, self.v + speed.v * secs)
+		if speed.mag() > 0.01:
+			return Vec(self.h + speed.h * secs, self.v + speed.v * secs)
+		else:
+			return Vec(self.h, self.v)
 
 	def nearestGrid(self, base):
 		hl, hh = map(lambda x: int(x(base * round(self.h / base))), (math.floor, math.ceil))
 		vl, vh = map(lambda x: int(x(base * round(self.v / base))), (math.floor, math.ceil))
 
 		return hl, hh, vl, vh
+
+	def mag(self):
+		return math.sqrt(self.h * self.h + self.v * self.v)
 
 def getRSSIGaus(req, center, sigma, amplitude):
 	return amplitude * math.exp(-((req.h - center.h) ** 2 / sigma + (req.v - center.v) ** 2 / sigma))
@@ -35,7 +41,7 @@ def getVal(x, data):
 		return data[x]
 
 def getRSSIData(req, center, data, params):
-	err = Vec(center.h - req.h, center.v - req.v)
+	err = Vec(req.h - center.h, req.v - center.v)
 	hl, hh, vl, vh = err.nearestGrid(params['map_step'])
 	p1, p2, p3, p4 = (hl, vl), (hl, vh), (hh, vl), (hh, vh)
 	v1, v2, v3, v4 = map(lambda x: getVal(x, data), (p1, p2, p3, p4))
@@ -90,11 +96,12 @@ def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 
 			else:
 				rssi = getRSSIData(Vec(req_h, req_v), center.move(speed, (now - start_time).total_seconds()), rssi_data, params)
 			
-			rssi = (1.0 + (random.random() * 2.0 * noise - noise)) * rssi
+			if noise > 0.001:
+				rssi = (1.0 + (random.random() * 2.0 * noise - noise)) * rssi
 
 			msg = '%.2f' % rssi
 
-		time.sleep(0.2)
+		time.sleep(0.006)
 
 		print "\tSent: ", msg
 
@@ -116,7 +123,7 @@ if __name__ == '__main__':
 
 	center = Vec(10000, 10000)
 
-	d = Vec(0.7071067811865475, 0.7071067811865475)
+	d = Vec(-1.0, 0.0)
 	s = args.speed[0] # In mrad
 	s = s / 1000.0 * 180.0 / math.pi * (2.0 ** 16) / 40.0 # Converts to gm_units
 	v = Vec(d.h * s, d.v * s)
