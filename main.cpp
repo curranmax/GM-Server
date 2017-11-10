@@ -14,6 +14,8 @@
 #include <string.h>
 #include <time.h>
 
+// TODO Change the implementation of the "algorithms" so that they can be more flexible (i.e. each algo has several resources, and those can be extremely flexible)
+
 bool endsWith(const std::string &full_string,const std::string &suffix) {
 	return full_string.length() >= suffix.length() && (0 == full_string.compare(full_string.length() - suffix.length(),suffix.length(),suffix));
 }
