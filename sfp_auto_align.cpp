@@ -356,6 +356,13 @@ void SFPAutoAligner::controllerRun() {
 	float seconds_per_iter = total_seconds / float(num_iters);
 	std::cout << "Avg Iteration time: " << seconds_per_iter * 1000.0 << " milliseconds per iter" << std::endl;
 
+	{
+		// TODO log the rest of the timinig information.
+		std::stringstream sstr;
+		sstr << "Avg Iteration time: " << seconds_per_iter * 1000.0 << " milliseconds per iter";
+		LOG(sstr.str());
+	}
+
 	// Get RSSI
 	float sum_get_rssi_times = 0.0;
 	for(unsigned int i = 0; i < get_rssi_times.size(); ++i) {
@@ -585,6 +592,88 @@ void SFPAutoAligner::switchRun() {
 
 	fso->setHorizontalGMVal(h_gm_init);
 	fso->setVerticalGMVal(v_gm_init);
+}
+
+void SFPAutoAligner::alignRun(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id) {
+	setValues(args_, fso_);
+
+	setMultiParam(args->sfp_max_num_messages, args->sfp_max_num_changes, args->sfp_num_message_average);
+
+	fso->setToLink(other_rack_id, other_fso_id);
+
+	int h_gm, v_gm;
+	int scan_range = 10, scan_step = 1;
+	std::string input = "";
+
+	while(true) {
+		h_gm = fso->getHorizontalGMVal();
+		v_gm = fso->getVerticalGMVal();
+		std::cout << "Now at (" << h_gm << ", " << v_gm << ")" << std::endl;
+
+		// Ask user what they want to do: 1) scan a given area, 2) redo the same scan, 3) quit
+		input = "";
+		while(input != "s" && input != "r" && input != "q") {
+			std::cout << "Enter next action: (s)can, (r)edo last scan, (q)uit" << std::endl;
+			std::cin >> input;
+		}
+
+		if(input == "q") {
+			break;
+		}
+
+		if(input == "s") {
+			std::cout << "Enter the scan range and step" << std::endl;
+			std::cin >> scan_range >> scan_step;
+		}
+
+		// If requested do the scan and record the RSSIs for all locs
+		std::cout << "Scanning with params: " << scan_range << " " << scan_step << std::endl;
+		std::vector<GMVal> max_gm_vals;
+		float max_rssi;
+		bool first = true;
+		// Find maximum RSSI
+		for(int h_delta = -scan_range; h_delta <= scan_range; h_delta += scan_step) {
+			for(int v_delta = -scan_range; v_delta <= scan_range; v_delta += scan_step) {
+				fso->setHorizontalGMVal(h_gm + h_delta);
+				fso->setVerticalGMVal(v_gm + v_delta);
+
+				float rssi = getRSSI(h_gm + h_delta, v_gm + v_delta);
+
+				if(first) {
+					first = false;
+					max_rssi = rssi;
+					max_gm_vals.push_back(GMVal(h_gm + h_delta, v_gm + v_delta));
+				} else {
+					if(abs(max_rssi - rssi) <= 0.01) {
+						max_gm_vals.push_back(GMVal(h_gm + h_delta, v_gm + v_delta));
+					} else if(max_rssi < rssi) {
+						max_gm_vals.clear();
+						max_gm_vals.push_back(GMVal(h_gm + h_delta, v_gm + v_delta));
+
+						max_rssi = rssi;
+					}
+				}
+			}
+		}
+
+		// For now sets the GM to the average of all points, and reports the max_rssi and the number of points with that value
+		// TODO compute a bounding polygon, and set the GM to the "middle", and report the area of the hull
+		std::cout << "Found " << max_gm_vals.size() << " gm vals with RSSI of " << max_rssi << std::endl;
+
+		int new_h_gm = 0;
+		int new_v_gm = 0;
+		for(unsigned int i = 0; i < max_gm_vals.size(); ++i) {
+			new_h_gm += max_gm_vals[i].h_gm;
+			new_v_gm += max_gm_vals[i].v_gm;
+		}
+
+		fso->setHorizontalGMVal(new_h_gm / max_gm_vals.size());
+		fso->setVerticalGMVal(new_v_gm / max_gm_vals.size());
+	}
+
+	fso->saveCurrentSettings(other_rack_id, other_fso_id);
+	fso->save();
+	std::cout << "FSO saved!!!" << std::endl;
 }
 
 float SFPAutoAligner::getRSSI(int h_gm, int v_gm) {

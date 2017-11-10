@@ -56,6 +56,7 @@ typedef std::map<GMVal, float, GMValComp> RSSIMap;
 typedef std::map<GMVal, RSSITuple, GMValComp> RSSITupleMap;
 
 // SFPAutoAligner should already have a udp connection and decided which side is the controller
+// TODO change the name of this class to SFPTracking or something, and implement a true SFP auto alignment (or half-auto).
 class SFPAutoAligner {
 public:
 	enum SockType{UDP, TCP};
@@ -67,6 +68,7 @@ public:
 	~SFPAutoAligner();
 
 	void run(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id);
+	void alignRun(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id);
 
 	void setForeignSockAddr(const struct sockaddr_in &foreign_host_) { foreign_host = foreign_host_; }
 

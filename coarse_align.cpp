@@ -13,7 +13,7 @@
 #include <sstream>
 #include <unistd.h>
 
-#define OTHER_HOST "192.168.1.177"
+#define OTHER_HOST "127.0.0.1" // "192.168.1.177"
 
 // When modifying add instructions, and also maybe add command history
 
@@ -85,6 +85,7 @@ void CoarseAligner::run() {
 	std::string command = "";
 	char raw_input[256];
 	while(true) {
+		command = "";
 		std::cout << ">> ";
 		std::cin.getline(raw_input,256);
 		std::stringstream sstr(raw_input);
@@ -115,7 +116,7 @@ void CoarseAligner::run() {
 			std::cout << " disable_map" << std::endl << "\tRestores default tracking functionality" << std::endl;
 			std::cout << " saa_control this_rack_id this_fso_id other_addr other_rack_id other_fso_id" << std::endl << "\tStarts SFP Auto Alignment" << std::endl;
 			std::cout << " sfp_enable_map range step out_file" << std::endl << "\tSame as setting -map_sfp flag and also supplying parameters" << std::endl;
-			
+			std::cout << " sfp_auto_align" << std::endl << "\tRuns the automatic align process using the RSSI from the SFP" << std::endl;			
 		} else if(command == "new_fso") {
 			std::string filename,rack_id,fso_id,gm1_usb_id,gm2_usb_id;
 			int gm1_usb_channel,gm2_usb_channel;
@@ -465,6 +466,21 @@ void CoarseAligner::run() {
 				std::cerr << "Unable to start SFP Auto Alignment" << std::endl;
 			} else {
 				saa->run(args, fso, other_rack_id, other_fso_id);
+			}
+			delete saa;
+		} else if(command == "sfp_auto_align"){
+			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
+			FSO* fso = getFSO(this_rack_id, this_fso_id);
+			if(fso == nullptr) {
+				std::cerr << "Invalid FSO selected" << std::endl;
+				continue;
+			}
+
+			SFPAutoAligner *saa = SFPAutoAligner::connectTo(8888, SFPAutoAligner::SockType::UDP, other_addr, other_rack_id, other_fso_id);
+			if(saa == nullptr) {
+				std::cerr << "Unable to start SFP Auto Alignment" << std::endl;
+			} else {
+				saa->alignRun(args, fso, other_rack_id, other_fso_id);
 			}
 			delete saa;
 		} else if(command == "sfp_enable_map") {
