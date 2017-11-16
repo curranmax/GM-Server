@@ -300,9 +300,12 @@ void SFPAutoAligner::controllerRun() {
 
 			// Search the table for the correction
 			int h_err, v_err;
-			if(this_tuple.allZero()) {
+			float hr, vr;
+			if(this_tuple.allZero() || this_rssi == 1) {
 				h_err = 0;
 				v_err = 0;
+				hr = 0.0;
+				vr = 0.0;
 			} else {
 				start_find_error = std::chrono::system_clock::now();
 				findError(this_tuple, rssi_tuple_map, h_err, v_err);
@@ -310,19 +313,20 @@ void SFPAutoAligner::controllerRun() {
 				end_find_error = std::chrono::system_clock::now();
 				dur_find_error = end_find_error - start_find_error;
 				find_error_times.push_back(dur_find_error.count());
+
+				{
+					std::stringstream sstr;
+					sstr << "computed error is (" << h_err << ", " << v_err << ")"; 
+					LOG(sstr.str());
+				}
+	
+				sum_h_err += h_err;
+				sum_v_err += v_err;
+	
+				hr = k_proportional * -h_err + k_integral * -sum_h_err + k_derivative * (prev_h_err - h_err);
+				vr = k_proportional * -v_err + k_integral * -sum_v_err + k_derivative * (prev_v_err - v_err);
 			}
 
-			{
-				std::stringstream sstr;
-				sstr << "computed error is (" << h_err << ", " << v_err << ")"; 
-				LOG(sstr.str());
-			}
-
-			sum_h_err += h_err;
-			sum_v_err += v_err;
-
-			float hr = k_proportional * -h_err + k_integral * -sum_h_err + k_derivative * (prev_h_err - h_err);
-			float vr = k_proportional * -v_err + k_integral * -sum_v_err + k_derivative * (prev_v_err - v_err);
 
 			{
 				std::stringstream sstr;
