@@ -5,7 +5,7 @@ LIB_PATH = -L /usr/local/lib -l gm -l ncurses -l ssh -l usb-1.0  -l hidapi-libus
 CC = g++-4.9
 CFLAGS = -Wall -std=c++11 $(INC_PATH)
 
-SOURCES = main.cpp args.cpp FSO.cpp debug_gm.cpp coarse_align.cpp dom_fetcher.cpp auto_align.cpp gm_network_controller.cpp gm_server.cpp dom_timing_test.cpp tracking.cpp half_auto_align.cpp sfp_auto_align.cpp logger.cpp
+SOURCES = main.cpp args.cpp FSO.cpp debug_gm.cpp coarse_align.cpp dom_fetcher.cpp auto_align.cpp gm_network_controller.cpp gm_server.cpp dom_timing_test.cpp tracking.cpp half_auto_align.cpp sfp_auto_align.cpp logger.cpp tracking_analysis.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 NAME = gmServer
 
