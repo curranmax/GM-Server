@@ -4,31 +4,9 @@
 
 #include "FSO.h"
 #include "args.h"
+#include "tracking_analysis.h"
 
 #include <string>
-
-class GMVal {
-public:
-	GMVal(int h_gm_, int v_gm_) : h_gm(h_gm_), v_gm(v_gm_) {}
-	~GMVal() {}
-
-	GMVal(const GMVal &other_gm_val) : h_gm(other_gm_val.h_gm), v_gm(other_gm_val.v_gm) {}
-	const GMVal& operator=(const GMVal &other_gm_val) {
-		h_gm = other_gm_val.h_gm;
-		v_gm = other_gm_val.v_gm;
-
-		return *this;
-	}
-
-	int h_gm;
-	int v_gm;
-};
-
-struct GMValComp {
-	bool operator()(const GMVal &lhs, const GMVal &rhs) const {
-		return lhs.h_gm < rhs.h_gm || (lhs.h_gm == rhs.h_gm && lhs.v_gm < rhs.v_gm);
-	}
-};
 
 class RSSITuple {
 public:

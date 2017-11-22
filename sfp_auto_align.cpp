@@ -2,6 +2,7 @@
 #include "sfp_auto_align.h"
 
 #include "logger.h"
+#include "tracking_analysis.h"
 
 #include <iostream>
 #include <fstream>
@@ -14,6 +15,8 @@
 #include <arpa/inet.h>
 #include <chrono>
 #include <unistd.h>
+#include <list>
+#include <cmath>
 
 float RSSITuple::squaredEuclideanDistance(const RSSITuple& other_tuple) const {
 	if(this->size() != other_tuple.size()) {
@@ -210,6 +213,13 @@ void SFPAutoAligner::controllerRun() {
 
 	int num_iters = 0;
 
+	// Tracking History
+	int history_size = 100;
+	std::list<GMVal> tracking_history;
+
+	// Tracking Analysis;
+	TrackingAnalysis regular_tracking, history_tracking;
+
 	// Timing tests
 	std::vector<float> get_rssi_times;
 	std::chrono::time_point<std::chrono::system_clock> start_get_rssi;
@@ -306,6 +316,12 @@ void SFPAutoAligner::controllerRun() {
 				v_err = 0;
 				hr = 0.0;
 				vr = 0.0;
+
+				{
+					std::stringstream sstr;
+					sstr << "response is (" << hr << ", " << vr << ")";
+					LOG(sstr.str());
+				}
 			} else {
 				start_find_error = std::chrono::system_clock::now();
 				findError(this_tuple, rssi_tuple_map, h_err, v_err);
@@ -325,29 +341,56 @@ void SFPAutoAligner::controllerRun() {
 	
 				hr = k_proportional * -h_err + k_integral * -sum_h_err + k_derivative * (prev_h_err - h_err);
 				vr = k_proportional * -v_err + k_integral * -sum_v_err + k_derivative * (prev_v_err - v_err);
+
+				{
+					std::stringstream sstr;
+					sstr << "response is (" << hr << ", " << vr << "), detail are [" << k_proportional << " * -(" << h_err <<  ") + " << k_integral << " * -(" << sum_h_err << ") + " << k_derivative << " * (" << prev_h_err << " - " << h_err << "), " << k_proportional << " * -(" << v_err <<  ") + " << k_integral << " * -(" << sum_v_err << ") + " << k_derivative << " * (" << prev_v_err << " - " << v_err << ") ]";
+					LOG(sstr.str());
+				}
 			}
 
+			prev_h_err = h_err;
+			prev_v_err = v_err;
 
-			{
-				std::stringstream sstr;
-				sstr << "response is (" << hr << ", " << vr << ")";
-				LOG(sstr.str());
+			// Add to the history
+			tracking_history.push_front(GMVal(hr, vr));
+			while(int(tracking_history.size()) > history_size) {
+				tracking_history.pop_back();
 			}
+
+			// Calculate response including history information
+			float history_avg_hr = 0.0;
+			float history_avg_vr = 0.0;
+			float sum_weight = 0.0;
+			float x = 0.0;
+			for(std::list<GMVal>::iterator itr = tracking_history.begin(); itr != tracking_history.end(); ++itr) {
+				float weight = 1.0 / (x + 1.0);
+
+				history_avg_hr += itr->h_gm * weight;
+				history_avg_vr += itr->v_gm * weight;
+				sum_weight += weight;
+				x += 1.0;
+			}
+			history_avg_hr /= sum_weight;
+			history_avg_vr /= sum_weight;
 
 			start_set_gm = std::chrono::system_clock::now();
-			fso->setHorizontalGMVal(h_gm + hr);
-			fso->setVerticalGMVal(v_gm + vr);
+			fso->setHorizontalGMVal(h_gm + round(history_avg_hr));
+			fso->setVerticalGMVal(v_gm + round(history_avg_vr));
 			end_set_gm = std::chrono::system_clock::now();
 			dur_set_gm = end_set_gm - start_set_gm;
 			set_gm_times.push_back(dur_set_gm.count());
 
 			{
 				std::stringstream sstr;
-				sstr << "GM set to (" << h_gm + hr << ", " << v_gm + vr << ")";
+				sstr << "GM set to (" << h_gm + round(history_avg_hr) << ", " << v_gm + round(history_avg_vr) << ")";
 				LOG(sstr.str());
 			}
 
-			std::cout << ", tracking moved (" << hr << ", " << vr << ")" << std::endl;
+			std::cout << ", tracking moved (" << hr << ", " << vr << ") [history response (" << round(history_avg_hr) << ", " << round(history_avg_vr) << ")]" << std::endl;
+
+			regular_tracking.addVal(GMVal(hr, vr));
+			history_tracking.addVal(GMVal(round(history_avg_hr), round(history_avg_vr)));
 		} else {
 			std::cout << ", no tracking" << std::endl;
 		}
@@ -390,6 +433,9 @@ void SFPAutoAligner::controllerRun() {
 	}
 	std::cout << "Average findError() time: " << sum_find_error_times / float(find_error_times.size()) * 1000.0 << " milliseconds per function call" << std::endl;
 	std::cout << "Avarege findError() per iter: " << float(find_error_times.size()) / float(num_iters) << " findError() per iter" << std::endl;
+
+	std::cout << "Average iter change [regular]: " << regular_tracking.avgIterChange() << std::endl;
+	std::cout << "Average iter change [history]: " << history_tracking.avgIterChange() << std::endl;
 
 	LOG("controllerRun end");
 }
