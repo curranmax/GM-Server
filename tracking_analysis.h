@@ -4,6 +4,9 @@
 
 #include <vector>
 
+#include <cmath>
+#include <math.h>
+
 class GMVal {
 public:
 	GMVal(int h_gm_, int v_gm_) : h_gm(h_gm_), v_gm(v_gm_) {}
@@ -15,6 +18,10 @@ public:
 		v_gm = other_gm_val.v_gm;
 
 		return *this;
+	}
+
+	float mag() const {
+		return sqrt(pow(h_gm, 2) + pow(v_gm, 2));
 	}
 
 	int h_gm;

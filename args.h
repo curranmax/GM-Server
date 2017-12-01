@@ -88,6 +88,9 @@ class Args {
 	int sfp_num_search_locs;
 	float sfp_table_epsilon;
 
+	// SFP Auto Alignment - table lookup options
+	int sfp_relative_table_option; // default: absolute, 1: full-relative, 2: center absolute and rest relative
+
 	// SFP Auto Alignment - map
 	bool sfp_map_power;
 	int sfp_map_range;
@@ -96,6 +99,11 @@ class Args {
 
 	// SFP Auto Alignment - debug options
 	bool sfp_test_server;
+	bool sfp_no_update;
+
+	// SFP Auto Alignment - Constant Update Algo
+	float sfp_gradient_threshold;
+	int sfp_constant_response;
 
 	// SFP Auto Alignment - getRSSI options
 	int sfp_max_num_messages;

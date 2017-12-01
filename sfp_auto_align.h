@@ -10,9 +10,22 @@
 
 class RSSITuple {
 public:
-	RSSITuple() : rssis() {}
+	RSSITuple() : rssis(), relative_rssi(0.0) {}
 
 	void addValue(float v) { rssis.push_back(v); }
+	void addValue(float v, int option) {
+		// option == 1 is full relative.
+		// option == 2 is center absolute, rest are relative.
+		// Any other value is full absolute.
+		if(rssis.size() == 0) {
+			relative_rssi = v;
+		}
+
+		if(option == 1 || (option == 2 && rssis.size() >= 1)) {
+			v = v - relative_rssi;
+		}
+		addValue(v);
+	}
 
 	float squaredEuclideanDistance(const RSSITuple& other_tuple) const;
 
@@ -28,6 +41,7 @@ public:
 	}
 
 	std::vector<float> rssis;
+	float relative_rssi;
 };
 
 typedef std::map<GMVal, float, GMValComp> RSSIMap;
@@ -65,6 +79,7 @@ private:
 	void setValues(Args* args_, FSO* fso_) { args = args_; fso = fso_; }
 	
 	void controllerRun();
+	void controllerRunConstantUpdate();
 	void mapRun();
 	void mapRunWithSearch();
 	void switchRun();
@@ -75,7 +90,7 @@ private:
 					const RSSITupleMap &rssi_map,
 					int &h_err, int &v_err);
 
-	float getRSSI(int h_gm, int v_gm);
+	float getRSSI(int h_gm, int v_gm, bool no_update);
 
 	void sendMsg(const std::string &msg);
 	void recvMsg(std::string &msg);

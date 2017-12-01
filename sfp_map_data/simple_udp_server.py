@@ -59,7 +59,7 @@ def getRSSIData(req, center, data, params):
 
 # center - the center of the beam at time 0
 # speed - is the speed the center is moving in gm units/sec. The beam doesn't start moving until the first request is received.
-def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 0.0):
+def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 0.0, wait_time = 6.0):
 	if (sigma == None or amplitude == None) and filename == None:
 		raise Exception('Invalid input: must supply either sigma and amplitude, or a filename')
 
@@ -74,6 +74,7 @@ def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 
 	sock.bind((UDP_IP, UDP_PORT))
 
 	start_time = None
+	now = None
 
 	while True:
 		data, addr = sock.recvfrom(1024)
@@ -83,13 +84,14 @@ def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 
 		spl = data.split()
 		if len(spl) == 1:
 			msg = "102.3"
-		if len(spl) == 3:
+		if len(spl) == 3 or len(spl) == 4:
 			req_h = int(spl[1])
 			req_v = int(spl[2])
 
-			now = datetime.now()
-			if start_time == None:
-				start_time = now
+			if not(now != None and len(spl) == 4 and spl[3] == 'no_update'):
+				now = datetime.now()
+				if start_time == None:
+					start_time = now
 
 			if filename == None:
 				rssi = getRSSIGaus(Vec(req_h, req_v), center.move(speed, (now - start_time).total_seconds()), sigma, amplitude)
@@ -101,7 +103,7 @@ def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 
 
 			msg = '%.2f' % rssi
 
-		time.sleep(0.006)
+		time.sleep(wait_time / 1000.0)
 
 		print "\tSent: ", msg
 
@@ -119,6 +121,8 @@ if __name__ == '__main__':
 
 	parser.add_argument('-noise', '--noise_factor', metavar = 'NOISE', type = float, nargs = 1, default = [0.0], help = 'Noise Factor to add to returned RSSI')
 
+	parser.add_argument('-wt', '--wait_time', metavar = 'TIME_IN_MILLISECONDS', type = float, nargs = 1, default = [6.0], help = 'Time (in milliseconds) to wait before sending a response')
+
 	args = parser.parse_args()
 
 	center = Vec(10000, 10000)
@@ -131,4 +135,4 @@ if __name__ == '__main__':
 	sigma = args.sigma[0]
 	amplitude = args.amplitude[0]
 
-	run(center, v, sigma = sigma, amplitude = amplitude, filename = args.data_file_name[0], noise = args.noise_factor[0])
+	run(center, v, sigma = sigma, amplitude = amplitude, filename = args.data_file_name[0], noise = args.noise_factor[0], wait_time = args.wait_time[0])
