@@ -165,6 +165,10 @@ void FSO::load() {
 			nv_diode_sampling_rate = -1;
 
 	std::string power_diode_string = "";
+	std::string power_diode_serial_number = "";
+	int power_diode_channel = -1,
+			power_diode_num_samples = -1,
+			power_diode_sampling_rate = -1;
 	while(std::getline(ifstr,line)) {
 		token = "";
 		std::stringstream sstr(line);
@@ -280,17 +284,27 @@ void FSO::load() {
 							nv_diode_sampling_rate,
 							args->debug);
 
-	if (power_diode_string == "ph") {
-		power_diode = ph_diode;
-	}
-	if (power_diode_string == "nh") {
-		power_diode = nh_diode;
-	}
-	if (power_diode_string == "pv") {
-		power_diode = pv_diode;
-	}
-	if (power_diode_string == "nv") {
-		power_diode = nv_diode;
+	power_diode = makeDiode(power_diode_channel,
+							power_diode_serial_number,
+							power_diode_num_samples,
+							power_diode_sampling_rate,
+							args->debug);
+
+	// TODO add err if power_diode != nullptr and power_diode_str != ""
+
+	if(power_diode == nullptr) {
+		if (power_diode_string == "ph") {
+			power_diode = ph_diode;
+		}
+		if (power_diode_string == "nh") {
+			power_diode = nh_diode;
+		}
+		if (power_diode_string == "pv") {
+			power_diode = pv_diode;
+		}
+		if (power_diode_string == "nv") {
+			power_diode = nv_diode;
+		}
 	}
 
 	gm1->connectDevice();
@@ -404,15 +418,19 @@ void FSO::save() {
 		diode_print_something = true;
 		if(power_diode == ph_diode) {
 			ofstr << "power_diode ph" << std::endl;
-		}
-		if(power_diode == nh_diode) {
+		} else if(power_diode == nh_diode) {
 			ofstr << "power_diode nh" << std::endl;
-		}
-		if(power_diode == pv_diode) {
+		} else if(power_diode == pv_diode) {
 			ofstr << "power_diode pv" << std::endl;
-		}
-		if(power_diode == nv_diode) {
+		} else if(power_diode == nv_diode) {
 			ofstr << "power_diode nv" << std::endl;
+		} else {
+			if(power_diode->getSerialNumber() != "") {
+				ofstr << "power_diode_serial_number " << power_diode->getSerialNumber() << std::endl;
+			}
+			ofstr << "power_diode_channel " << power_diode->getChannel() << std::endl;
+			ofstr << "power_diode_num_samples " << power_diode->getNumSamples() << std::endl;
+			ofstr << "power_diode_sampling_rate " << power_diode->getSamplingRate() << std::endl;
 		}
 	}
 	if(diode_print_something) {

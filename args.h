@@ -82,7 +82,7 @@ class Args {
 	std::string sfp_map_in_file;
 	float sfp_tracking_start;
 	float sfp_tracking_stop;
-	float sfp_rssi_zero_value;
+	float sfp_power_zero_value;
 
 	int sfp_search_delta;
 	int sfp_num_search_locs;
@@ -105,7 +105,7 @@ class Args {
 	float sfp_gradient_threshold;
 	int sfp_constant_response;
 
-	// SFP Auto Alignment - getRSSI options
+	// SFP Auto Alignment - getPower options
 	int sfp_max_num_messages;
 	int sfp_max_num_changes;
 	int sfp_num_message_average;

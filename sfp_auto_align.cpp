@@ -18,13 +18,13 @@
 #include <list>
 #include <cmath>
 
-float RSSITuple::squaredEuclideanDistance(const RSSITuple& other_tuple) const {
+float PowerTuple::squaredEuclideanDistance(const PowerTuple& other_tuple) const {
 	if(this->size() != other_tuple.size()) {
 		return -1.0;
 	}
 	float sum_dist = 0.0;
 	for(int i = 0; i < this->size(); ++i) {
-		sum_dist += pow(rssis[i] - other_tuple.rssis[i], 2.0);
+		sum_dist += pow(powers[i] - other_tuple.powers[i], 2.0);
 	}
 	return sum_dist;
 }
@@ -33,7 +33,7 @@ SFPAutoAligner::SFPAutoAligner(int sock_, SockType sock_type_) {
 	sock = sock_;
 	sock_type = sock_type_;
 
-	get_rssi_mode = GetRSSIMode::SLEEP;
+	get_power_mode = GetPowerMode::SLEEP;
 	sleep_milliseconds = 12;
 	max_num_messages = 1;
 	max_num_changes = 1;
@@ -137,16 +137,16 @@ void SFPAutoAligner::controllerRun() {
 	// Build Table
 	std::string in_file = args->sfp_map_in_file;
 	std::ifstream ifstr(in_file, std::ifstream::in);
-	RSSIMap rssi_map;
-	RSSITupleMap rssi_tuple_map;
+	PowerMap power_map;
+	PowerTupleMap power_tuple_map;
 
 	LOG("getting data from: " + in_file);
 
 	{
-		// Reads the given file and fills the rssi_map.
+		// Reads the given file and fills the power_map.
 		std::string line;
 		int hd, vd;
-		float rssi;
+		float power;
 		int line_number = 0;
 		while(std::getline(ifstr, line)) {
 			if(line == "\n") {
@@ -157,35 +157,35 @@ void SFPAutoAligner::controllerRun() {
 				continue;
 			}
 			std::stringstream sstr(line);
-			sstr >> hd >> vd >> rssi;
+			sstr >> hd >> vd >> power;
 
 			// TODO exclude zero values
-			rssi_map[GMVal(hd, vd)] = rssi;
+			power_map[GMVal(hd, vd)] = power;
 
 			{
 				std::stringstream sstr;
-				sstr << "added entry to rssi_map: (" << hd << ", " << vd << ") -> " << rssi;
+				sstr << "added entry to power_map: (" << hd << ", " << vd << ") -> " << power;
 				VLOG(sstr.str(), 1);
 			}
 		}
 
-		// Creates the rssi_tuple_map.
-		for(RSSIMap::const_iterator table_itr = rssi_map.cbegin(); table_itr != rssi_map.cend(); ++table_itr) {
-			rssi_tuple_map[table_itr->first].addValue(table_itr->second, args->sfp_relative_table_option);
+		// Creates the power_tuple_map.
+		for(PowerMap::const_iterator table_itr = power_map.cbegin(); table_itr != power_map.cend(); ++table_itr) {
+			power_tuple_map[table_itr->first].addValue(table_itr->second, args->sfp_relative_table_option);
 			for(std::vector<GMVal>::const_iterator search_itr = search_locs.cbegin(); search_itr != search_locs.cend(); ++search_itr) {
 				GMVal lookup_loc = GMVal(table_itr->first.h_gm + search_itr->h_gm, table_itr->first.v_gm + search_itr->v_gm);
 
-				float lookup_rssi = 0.0;
-				if(rssi_map.count(lookup_loc) > 0) {
-					lookup_rssi = rssi_map.at(lookup_loc);
+				float lookup_power = 0.0;
+				if(power_map.count(lookup_loc) > 0) {
+					lookup_power = power_map.at(lookup_loc);
 				}
 
-				rssi_tuple_map[table_itr->first].addValue(lookup_rssi, args->sfp_relative_table_option);
+				power_tuple_map[table_itr->first].addValue(lookup_power, args->sfp_relative_table_option);
 			}
 		}
 
-		// Check that all entries in rssi_tuple_map have a length of (search_locs.size() + 1)
-		for(RSSITupleMap::const_iterator table_itr = rssi_tuple_map.cbegin(); table_itr != rssi_tuple_map.cend(); ++table_itr) {
+		// Check that all entries in power_tuple_map have a length of (search_locs.size() + 1)
+		for(PowerTupleMap::const_iterator table_itr = power_tuple_map.cbegin(); table_itr != power_tuple_map.cend(); ++table_itr) {
 			if(table_itr->second.size() != (int(search_locs.size()) + 1)) {
 				std::cerr << "Invalid tuple size: " << table_itr->second.size() << std::endl;
 				return;
@@ -195,7 +195,7 @@ void SFPAutoAligner::controllerRun() {
 
 	float tracking_start = args->sfp_tracking_start;
 	float tracking_stop = args->sfp_tracking_stop;
-	float max_rssi = 0;
+	float max_power = 0;
 
 	struct sigaction sigIntHandler;
 	sigIntHandler.sa_handler = sfpControllerHandler;
@@ -216,18 +216,14 @@ void SFPAutoAligner::controllerRun() {
 
 	int num_iters = 0;
 
-	// Tracking History
-	int history_size = 1;
-	std::list<GMVal> tracking_history;
-
 	// Tracking Analysis;
-	TrackingAnalysis regular_tracking, history_tracking;
+	TrackingAnalysis regular_tracking;
 
 	// Timing tests
-	std::vector<float> get_rssi_times;
-	std::chrono::time_point<std::chrono::system_clock> start_get_rssi;
-	std::chrono::time_point<std::chrono::system_clock> end_get_rssi;
-	std::chrono::duration<double> dur_get_rssi;
+	std::vector<float> get_power_times;
+	std::chrono::time_point<std::chrono::system_clock> start_get_power;
+	std::chrono::time_point<std::chrono::system_clock> end_get_power;
+	std::chrono::duration<double> dur_get_power;
 
 	std::vector<float> set_gm_times;
 	std::chrono::time_point<std::chrono::system_clock> start_set_gm;
@@ -249,24 +245,24 @@ void SFPAutoAligner::controllerRun() {
 		v_gm = fso->getVerticalGMVal();
 
 		// Get current power
-		start_get_rssi = std::chrono::system_clock::now();
-		float this_rssi = getRSSI(h_gm, v_gm, false);
-		end_get_rssi = std::chrono::system_clock::now();
-		dur_get_rssi = end_get_rssi - start_get_rssi;
-		get_rssi_times.push_back(dur_get_rssi.count());
+		start_get_power = std::chrono::system_clock::now();
+		float this_power = getPower(h_gm, v_gm, false);
+		end_get_power = std::chrono::system_clock::now();
+		dur_get_power = end_get_power - start_get_power;
+		get_power_times.push_back(dur_get_power.count());
 
 		{
 			std::stringstream sstr;
-			sstr << "GM at (" << h_gm << ", " << v_gm << ") with RSSI of " << this_rssi;
+			sstr << "GM at (" << h_gm << ", " << v_gm << ") with Power of " << this_power;
 			LOG(sstr.str());
 		}
-		std::cout << "GM at (" << h_gm << ", " << v_gm << ") with RSSI of " << this_rssi;
+		std::cout << "GM at (" << h_gm << ", " << v_gm << ") with Power of " << this_power;
 
-		if(this_rssi > max_rssi) {
-			max_rssi = this_rssi;
+		if(this_power > max_power) {
+			max_power = this_power;
 		}
 
-		float relative_difference = (max_rssi - this_rssi) /  max_rssi;
+		float relative_difference = (max_power - this_power) /  max_power;
 		if(!tracking && relative_difference >= tracking_start) {
 			LOG("tracking turned on");
 			tracking = true;
@@ -277,9 +273,9 @@ void SFPAutoAligner::controllerRun() {
 		}
 
 		if(tracking) {
-			RSSITuple this_tuple;
-			this_tuple.addValue(this_rssi, args->sfp_relative_table_option);
-			RSSIMap search_rssis;
+			PowerTuple this_tuple;
+			this_tuple.addValue(this_power, args->sfp_relative_table_option);
+			PowerMap search_powers;
 			// Query the necessary points
 			for(unsigned int i = 0; i < search_locs.size(); ++i) {
 				start_set_gm = std::chrono::system_clock::now();
@@ -295,26 +291,26 @@ void SFPAutoAligner::controllerRun() {
 					LOG(sstr.str());
 				}
 
-				start_get_rssi = std::chrono::system_clock::now();
-				float search_rssi = getRSSI(search_locs[i].h_gm + h_gm, search_locs[i].v_gm + v_gm, args->sfp_no_update);
-				end_get_rssi = std::chrono::system_clock::now();
-				dur_get_rssi = end_get_rssi - start_get_rssi;
-				get_rssi_times.push_back(dur_get_rssi.count());
+				start_get_power = std::chrono::system_clock::now();
+				float search_power = getPower(search_locs[i].h_gm + h_gm, search_locs[i].v_gm + v_gm, args->sfp_no_update);
+				end_get_power = std::chrono::system_clock::now();
+				dur_get_power = end_get_power - start_get_power;
+				get_power_times.push_back(dur_get_power.count());
 
 				{
 					std::stringstream sstr;
-					sstr << "search: GM at (" << search_locs[i].h_gm + h_gm << "[" << search_locs[i].h_gm << "], " << search_locs[i].v_gm + v_gm << "[" << search_locs[i].v_gm << "]) with RSSI of " << search_rssi;
+					sstr << "search: GM at (" << search_locs[i].h_gm + h_gm << "[" << search_locs[i].h_gm << "], " << search_locs[i].v_gm + v_gm << "[" << search_locs[i].v_gm << "]) with Power of " << search_power;
 					LOG(sstr.str());
 				}
 
-				this_tuple.addValue(search_rssi, args->sfp_relative_table_option);
-				search_rssis[search_locs[i]] = search_rssi;
+				this_tuple.addValue(search_power, args->sfp_relative_table_option);
+				search_powers[search_locs[i]] = search_power;
 			}
 
 			// Search the table for the correction
 			int h_err, v_err;
 			float hr, vr;
-			if(this_tuple.allZero() || this_rssi == 1) {
+			if(this_tuple.allZero() || this_power == 1) {
 				h_err = 0;
 				v_err = 0;
 				hr = 0.0;
@@ -327,7 +323,7 @@ void SFPAutoAligner::controllerRun() {
 				}
 			} else {
 				start_find_error = std::chrono::system_clock::now();
-				findError(this_tuple, rssi_tuple_map, h_err, v_err);
+				findError(this_tuple, power_tuple_map, h_err, v_err);
 	
 				end_find_error = std::chrono::system_clock::now();
 				dur_find_error = end_find_error - start_find_error;
@@ -355,45 +351,22 @@ void SFPAutoAligner::controllerRun() {
 			prev_h_err = h_err;
 			prev_v_err = v_err;
 
-			// Add to the history
-			tracking_history.push_front(GMVal(hr, vr));
-			while(int(tracking_history.size()) > history_size) {
-				tracking_history.pop_back();
-			}
-
-			// Calculate response including history information
-			float history_avg_hr = 0.0;
-			float history_avg_vr = 0.0;
-			float sum_weight = 0.0;
-			float x = 0.0;
-			for(std::list<GMVal>::iterator itr = tracking_history.begin(); itr != tracking_history.end(); ++itr) {
-				float weight = 1.0 / (x + 1.0);
-
-				history_avg_hr += itr->h_gm * weight;
-				history_avg_vr += itr->v_gm * weight;
-				sum_weight += weight;
-				x += 1.0;
-			}
-			history_avg_hr /= sum_weight;
-			history_avg_vr /= sum_weight;
-
 			start_set_gm = std::chrono::system_clock::now();
-			fso->setHorizontalGMVal(h_gm + round(history_avg_hr));
-			fso->setVerticalGMVal(v_gm + round(history_avg_vr));
+			fso->setHorizontalGMVal(h_gm + hr);
+			fso->setVerticalGMVal(v_gm + vr);
 			end_set_gm = std::chrono::system_clock::now();
 			dur_set_gm = end_set_gm - start_set_gm;
 			set_gm_times.push_back(dur_set_gm.count());
 
 			{
 				std::stringstream sstr;
-				sstr << "GM set to (" << h_gm + round(history_avg_hr) << ", " << v_gm + round(history_avg_vr) << ")";
+				sstr << "GM set to (" << h_gm + hr << ", " << v_gm + vr << ")";
 				LOG(sstr.str());
 			}
 
-			std::cout << ", tracking moved (" << hr << ", " << vr << ") [history response (" << round(history_avg_hr) << ", " << round(history_avg_vr) << ")]" << std::endl;
+			std::cout << ", tracking moved (" << hr << ", " << vr << ")" << std::endl;
 
 			regular_tracking.addVal(GMVal(hr, vr));
-			history_tracking.addVal(GMVal(round(history_avg_hr), round(history_avg_vr)));
 		} else {
 			std::cout << ", no tracking" << std::endl;
 		}
@@ -413,13 +386,13 @@ void SFPAutoAligner::controllerRun() {
 		LOG(sstr.str());
 	}
 
-	// Get RSSI
-	float sum_get_rssi_times = 0.0;
-	for(unsigned int i = 0; i < get_rssi_times.size(); ++i) {
-		sum_get_rssi_times += get_rssi_times[i];
+	// Get Power
+	float sum_get_power_times = 0.0;
+	for(unsigned int i = 0; i < get_power_times.size(); ++i) {
+		sum_get_power_times += get_power_times[i];
 	}
-	std::cout << "Average getRSSI() time: " << sum_get_rssi_times / float(get_rssi_times.size()) * 1000.0 << " milliseconds per function call" << std::endl;
-	std::cout << "Avarege getRSSI() per iter: " << float(get_rssi_times.size()) / float(num_iters) << " getRSSI() per iter" << std::endl;
+	std::cout << "Average getPower() time: " << sum_get_power_times / float(get_power_times.size()) * 1000.0 << " milliseconds per function call" << std::endl;
+	std::cout << "Avarege getPower() per iter: " << float(get_power_times.size()) / float(num_iters) << " getPower() per iter" << std::endl;
 
 	// Set GM
 	float sum_set_gm_times = 0.0;
@@ -438,7 +411,6 @@ void SFPAutoAligner::controllerRun() {
 	std::cout << "Avarege findError() per iter: " << float(find_error_times.size()) / float(num_iters) << " findError() per iter" << std::endl;
 
 	std::cout << "Average iter change [regular]: " << regular_tracking.avgIterChange() << std::endl;
-	std::cout << "Average iter change [history]: " << history_tracking.avgIterChange() << std::endl;
 
 	LOG("controllerRun end");
 }
@@ -466,7 +438,7 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 	// Thresholds for tracking
 	float tracking_start = args->sfp_tracking_start;
 	float tracking_stop = args->sfp_tracking_stop;
-	float max_rssi = 0;
+	float max_power = 0;
 
 	// Basic variables
 	bool tracking = false;
@@ -490,10 +462,10 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 	int constant_response = args->sfp_constant_response;
 	
 	// Timing tests
-	std::vector<float> get_rssi_times;
-	std::chrono::time_point<std::chrono::system_clock> start_get_rssi;
-	std::chrono::time_point<std::chrono::system_clock> end_get_rssi;
-	std::chrono::duration<double> dur_get_rssi;
+	std::vector<float> get_power_times;
+	std::chrono::time_point<std::chrono::system_clock> start_get_power;
+	std::chrono::time_point<std::chrono::system_clock> end_get_power;
+	std::chrono::duration<double> dur_get_power;
 
 	std::vector<float> set_gm_times;
 	std::chrono::time_point<std::chrono::system_clock> start_set_gm;
@@ -515,24 +487,24 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 		v_gm = fso->getVerticalGMVal();
 
 		// Get current power
-		start_get_rssi = std::chrono::system_clock::now();
-		float this_rssi = getRSSI(h_gm, v_gm, false);
-		end_get_rssi = std::chrono::system_clock::now();
-		dur_get_rssi = end_get_rssi - start_get_rssi;
-		get_rssi_times.push_back(dur_get_rssi.count());
+		start_get_power = std::chrono::system_clock::now();
+		float this_power = getPower(h_gm, v_gm, false);
+		end_get_power = std::chrono::system_clock::now();
+		dur_get_power = end_get_power - start_get_power;
+		get_power_times.push_back(dur_get_power.count());
 
 		{
 			std::stringstream sstr;
-			sstr << "GM at (" << h_gm << ", " << v_gm << ") with RSSI of " << this_rssi;
+			sstr << "GM at (" << h_gm << ", " << v_gm << ") with Power of " << this_power;
 			LOG(sstr.str());
 		}
-		std::cout << "GM at (" << h_gm << ", " << v_gm << ") with RSSI of " << this_rssi;
+		std::cout << "GM at (" << h_gm << ", " << v_gm << ") with Power of " << this_power;
 
-		if(this_rssi > max_rssi) {
-			max_rssi = this_rssi;
+		if(this_power > max_power) {
+			max_power = this_power;
 		}
 
-		float relative_difference = (max_rssi - this_rssi) /  max_rssi;
+		float relative_difference = (max_power - this_power) /  max_power;
 		if(!tracking && relative_difference >= tracking_start) {
 			LOG("tracking turned on");
 			tracking = true;
@@ -553,20 +525,20 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 				dur_set_gm = end_set_gm - start_set_gm;
 				set_gm_times.push_back(dur_set_gm.count());
 
-				start_get_rssi = std::chrono::system_clock::now();
-				float search_rssi = getRSSI(search_locs[i].h_gm + h_gm, search_locs[i].v_gm + v_gm, args->sfp_no_update);
-				end_get_rssi = std::chrono::system_clock::now();
-				dur_get_rssi = end_get_rssi - start_get_rssi;
-				get_rssi_times.push_back(dur_get_rssi.count());
+				start_get_power = std::chrono::system_clock::now();
+				float search_power = getPower(search_locs[i].h_gm + h_gm, search_locs[i].v_gm + v_gm, args->sfp_no_update);
+				end_get_power = std::chrono::system_clock::now();
+				dur_get_power = end_get_power - start_get_power;
+				get_power_times.push_back(dur_get_power.count());
 
 				{
 					std::stringstream sstr;
-					sstr << "search: GM at (" << search_locs[i].h_gm + h_gm << "[" << search_locs[i].h_gm << "], " << search_locs[i].v_gm + v_gm << "[" << search_locs[i].v_gm << "]) with RSSI of " << search_rssi;
+					sstr << "search: GM at (" << search_locs[i].h_gm + h_gm << "[" << search_locs[i].h_gm << "], " << search_locs[i].v_gm + v_gm << "[" << search_locs[i].v_gm << "]) with Power of " << search_power;
 					LOG(sstr.str());
 				}
 
 				// Calculate gradient
-				float gradient = (search_rssi - this_rssi) / search_locs[i].mag();
+				float gradient = (search_power - this_power) / search_locs[i].mag();
 				{
 					std::stringstream sstr;
 					sstr << "gradient for (" << search_locs[i].h_gm << ", " << search_locs[i].v_gm << ") is " << gradient;
@@ -636,13 +608,13 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 		LOG(sstr.str());
 	}
 
-	// Get RSSI
-	float sum_get_rssi_times = 0.0;
-	for(unsigned int i = 0; i < get_rssi_times.size(); ++i) {
-		sum_get_rssi_times += get_rssi_times[i];
+	// Get Power
+	float sum_get_power_times = 0.0;
+	for(unsigned int i = 0; i < get_power_times.size(); ++i) {
+		sum_get_power_times += get_power_times[i];
 	}
-	std::cout << "Average getRSSI() time: " << sum_get_rssi_times / float(get_rssi_times.size()) * 1000.0 << " milliseconds per function call" << std::endl;
-	std::cout << "Avarege getRSSI() per iter: " << float(get_rssi_times.size()) / float(num_iters) << " getRSSI() per iter" << std::endl;
+	std::cout << "Average getPower() time: " << sum_get_power_times / float(get_power_times.size()) * 1000.0 << " milliseconds per function call" << std::endl;
+	std::cout << "Avarege getPower() per iter: " << float(get_power_times.size()) / float(num_iters) << " getPower() per iter" << std::endl;
 
 	// Set GM
 	float sum_set_gm_times = 0.0;
@@ -665,7 +637,7 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 	LOG("end controllerRunConstantUpdate");
 }
 
-void SFPAutoAligner::findError(const RSSITuple& this_tuple, const RSSITupleMap& rssi_map, int &h_err, int &v_err) {
+void SFPAutoAligner::findError(const PowerTuple& this_tuple, const PowerTupleMap& power_map, int &h_err, int &v_err) {
 	bool first = true;
 	float best_diff = 0.0;
 	float diff_epsilon = args->sfp_table_epsilon;
@@ -678,13 +650,13 @@ void SFPAutoAligner::findError(const RSSITuple& this_tuple, const RSSITupleMap& 
 			if(i > 0) {
 				sstr << ", ";
 			}
-			sstr << this_tuple.rssis[i];
+			sstr << this_tuple.powers[i];
 		}
 		sstr << ">";
 		LOG(sstr.str());
 	}
 
-	for(RSSITupleMap::const_iterator table_itr = rssi_map.cbegin(); table_itr != rssi_map.cend(); ++table_itr) {
+	for(PowerTupleMap::const_iterator table_itr = power_map.cbegin(); table_itr != power_map.cend(); ++table_itr) {
 		float this_diff = this_tuple.squaredEuclideanDistance(table_itr->second);
 
 		if(this_diff <= diff_epsilon) {
@@ -731,7 +703,7 @@ void SFPAutoAligner::mapRun() {
 	std::ofstream ofstr(out_file, std::ofstream::out);
 
 	ofstr << "PARAMS map_range=" << map_range << " map_step=" << map_step << std::endl;  
-	ofstr << "H_Delta V_Delta RSSI" << std::endl;
+	ofstr << "H_Delta V_Delta Power" << std::endl;
 
 	for(int h_delta = -map_range; h_delta <= map_range; h_delta += map_step) {
 		for(int v_delta = -map_range; v_delta <= map_range; v_delta += map_step) {
@@ -740,13 +712,13 @@ void SFPAutoAligner::mapRun() {
 
 			std::cout << "GM:(" << h_delta << ", " << v_delta << ")";
 			
-			// Get RSSI
-			float rssi = getRSSI(h_delta + h_gm_init, v_delta + v_gm_init, false);
+			// Get Power
+			float power = getPower(h_delta + h_gm_init, v_delta + v_gm_init, false);
 
-			std::cout << "\t --> RSSI = " << rssi << std::endl;
+			std::cout << "\t --> Power = " << power << std::endl;
 
 			// Save it
-			ofstr << h_delta << " " << v_delta << " " << rssi << std::endl;
+			ofstr << h_delta << " " << v_delta << " " << power << std::endl;
 		}
 	}
 	ofstr.close();
@@ -773,10 +745,10 @@ void SFPAutoAligner::mapRunWithSearch() {
 	std::ofstream ofstr(out_file, std::ofstream::out);
 
 	ofstr << "PARAMS map_range=" << map_range << " map_step=" << map_step << " with_search=true" << std::endl;  
-	ofstr << "H_Delta V_Delta RSSI[0,0]";
+	ofstr << "H_Delta V_Delta Power[0,0]";
 
 	for(unsigned int i = 0; i < search_locs.size(); ++i) {
-		ofstr << " RSSI[" << search_locs[i].h_gm << "," << search_locs[i].v_gm << "]";
+		ofstr << " Power[" << search_locs[i].h_gm << "," << search_locs[i].v_gm << "]";
 	}
 	ofstr << std::endl;
 
@@ -787,21 +759,21 @@ void SFPAutoAligner::mapRunWithSearch() {
 
 			std::cout << "GM:(" << h_delta << ", " << v_delta << ")";
 			
-			// Get RSSI
-			float rssi = getRSSI(h_delta + h_gm_init, v_delta + v_gm_init, false);
+			// Get Power
+			float power = getPower(h_delta + h_gm_init, v_delta + v_gm_init, false);
 
-			std::cout << "\t --> RSSI = " << rssi << std::endl;
+			std::cout << "\t --> Power = " << power << std::endl;
 
 			// Save it
-			ofstr << h_delta << " " << v_delta << " " << rssi;
+			ofstr << h_delta << " " << v_delta << " " << power;
 
 			for(unsigned int i = 0; i < search_locs.size(); ++i) {
 				fso->setHorizontalGMVal(search_locs[i].h_gm + h_delta + h_gm_init);
 				fso->setVerticalGMVal(search_locs[i].v_gm + v_delta + v_gm_init);
 
-				float search_rssi = getRSSI(search_locs[i].h_gm + h_delta + h_gm_init, search_locs[i].v_gm + v_delta + v_gm_init, false);
+				float search_power = getPower(search_locs[i].h_gm + h_delta + h_gm_init, search_locs[i].v_gm + v_delta + v_gm_init, false);
 
-				ofstr << " " << search_rssi;
+				ofstr << " " << search_power;
 			}
 
 			ofstr << std::endl;
@@ -826,7 +798,7 @@ void SFPAutoAligner::switchRun() {
 	typedef std::chrono::time_point<std::chrono::system_clock> time;
 	typedef std::pair<float,std::pair<time, time> > switchData;
 
-	std::vector<switchData> rssi_times;
+	std::vector<switchData> power_times;
 
 	int num_messages = 10000;
 
@@ -834,10 +806,10 @@ void SFPAutoAligner::switchRun() {
 	fso->setVerticalGMVal(v_gm_init + pre_switch_v_offset);
 
 	for(int i = 0; i < num_messages; ++i) {
-		time pre_get_rssi = std::chrono::system_clock::now();
-		float rssi = getRSSI(h_gm_init + pre_switch_h_offset, v_gm_init + pre_switch_v_offset, false);
-		time post_get_rssi = std::chrono::system_clock::now();
-		rssi_times.push_back(std::make_pair(rssi, std::make_pair(pre_get_rssi, post_get_rssi)));
+		time pre_get_power = std::chrono::system_clock::now();
+		float power = getPower(h_gm_init + pre_switch_h_offset, v_gm_init + pre_switch_v_offset, false);
+		time post_get_power = std::chrono::system_clock::now();
+		power_times.push_back(std::make_pair(power, std::make_pair(pre_get_power, post_get_power)));
 	}
 
 	time pre_switch_time = std::chrono::system_clock::now();
@@ -846,10 +818,10 @@ void SFPAutoAligner::switchRun() {
 	time post_switch_time = std::chrono::system_clock::now();
 
 	for(int i = 0; i < num_messages; ++i) {
-		time pre_get_rssi = std::chrono::system_clock::now();
-		float rssi = getRSSI(h_gm_init + post_switch_h_offset, v_gm_init + post_switch_v_offset, false);
-		time post_get_rssi = std::chrono::system_clock::now();
-		rssi_times.push_back(std::make_pair(rssi, std::make_pair(pre_get_rssi, post_get_rssi)));
+		time pre_get_power = std::chrono::system_clock::now();
+		float power = getPower(h_gm_init + post_switch_h_offset, v_gm_init + post_switch_v_offset, false);
+		time post_get_power = std::chrono::system_clock::now();
+		power_times.push_back(std::make_pair(power, std::make_pair(pre_get_power, post_get_power)));
 	}
 
 	std::string out_file = args->sfp_map_out_file;
@@ -859,8 +831,8 @@ void SFPAutoAligner::switchRun() {
 
 	ofstr << "event pre_time(s) post_time(s) val" << std::endl;
 	ofstr << "switch " << (pre_switch_time - relative_time).count() << " " << (post_switch_time - relative_time).count() << " " << pre_switch_h_offset << "," << pre_switch_v_offset << "," << post_switch_h_offset << "," << post_switch_v_offset << std::endl;
-	for(unsigned int i = 0; i < rssi_times.size(); ++i) {
-		ofstr << "rssi " << (rssi_times[i].second.first - relative_time).count() << " " << (rssi_times[i].second.second - relative_time).count() << " " << rssi_times[i].first << std::endl;
+	for(unsigned int i = 0; i < power_times.size(); ++i) {
+		ofstr << "power " << (power_times[i].second.first - relative_time).count() << " " << (power_times[i].second.second - relative_time).count() << " " << power_times[i].first << std::endl;
 	}
 
 	ofstr.close();
@@ -901,39 +873,39 @@ void SFPAutoAligner::alignRun(Args* args_, FSO* fso_, const std::string &other_r
 			std::cin >> scan_range >> scan_step;
 		}
 
-		// If requested do the scan and record the RSSIs for all locs
+		// If requested do the scan and record the Powers for all locs
 		std::cout << "Scanning with params: " << scan_range << " " << scan_step << std::endl;
 		std::vector<GMVal> max_gm_vals;
-		float max_rssi;
+		float max_power;
 		bool first = true;
-		// Find maximum RSSI
+		// Find maximum Power
 		for(int h_delta = -scan_range; h_delta <= scan_range; h_delta += scan_step) {
 			for(int v_delta = -scan_range; v_delta <= scan_range; v_delta += scan_step) {
 				fso->setHorizontalGMVal(h_gm + h_delta);
 				fso->setVerticalGMVal(v_gm + v_delta);
 
-				float rssi = getRSSI(h_gm + h_delta, v_gm + v_delta, false);
+				float power = getPower(h_gm + h_delta, v_gm + v_delta, false);
 
 				if(first) {
 					first = false;
-					max_rssi = rssi;
+					max_power = power;
 					max_gm_vals.push_back(GMVal(h_gm + h_delta, v_gm + v_delta));
 				} else {
-					if(abs(max_rssi - rssi) <= 0.01) {
+					if(abs(max_power - power) <= 0.01) {
 						max_gm_vals.push_back(GMVal(h_gm + h_delta, v_gm + v_delta));
-					} else if(max_rssi < rssi) {
+					} else if(max_power < power) {
 						max_gm_vals.clear();
 						max_gm_vals.push_back(GMVal(h_gm + h_delta, v_gm + v_delta));
 
-						max_rssi = rssi;
+						max_power = power;
 					}
 				}
 			}
 		}
 
-		// For now sets the GM to the average of all points, and reports the max_rssi and the number of points with that value
+		// For now sets the GM to the average of all points, and reports the max_power and the number of points with that value
 		// TODO compute a bounding polygon, and set the GM to the "middle", and report the area of the hull
-		std::cout << "Found " << max_gm_vals.size() << " gm vals with RSSI of " << max_rssi << std::endl;
+		std::cout << "Found " << max_gm_vals.size() << " gm vals with Power of " << max_power << std::endl;
 
 		int new_h_gm = 0;
 		int new_v_gm = 0;
@@ -951,78 +923,100 @@ void SFPAutoAligner::alignRun(Args* args_, FSO* fso_, const std::string &other_r
 	std::cout << "FSO saved!!!" << std::endl;
 }
 
-float SFPAutoAligner::getRSSI(int h_gm, int v_gm, bool no_update) {
-	// TODO confirm "good" RSSI values:
+void SFPAutoAligner::listenerRun() {
+	LOG("listenerRun start");
+
+	std::string msg, token;
+	bool listener_loop = true;
+	while(listener_loop) {
+		recvMsg(msg);
+		std::stringstream sstr(msg);
+
+		sstr >> token;
+		if(token == "X_out") {
+			givePowerVoltage(fso->getPowerDiodeVoltage());
+		} else if(token == "end_tracking") {
+			listener_loop = false;
+		} else {
+			std::cerr << "UNEXPECTED MESSAGE: " << msg << std::endl;
+		}
+	}
+
+	LOG("listenerRun end");
+}
+
+float SFPAutoAligner::getPower(int h_gm, int v_gm, bool no_update) {
+	// TODO confirm "good" Power values:
 	// 		0) Log values so they can be inspected later.
 	// 		1) Sleep for longer.
 	// 		2) Read k values and return the first edge value.
 	// 		3) Constantly read values in separate thread. Update a shared variable when changes.
-	if(get_rssi_mode == GetRSSIMode::SLEEP && sleep_milliseconds > 0) {
-		LOG("getRSSI: start sleep");
+	if(get_power_mode == GetPowerMode::SLEEP && sleep_milliseconds > 0) {
+		LOG("getPower: start sleep");
 		usleep(1000 * sleep_milliseconds);
-		LOG("getRSSI: end sleep");
+		LOG("getPower: end sleep");
 	}
 
-	std::string get_rssi_msg = "X_out";
+	std::string get_power_msg = "X_out";
 	if(args->sfp_test_server) {
 		std::stringstream sstr;
-		sstr << "get_rssi " << h_gm << " " << v_gm;
+		sstr << "get_power " << h_gm << " " << v_gm;
 
 		if(no_update) {
 			sstr << " no_update";
 		}
 
-		get_rssi_msg = sstr.str();
+		get_power_msg = sstr.str();
 	}
 
-	float rssi = 0.0;
+	float power = 0.0;
 
-	if(get_rssi_mode == GetRSSIMode::SLEEP) {
-		sendMsg(get_rssi_msg);
+	if(get_power_mode == GetPowerMode::SLEEP) {
+		sendMsg(get_power_msg);
 
-		std::string rssi_str;
-		recvMsg(rssi_str);
+		std::string power_str;
+		recvMsg(power_str);
 
-		std::stringstream sstr(rssi_str);
-		sstr >> rssi;
-	} else if(get_rssi_mode == GetRSSIMode::MULTI) {
-		// TODO to count as a change must have been k+ (either 2 or 3) prev_rssis
+		std::stringstream sstr(power_str);
+		sstr >> power;
+	} else if(get_power_mode == GetPowerMode::MULTI) {
+		// TODO to count as a change must have been k+ (either 2 or 3) prev_powers
 		bool first = true;
-		float prev_rssi = 0.0;
-		std::vector<float> unique_rssis;
+		float prev_power = 0.0;
+		std::vector<float> unique_powers;
 		int num_changes = 0;
 
 
-		std::stringstream rcv_rssis;
-		rcv_rssis << "received rssis: {";
+		std::stringstream rcv_powers;
+		rcv_powers << "received powers: {";
 
 		for(int i = 0; i < max_num_messages; i++) {
-			prev_rssi = rssi;
+			prev_power = power;
 
-			sendMsg(get_rssi_msg);
+			sendMsg(get_power_msg);
 
-			std::string rssi_str;
-			recvMsg(rssi_str);
+			std::string power_str;
+			recvMsg(power_str);
 
-			std::stringstream sstr(rssi_str);
-			sstr >> rssi;
+			std::stringstream sstr(power_str);
+			sstr >> power;
 
 			if(i != 0) {
-				rcv_rssis << ", ";
+				rcv_powers << ", ";
 			}
-			rcv_rssis << rssi;
+			rcv_powers << power;
 
 			if(first) {
-				unique_rssis.push_back(rssi);
+				unique_powers.push_back(power);
 			}
 
-			if(!first && prev_rssi != rssi) {
+			if(!first && prev_power != power) {
 				num_changes++;
 
-				while(unique_rssis.size() >= (unsigned int)(num_message_average)) {
-					unique_rssis.erase(unique_rssis.begin());
+				while(unique_powers.size() >= (unsigned int)(num_message_average)) {
+					unique_powers.erase(unique_powers.begin());
 				}
-				unique_rssis.push_back(rssi);
+				unique_powers.push_back(power);
 
 				if(num_changes >= max_num_changes) {
 					break;
@@ -1034,28 +1028,45 @@ float SFPAutoAligner::getRSSI(int h_gm, int v_gm, bool no_update) {
 			}
 		}
 
-		rcv_rssis << "}";
-		LOG(rcv_rssis.str());
+		rcv_powers << "}";
+		LOG(rcv_powers.str());
 
-		if(unique_rssis.size() != 0) {
-			float sum_rssi = 0.0;
-			for(unsigned int i = 0; i < unique_rssis.size(); ++i) {
-				sum_rssi += unique_rssis[i];
+		if(unique_powers.size() != 0) {
+			float sum_power = 0.0;
+			for(unsigned int i = 0; i < unique_powers.size(); ++i) {
+				sum_power += unique_powers[i];
 			}
-			rssi = sum_rssi / float(unique_rssis.size());
+			power = sum_power / float(unique_powers.size());
 		}
 	}
 
 	{
 		std::stringstream sstr;
-		sstr << "fetched RSSI is: " << rssi;
+		sstr << "fetched power is: " << power;
 		LOG(sstr.str());
 	}
-	if(rssi <= args->sfp_rssi_zero_value) {
-		rssi = 0.0;
+	if(power <= args->sfp_power_zero_value) {
+		power = 0.0;
 	}
 
-	return rssi;
+	return power;
+}
+
+void SFPAutoAligner::endTracking() {
+	LOG("sending end tracking message");
+	sendMsg("end_tracking");
+}
+
+void SFPAutoAligner::givePowerVoltage(float volt) {
+	{
+		std::stringstream sstr;
+		sstr << "giving voltage of " << volt;
+		LOG(sstr.str());
+	}
+
+	std::stringstream sstr;
+	sstr << volt;
+	sendMsg(sstr.str());
 }
 
 void SFPAutoAligner::sendMsg(const std::string &msg) {

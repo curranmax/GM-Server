@@ -93,10 +93,15 @@ def run(center, speed, sigma = None, amplitude = None, filename = None, noise = 
 				if start_time == None:
 					start_time = now
 
+			t = (now - start_time).total_seconds()
+			t -= 2
+			if t < 0:
+				t = 0.0
+
 			if filename == None:
-				rssi = getRSSIGaus(Vec(req_h, req_v), center.move(speed, (now - start_time).total_seconds()), sigma, amplitude)
+				rssi = getRSSIGaus(Vec(req_h, req_v), center.move(speed, t), sigma, amplitude)
 			else:
-				rssi = getRSSIData(Vec(req_h, req_v), center.move(speed, (now - start_time).total_seconds()), rssi_data, params)
+				rssi = getRSSIData(Vec(req_h, req_v), center.move(speed, t), rssi_data, params)
 			
 			if noise > 0.001:
 				rssi = (1.0 + (random.random() * 2.0 * noise - noise)) * rssi
