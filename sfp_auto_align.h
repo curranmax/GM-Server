@@ -7,6 +7,7 @@
 #include "tracking_analysis.h"
 
 #include <string>
+#include <netinet/in.h>
 
 class PowerTuple {
 public:

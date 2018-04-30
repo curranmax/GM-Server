@@ -19,11 +19,6 @@ FSO::FSO(const std::string &fso_dec_fname, Args* args_) {
 	rack_id = "";
 	fso_id = "";
 
-	port_name = "";
-	switch_address = "";
-	switch_username = "";
-	switch_password = "";
-
 	gm1 = nullptr;
 	gm2 = nullptr;
 	horizontal_gm = nullptr;
@@ -36,8 +31,6 @@ FSO::FSO(const std::string &fso_dec_fname, Args* args_) {
 
 	link_settings = ls_map();
 
-	dom = nullptr;
-
 	args = args_;
 
 	load();
@@ -48,11 +41,6 @@ FSO::FSO(const std::string &filename,const std::string &rack_id_,const std::stri
 	rack_id = rack_id_;
 	fso_id = fso_id_;
 
-	port_name = "";
-	switch_address = "";
-	switch_username = "";
-	switch_password = "";
-
 	horizontal_gm = nullptr;
 	vertical_gm = nullptr;
 	ph_diode = nullptr;
@@ -62,8 +50,6 @@ FSO::FSO(const std::string &filename,const std::string &rack_id_,const std::stri
 	power_diode = nullptr;
 
 	link_settings = ls_map();
-
-	dom = nullptr;
 
 	args = args_;
 
@@ -82,10 +68,6 @@ FSO::~FSO() {
 	if(gm2 != NULL) {
 		gm2->disconnectDevice();
 		delete gm2;
-	}
-
-	if(dom != NULL) {
-		dom->disconnect_from_switch();
 	}
 }
 
@@ -194,14 +176,6 @@ void FSO::load() {
 			sstr >> horizontal_gm_num;
 		} else if(token == "vertical_gm") {
 			sstr >> vertical_gm_num;
-		} else if(token == "switch_addr") {
-			sstr >> switch_address;
-		} else if(token == "switch_user") {
-			sstr >> switch_username;
-		} else if(token == "switch_pwrd") {
-			sstr >> switch_password;
-		} else if(token == "port_name") {
-			sstr >> port_name;
 		} else if(token == "link") {
 			std::string other_rack_id, other_fso_id;
 			int val1,val2;
@@ -368,14 +342,6 @@ void FSO::save() {
 		ofstr << std::endl;
 	}
 
-	// DOM
-	if(port_name != "" && switch_address != "") {
-		ofstr << "switch_addr " << switch_address << std::endl;
-		ofstr << "switch_user " << switch_username << std::endl;
-		ofstr << "switch_pwrd " << switch_password << std::endl;
-		ofstr << "port_name " << port_name << std::endl << std::endl;
-	}
-
 	// Diodes
 	bool diode_print_something = false;
 	if (ph_diode != nullptr && !ph_diode->isNull()) {
@@ -489,48 +455,6 @@ Diode* FSO::makeDiode(int channel, const std::string& serial_number,
 		}
 	}
 	return nullptr;
-}
-
-float FSO::getPower() const {
-	// Sometimes get 0? might be caused by trying to transmit -inf
-	// Record time
-	std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
-	float rv = 0.0;
-	if(dom != NULL) {
-		if(!dom->isConnected()) {
-			// Connect
-			dom->connect_to_switch();
-		}
-		rv = dom->getPower(port_name);
-	} else {
-		rv = -40.0;
-	}
-	// Record time and print difference
-	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
-
-	std::chrono::duration<double> dur = end - start;
-	float duration = dur.count();
-	FSO::addDur(duration);
-	return rv;
-}
-
-void FSO::startAutoAlign() {
-	if(dom == NULL && switch_address != "" && switch_username != "" && switch_password != "" && port_name != "") {
-		if(args->fake_dom) {
-			dom = new FakeFetcher(args);
-		} else {
-			dom = new SSHFetcher(switch_address,switch_username,switch_password,args);
-		}
-	}
-	if(dom != NULL && !dom->isConnected()) {
-		dom->connect_to_switch();
-	}
-}
-
-void FSO::endAutoAlign() {
-	if(!args->dom_stay_connected) {
-		dom->disconnect_from_switch();
-	}
 }
 
 void FSO::getOnlyLink(std::string* other_rack_id, std::string* other_fso_id) {

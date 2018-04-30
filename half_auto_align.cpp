@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <map>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 HalfAutoAlign::HalfAutoAlign(int sock_, bool is_controller_)
 		: sock(sock_), is_controller(is_controller_),

@@ -14,6 +14,9 @@
 #include <thread>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 TrackingSystem::TrackingSystem(int sock_, bool is_controller_)
 		: sock(sock_), is_controller(is_controller_),

@@ -246,61 +246,9 @@ void CoarseAligner::run() {
 				fso->setGM2Val(v2);
 			}
 		} else if(command == "aa_control") {
-			std::string this_rack_id, this_fso_id, other_addr, other_rack_id, other_fso_id;
-			sstr >> this_rack_id >> this_fso_id >> other_addr >> other_rack_id >> other_fso_id;
-			FSO* fso = getFSO(this_rack_id,this_fso_id);
-			if(fso == NULL) {
-				std::cerr << "Invalid FSO selected" << std::endl;
-				continue;
-			}
-			// For now get addr from computer but would be nice to get it another way
-			AutoAligner *aa = connectTo(8888,other_addr,other_rack_id,other_fso_id);
-			if(aa == NULL) {
-				std::cerr << "Unable to start Auto Alignment Process" << std::endl;
-			} else {
-				aa->run(args,fso);
-			}
 		} else if(command == "aac") {
-			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
-			FSO* fso = getFSO(this_rack_id,this_fso_id);
-			if(fso == NULL) {
-				std::cerr << "Invalid FSO selected" << std::endl;
-				continue;
-			}
-			// For now get addr from computer but would be nice to get it another way
-			AutoAligner *aa = connectTo(8888,other_addr,other_rack_id,other_fso_id);
-			if(aa == NULL) {
-				std::cerr << "Unable to start Auto Alignment Process" << std::endl;
-			} else {
-				aa->run(args,fso);
-			}
 		} else if(command == "aal") {
-			std::string this_rack_id = "rack_2", this_fso_id = "fso_1";
-			FSO* fso = getFSO(this_rack_id,this_fso_id);
-			if(fso == NULL) {
-				std::cerr << "Invalid FSO selected" << std::endl;
-				continue;
-			}
-			AutoAligner *aa = listenFor(8888,this_rack_id,this_fso_id);
-			if(aa == NULL) {
-				std::cerr << "Unable to start Auto Alignment Process" << std::endl;
-			} else {
-				aa->run(args,fso);
-			}
 		} else if(command == "aa_listen") {
-			std::string this_rack_id, this_fso_id;
-			sstr >> this_rack_id >> this_fso_id;
-			FSO* fso = getFSO(this_rack_id,this_fso_id);
-			if(fso == NULL) {
-				std::cerr << "Invalid FSO selected" << std::endl;
-				continue;
-			}
-			AutoAligner *aa = listenFor(8888,this_rack_id,this_fso_id);
-			if(aa == NULL) {
-				std::cerr << "Unable to start Auto Alignment Process" << std::endl;
-			} else {
-				aa->run(args,fso);
-			}
 		} else if(command == "ts_control") {
 			std::string this_rack_id, this_fso_id, other_addr, other_rack_id, other_fso_id;
 			sstr >> this_rack_id >> this_fso_id >> other_addr >> other_rack_id >> other_fso_id;
@@ -358,15 +306,6 @@ void CoarseAligner::run() {
 			} else {
 				ts->run(fso, args);
 			}
-		} else if(command == "power") {
-			std::string rack_id,fso_id;
-			sstr >> rack_id >> fso_id;
-			FSO* fso = getFSO(rack_id,fso_id);
-			if(fso == NULL) {
-				std::cerr << "Invalid FSO selected" << std::endl;
-				continue; 
-			}
-			std::cout << " Pwr is " << getPower(fso) << std::endl;
 		} else if(command == "kp") {
 			float t;
 			sstr >> t;
@@ -518,13 +457,6 @@ void CoarseAligner::gm2_decr(FSO* fso) {
 	fso->changeGMVal(2,-delta);
 }
 
-float CoarseAligner::getPower(FSO* fso) {
-	fso->startAutoAlign();
-	float rv = fso->getPower();
-	fso->endAutoAlign();
-	return rv;
-}
-
 void CoarseAligner::printModifyHelp() const {
 	std::cout << "Arrow Keys or WASD - modify GM position" << std::endl;
 	std::cout << "v - print current delta value" << std::endl;
@@ -533,7 +465,6 @@ void CoarseAligner::printModifyHelp() const {
 	std::cout << "g - print current GM positions" << std::endl;
 	std::cout << "k - save current GM positions" << std::endl;
 	std::cout << "l - reload GM positions from file" << std::endl;
-	// std::cout << "p - prints power of FSO" << std::endl;
 	std::cout << "q - quit modify mode" << std::endl;
 	std::cout << "h - display help again" << std::endl;
 }
@@ -607,9 +538,6 @@ void CoarseAligner::modify(FSO* fso,const std::string &rid,const std::string &fi
 				return;
 			}
 			std::cout << "Loaded Sucessfully" << std::endl;
-		} else if(key == (int)'p') {
-			std::cout << "Getting Power..." << std::endl;
-			std::cout << "Power is " << getPower(fso) << std::endl;
 		} else if(key == (int)'h') {
 			printModifyHelp();
 		}

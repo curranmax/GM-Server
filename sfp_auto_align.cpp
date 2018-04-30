@@ -10,6 +10,7 @@
 #include <signal.h>
 #include <math.h>
 #include <string.h>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -17,6 +18,7 @@
 #include <unistd.h>
 #include <list>
 #include <cmath>
+#include <netdb.h>
 
 float PowerTuple::squaredEuclideanDistance(const PowerTuple& other_tuple) const {
 	if(this->size() != other_tuple.size()) {

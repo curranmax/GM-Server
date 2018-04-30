@@ -4,9 +4,6 @@
 #include "coarse_align.h"
 #include "gm_server.h"
 #include "gm_network_controller.h"
-#include "dom_timing_test.h"
-
-#include "dom_fetcher.h"
 
 #include <stdlib.h>
 #include <iostream>
@@ -80,15 +77,6 @@ int main(int argc, char const *argv[]) {
 
 		delete network_controller;
 	}
-
-	if(args->dom_timing_test) {
-		DOMTimingTest *dom_timing_test = new DOMTimingTest(fsos, args);
-		dom_timing_test->run();
-
-		delete dom_timing_test;
-	}
-
-	// FSO::printAvgDur();
 
 	delete args;
 	for(unsigned int i = 0; i < fsos.size(); ++i) {

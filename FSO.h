@@ -2,7 +2,6 @@
 #ifndef _FSO_H_
 #define _FSO_H_
 
-#include "dom_fetcher.h"
 #include "args.h"
 
 #include <gm.h>
@@ -71,11 +70,6 @@ class FSO {
 	void load();
 	void save();
 
-	// Fetch the power from the DOM
-	float getPower() const;
-	void startAutoAlign();
-	void endAutoAlign();
-
 	// Link Mode
 	int getNumberOfLinks() const { return link_settings.size(); }
 	void getOnlyLink(std::string* other_rack_id, std::string* other_fso_id);
@@ -88,15 +82,12 @@ class FSO {
   	std::string fname;
 
 	std::string rack_id, fso_id;
-	std::string switch_address, switch_username, switch_password, port_name;
 
 	GM *gm1, *gm2;
 	GM *horizontal_gm, *vertical_gm;
 	Diode *ph_diode, *nh_diode, *pv_diode, *nv_diode;
 	Diode *power_diode;
 	ls_map link_settings;
-
-	DOMFetcher *dom;
 
 	Args* args;
 };
