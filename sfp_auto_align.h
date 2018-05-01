@@ -57,7 +57,7 @@ public:
 	// GetPowerMode defines 
 	enum GetPowerMode{SLEEP, MULTI};
 
-	SFPAutoAligner(int sock_, SockType sock_type_);
+	SFPAutoAligner(int sock_, SockType sock_type_, bool is_controller_);
 	~SFPAutoAligner();
 
 	void run(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id);
@@ -74,6 +74,7 @@ public:
 	}
 
 	// Helper functions to create SFPAutoAligner
+	static SFPAutoAligner* listenFor(int listen_port, const std::string &rack_id, const std::string &fso_id);
 	static SFPAutoAligner* connectTo(int send_port, SFPAutoAligner::SockType sock_type, const std::string &host_addr, const std::string &rack_id, const std::string &fso_id);
 
 private:
@@ -106,6 +107,8 @@ private:
 	int sock;
 	SockType sock_type;
 	struct sockaddr_in foreign_host; // The address to send UDP packets to.
+
+	bool is_controller;
 
 	GetPowerMode get_power_mode;
 	int sleep_milliseconds;

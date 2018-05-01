@@ -31,9 +31,11 @@ float PowerTuple::squaredEuclideanDistance(const PowerTuple& other_tuple) const 
 	return sum_dist;
 }
 
-SFPAutoAligner::SFPAutoAligner(int sock_, SockType sock_type_) {
+SFPAutoAligner::SFPAutoAligner(int sock_, SockType sock_type_, bool is_controller_) {
 	sock = sock_;
 	sock_type = sock_type_;
+
+	is_controller = is_controller_;
 
 	get_power_mode = GetPowerMode::SLEEP;
 	sleep_milliseconds = 12;
@@ -49,44 +51,48 @@ SFPAutoAligner::~SFPAutoAligner() {
 void SFPAutoAligner::run(Args* args_, FSO* fso_, const std::string &other_rack_id, const std::string &other_fso_id) {
 	setValues(args_, fso_);
 
-	setMultiParam(args->sfp_max_num_messages, args->sfp_max_num_changes, args->sfp_num_message_average);
+	if(is_controller) {
+		setMultiParam(args->sfp_max_num_messages, args->sfp_max_num_changes, args->sfp_num_message_average);
 
-	fso->setToLink(other_rack_id, other_fso_id);
+		fso->setToLink(other_rack_id, other_fso_id);
 
-	bool run_switch = false;
+		bool run_switch = false;
 
-	if(args->sfp_map_power) {
-		if(args->sfp_search_delta > 0) {
-			mapRunWithSearch();
+		if(args->sfp_map_power) {
+			if(args->sfp_search_delta > 0) {
+				mapRunWithSearch();
+			} else {
+				mapRun();
+			}
+		} else if(run_switch) {
+			switchRun();
 		} else {
-			mapRun();
+			int init_h_gm = fso->getHorizontalGMVal();
+			int init_v_gm = fso->getVerticalGMVal();
+
+			if(args->sfp_constant_response >= 1) {
+				controllerRunConstantUpdate();
+			} else {
+				controllerRun();
+			}
+
+			char raw_input[256];
+			std::string save_tracking_link = "";
+			std::cout << "Do you want to save the current gm settings(y) or revert to initial settings(n)?" << std::endl;
+			std::cin.getline(raw_input, 256);
+			save_tracking_link = raw_input;
+
+			if(save_tracking_link == "n") {
+				fso->setHorizontalGMVal(init_h_gm);
+				fso->setVerticalGMVal(init_v_gm);
+			}
+
+			fso->saveCurrentSettings(other_rack_id, other_fso_id);
+			fso->save();
+			std::cout << "FSO saved!!!" << std::endl;
 		}
-	} else if(run_switch) {
-		switchRun();
 	} else {
-		int init_h_gm = fso->getHorizontalGMVal();
-		int init_v_gm = fso->getVerticalGMVal();
-
-		if(args->sfp_constant_response >= 1) {
-			controllerRunConstantUpdate();
-		} else {
-			controllerRun();
-		}
-
-		char raw_input[256];
-		std::string save_tracking_link = "";
-		std::cout << "Do you want to save the current gm settings(y) or revert to initial settings(n)?" << std::endl;
-		std::cin.getline(raw_input, 256);
-		save_tracking_link = raw_input;
-
-		if(save_tracking_link == "n") {
-			fso->setHorizontalGMVal(init_h_gm);
-			fso->setVerticalGMVal(init_v_gm);
-		}
-
-		fso->saveCurrentSettings(other_rack_id, other_fso_id);
-		fso->save();
-		std::cout << "FSO saved!!!" << std::endl;
+		listenerRun();
 	}
 }
 
@@ -723,6 +729,7 @@ void SFPAutoAligner::mapRun() {
 			ofstr << h_delta << " " << v_delta << " " << power << std::endl;
 		}
 	}
+	endTracking();
 	ofstr.close();
 	fso->setHorizontalGMVal(h_gm_init);
 	fso->setVerticalGMVal(v_gm_init);
@@ -935,6 +942,7 @@ void SFPAutoAligner::listenerRun() {
 		std::stringstream sstr(msg);
 
 		sstr >> token;
+		std::cout << token << std::endl;
 		if(token == "X_out") {
 			givePowerVoltage(fso->getPowerDiodeVoltage());
 		} else if(token == "end_tracking") {
@@ -943,7 +951,6 @@ void SFPAutoAligner::listenerRun() {
 			std::cerr << "UNEXPECTED MESSAGE: " << msg << std::endl;
 		}
 	}
-
 	LOG("listenerRun end");
 }
 
@@ -1143,6 +1150,85 @@ void SFPAutoAligner::recvMsg(std::string &msg) {
 	}
 }
 
+SFPAutoAligner* SFPAutoAligner::listenFor(int listen_port, const std::string &rack_id, const std::string &fso_id) {
+	struct addrinfo hints, *serv_info, *p;
+	int sock, one = 1, backlog = 10;
+
+	memset(&hints,0,sizeof(hints));
+	hints.ai_family = AF_UNSPEC;
+	hints.ai_socktype = SOCK_STREAM;
+	hints.ai_flags = AI_PASSIVE;
+
+	std::string listen_port_str = std::to_string(listen_port);
+	int rv = getaddrinfo(NULL,listen_port_str.c_str(),&hints,&serv_info);
+	if(rv != 0) {
+		std::cerr << "Error in getaddrinfo: " << gai_strerror(rv) << std::endl;
+		return NULL;
+	}
+
+	for(p = serv_info; p != NULL; p = p->ai_next) {
+		sock = socket(p->ai_family,p->ai_socktype,p->ai_protocol);
+		if(sock == -1) {
+			std::cerr << "Error in creating socket" << std::endl;
+			continue;
+		}
+
+		rv = setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,&one,sizeof(int));
+		if(rv == -1) {
+			std::cerr << "Error in setting socket options" << std::endl;
+			return NULL;
+		}
+
+		rv = bind(sock,p->ai_addr,p->ai_addrlen);
+		if(rv == -1) {
+			std::cerr << "Couldn't bind socket" << std::endl;
+			continue;
+		}
+		break;
+	}
+
+	freeaddrinfo(serv_info);
+	if(p == NULL) {
+		std::cerr << "Coudln't bind any socket" << std::endl;
+		return NULL;
+	}
+
+	rv = listen(sock,backlog);
+
+	struct sockaddr_storage foreign_addr;
+	socklen_t sas_size = sizeof(foreign_addr);
+	int connect_sock = accept(sock,(struct sockaddr *)&foreign_addr,&sas_size);
+	if(connect_sock == -1) {
+		std::cerr << "Error in accepting connection" << std::endl;
+		return NULL;
+	}
+
+	// Recv
+	char buf[100];
+	int recv_len = recv(connect_sock,buf,99,0);
+	buf[recv_len] = '\0';
+	std::string recv_msg = buf;
+	std::cout << "Recv: " << recv_msg << std::endl;
+	std::cout << "Check:" << rack_id + " " + fso_id << std::endl;
+	bool fso_match = (recv_msg == rack_id + " " + fso_id);
+
+	// Send
+	std::string msg = "deny";
+	if(fso_match) {
+		msg = "accept";
+	}
+	send(connect_sock,msg.c_str(),msg.size(),0);
+	std::cout << "Sent: " << msg << std::endl;
+
+	close(sock);
+	if(fso_match) {
+		return new SFPAutoAligner(connect_sock, SFPAutoAligner::SockType::TCP, false);
+	} else {
+		close(connect_sock);
+		return NULL;
+	}
+}
+
 SFPAutoAligner* SFPAutoAligner::connectTo(int send_port, SFPAutoAligner::SockType sock_type, const std::string &host_addr, const std::string &rack_id, const std::string &fso_id) {
 	if (sock_type == SFPAutoAligner::SockType::TCP) {
 		// Know addresses before
@@ -1196,7 +1282,7 @@ SFPAutoAligner* SFPAutoAligner::connectTo(int send_port, SFPAutoAligner::SockTyp
 		bool fso_match = (recv_msg == "accept");
 
 		if(fso_match) {
-			return new SFPAutoAligner(sock, SFPAutoAligner::SockType::TCP);
+			return new SFPAutoAligner(sock, SFPAutoAligner::SockType::TCP, true);
 		} else {
 			close(sock);
 			return NULL;
@@ -1216,7 +1302,7 @@ SFPAutoAligner* SFPAutoAligner::connectTo(int send_port, SFPAutoAligner::SockTyp
 
 		// TODO create a simple init protocol
 
-		SFPAutoAligner* saa = new SFPAutoAligner(sock, SFPAutoAligner::SockType::UDP);
+		SFPAutoAligner* saa = new SFPAutoAligner(sock, SFPAutoAligner::SockType::UDP, true);
 		saa->setForeignSockAddr(foreign_host);
 
 		std::cout << "Connected via UDP" << std::endl;

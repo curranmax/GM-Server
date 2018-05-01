@@ -13,7 +13,7 @@
 #include <sstream>
 #include <unistd.h>
 
-#define OTHER_HOST "192.168.1.177"
+#define OTHER_HOST "127.0.0.1" // "192.168.1.177"
 
 // When modifying add instructions, and also maybe add command history
 
@@ -400,26 +400,26 @@ void CoarseAligner::run() {
 				continue;
 			}
 
-			SFPAutoAligner *saa = SFPAutoAligner::connectTo(8888, SFPAutoAligner::SockType::UDP, other_addr, other_rack_id, other_fso_id);
+			SFPAutoAligner *saa = SFPAutoAligner::connectTo(8888, SFPAutoAligner::SockType::TCP, other_addr, other_rack_id, other_fso_id);
 			if(saa == nullptr) {
 				std::cerr << "Unable to start SFP Auto Alignment" << std::endl;
 			} else {
 				saa->run(args, fso, other_rack_id, other_fso_id);
 			}
 			delete saa;
-		} else if(command == "sfp_auto_align"){
-			std::string this_rack_id = "rack_1", this_fso_id = "fso_1", other_addr = OTHER_HOST, other_rack_id = "rack_2", other_fso_id = "fso_1";
+		} else if(command == "saal"){
+			std::string this_rack_id = "rack_2", this_fso_id = "fso_1", other_rack_id = "rack_1", other_fso_id = "fso_1";
 			FSO* fso = getFSO(this_rack_id, this_fso_id);
 			if(fso == nullptr) {
 				std::cerr << "Invalid FSO selected" << std::endl;
 				continue;
 			}
 
-			SFPAutoAligner *saa = SFPAutoAligner::connectTo(8888, SFPAutoAligner::SockType::UDP, other_addr, other_rack_id, other_fso_id);
+			SFPAutoAligner *saa = SFPAutoAligner::listenFor(8888, this_rack_id, this_fso_id);
 			if(saa == nullptr) {
 				std::cerr << "Unable to start SFP Auto Alignment" << std::endl;
 			} else {
-				saa->alignRun(args, fso, other_rack_id, other_fso_id);
+				saa->run(args, fso, other_rack_id, other_fso_id);
 			}
 			delete saa;
 		} else if(command == "sfp_enable_map") {
