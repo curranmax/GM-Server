@@ -70,7 +70,7 @@ Args::Args(const int &argc, char const *argv[]) {
 			Arg_Val(&sfp_map_in_file, "data/sfp_map.txt", "-sfp_map_in", "MV_IN", "File to get data from for SFP tracking"),
 			Arg_Val(&sfp_tracking_start, 0.0, "-sfp_start", "START", "Percent Difference from Peak to start tracking"),
 			Arg_Val(&sfp_tracking_stop, 0.0, "-sfp_stop", "STOP", "Percent Difference from Peak to stop tracking"),
-			Arg_Val(&sfp_power_zero_value, 0.0, "-sfp_zero", "ZERO_VAL", "Any Power less than or equal to this value will be clamped to 0.0"),
+			Arg_Val(&sfp_power_zero_value, -100.0, "-sfp_zero", "ZERO_VAL", "Any Power less than or equal to this value will be clamped to 0.0"),
 			Arg_Val(&sfp_search_delta, 0, "-sfp_sd", "SEARCH_DELTA", "The search delta to use for the SFP Auto Alignment"),
 			Arg_Val(&sfp_num_search_locs, 3, "-sfp_nsl", "NUM_SEARCH_LOCS", "The number of locations to search when doing SFP Auto Alignment. Must be either 3 or 5."),
 			Arg_Val(&sfp_table_epsilon, 0.0, "-sfp_eps", "EPSILON", "When doing the table lookup, differences between current Power and Powers in the table less than the given epsilon will be treated as 0"),

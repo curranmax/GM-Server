@@ -381,6 +381,10 @@ void SFPAutoAligner::controllerRun() {
 	}
 	signal(SIGINT, SIG_DFL);
 
+	if(sock_type == SFPAutoAligner::SockType::TCP) {
+		endTracking();
+	}
+
 	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
 	std::chrono::duration<double> dur = end - start;
 	float total_seconds = dur.count();
@@ -602,6 +606,10 @@ void SFPAutoAligner::controllerRunConstantUpdate() {
 		}
 	}
 	signal(SIGINT, SIG_DFL);
+
+	if(sock_type == SFPAutoAligner::SockType::TCP) {
+		endTracking();
+	}
 
 	std::chrono::time_point<std::chrono::system_clock> end = std::chrono::system_clock::now();
 	std::chrono::duration<double> dur = end - start;
@@ -942,7 +950,6 @@ void SFPAutoAligner::listenerRun() {
 		std::stringstream sstr(msg);
 
 		sstr >> token;
-		std::cout << token << std::endl;
 		if(token == "X_out") {
 			givePowerVoltage(fso->getPowerDiodeVoltage());
 		} else if(token == "end_tracking") {

@@ -119,6 +119,7 @@ std::vector<std::string> FSO::getLinkStrings() const {
 }
 
 void FSO::load() {
+
 	std::ifstream ifstr(fname, std::ifstream::in);
 
 	std::string line;
@@ -215,6 +216,14 @@ void FSO::load() {
 			sstr >> nv_diode_sampling_rate;
 		} else if(token == "power_diode") {
 			sstr >> power_diode_string;
+		} else if(token == "power_diode_serial_number") {
+			sstr >> power_diode_serial_number;
+		} else if(token == "power_diode_channel") {
+			sstr >> power_diode_channel;
+		} else if(token == "power_diode_num_samples") {
+			sstr >> power_diode_num_samples;
+		} else if(token == "power_diode_sampling_rate") {
+			sstr >> power_diode_sampling_rate;
 		}
 	}
 
@@ -226,7 +235,7 @@ void FSO::load() {
 	} else if(horizontal_gm_num == 2) {
 		horizontal_gm = gm2;
 	} else {
-		horizontal_gm = nullptr;
+		horizontal_gm = gm1;
 	}
 
 	if(vertical_gm_num == 1) {
@@ -234,7 +243,7 @@ void FSO::load() {
 	} else if(vertical_gm_num == 2) {
 		vertical_gm = gm2;
 	} else {
-		vertical_gm = nullptr;
+		vertical_gm = gm2;
 	}
 
 	ph_diode = makeDiode(ph_diode_channel,
@@ -264,6 +273,7 @@ void FSO::load() {
 							power_diode_sampling_rate,
 							args->debug);
 
+
 	// TODO add err if power_diode != nullptr and power_diode_str != ""
 
 	if(power_diode == nullptr) {
@@ -281,13 +291,15 @@ void FSO::load() {
 		}
 	}
 
-	gm1->connectDevice();
-	gm2->connectDevice();
+	horizontal_gm->connectDevice();
+	vertical_gm->connectDevice();
 
 	ph_diode->connectDevice();
 	nh_diode->connectDevice();
 	pv_diode->connectDevice();
 	nv_diode->connectDevice();
+
+	power_diode->connectDevice();
 
 	// If only one link, then set it to that
 	if(link_settings.size() == 1) {
@@ -438,7 +450,7 @@ GM* FSO::makeGM(int channel, const std::string &usb_id, bool debug) {
 		if(debug) {
 			return new DebugGM(channel,usb_id);
 		} else {
-			return new GM(channel,usb_id);
+			return new GM(channel, usb_id);
 		}
 	}
 }
@@ -454,7 +466,6 @@ Diode* FSO::makeDiode(int channel, const std::string& serial_number,
 			return new Diode(channel, serial_number, num_samples, sampling_rate);
 		}
 	}
-	return nullptr;
 }
 
 void FSO::getOnlyLink(std::string* other_rack_id, std::string* other_fso_id) {

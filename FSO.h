@@ -61,7 +61,7 @@ class FSO {
 	float getPositiveVerticalDiodeVoltage() const { return pv_diode->getVoltage(); }
 	float getNegativeVerticalDiodeVoltage() const { return nv_diode->getVoltage(); }
 
-	float getPowerDiodeVoltage() const { return power_diode->getVoltage(); }
+	float getPowerDiodeVoltage() const { std::cout << "FSO::getPowerDiodeVoltage()" << std::endl; return power_diode->getVoltage(); }
 
 	void changeGMVal(int gm_n,int delta);
 
